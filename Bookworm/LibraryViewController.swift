@@ -8,6 +8,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     var documentStore: DocumentStore!
     let documentDataSource = DocumentDataSource()
 
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +27,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
         navigationItem.title = ""
     }
     
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showDocument":
