@@ -1,10 +1,3 @@
-//
-//  BookwormUITests.swift
-//  BookwormUITests
-//
-//  Created by student on 17/07/1401 AP.
-//
-
 import XCTest
 
 class BookwormUITests: XCTestCase {
