@@ -18,7 +18,29 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
         documentDataSource.documents = documentStore.documents
         
         collectionView.reloadSections(IndexSet(integer: 0))
-    }    
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationItem.title = ""
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showDocument":
+            if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
+                let document = documentDataSource.documents[selectedIndexPath.row]
+                let readerViewController = segue.destination as! ReaderViewController
+                readerViewController.document = document
+                
+                readerViewController.hidesBottomBarWhenPushed = true
+                readerViewController.navigationController?.hidesBarsOnTap = true
+            }
+        default:
+            preconditionFailure("Unexpected segue identifier")
+        }
+    }
 }
 
 extension LibraryViewController: UICollectionViewDelegateFlowLayout {

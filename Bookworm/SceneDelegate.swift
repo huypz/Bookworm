@@ -12,8 +12,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let rootViewController = window!.rootViewController as! UITabBarController
-        let libaryViewController = rootViewController.viewControllers!.first as! LibraryViewController
-        libaryViewController.documentStore = DocumentStore()
+        let navigationController = rootViewController.viewControllers!.first as! UINavigationController
+        let libraryViewController = navigationController.topViewController as! LibraryViewController
+        libraryViewController.documentStore = DocumentStore()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -20,8 +20,8 @@ class DocumentDataSource: NSObject, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! DocumentCollectionViewCell
         
         let document = documents[indexPath.row]
-        if let documentPDF = PDFDocument(url: document.url),
-           let page = documentPDF.page(at: 0) {
+        if let pdfDocument = PDFDocument(url: document.url),
+           let page = pdfDocument.page(at: 0) {
             let size = collectionView.collectionViewLayout.collectionViewContentSize
             let cover = page.thumbnail(of: size, for: .artBox)
             cell.imageView.image = cover
