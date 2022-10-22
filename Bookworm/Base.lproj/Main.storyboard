@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="baa-QT-kpB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="baa-QT-kpB">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -13,50 +13,68 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LibraryViewController" customModule="Bookworm" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="UsF-mM-QBD">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="o9D-Ym-vU2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ySf-fg-dLy">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Wmf-e7-Ksr">
                             <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DocumentCollectionViewCell" id="hFA-FP-ElM" customClass="DocumentCollectionViewCell" customModule="Bookworm" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DocumentCollectionViewCell" id="4qU-ES-ZjR" customClass="DocumentCollectionViewCell" customModule="Bookworm" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ugc-jy-c0w">
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7WU-cE-EMX">
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JTx-Ki-SUt">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cyH-uN-hT0">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="JTx-Ki-SUt" firstAttribute="leading" secondItem="ugc-jy-c0w" secondAttribute="leading" id="JWR-dM-Bga"/>
-                                        <constraint firstAttribute="trailing" secondItem="JTx-Ki-SUt" secondAttribute="trailing" id="Ngw-TR-Cq8"/>
-                                        <constraint firstItem="JTx-Ki-SUt" firstAttribute="top" secondItem="ugc-jy-c0w" secondAttribute="top" id="hwM-dd-toF"/>
-                                        <constraint firstAttribute="bottom" secondItem="JTx-Ki-SUt" secondAttribute="bottom" id="yYH-Me-axb"/>
+                                        <constraint firstAttribute="trailing" secondItem="cyH-uN-hT0" secondAttribute="trailing" id="70G-Hq-5t6"/>
+                                        <constraint firstItem="cyH-uN-hT0" firstAttribute="top" secondItem="7WU-cE-EMX" secondAttribute="top" id="9Bn-4w-nys"/>
+                                        <constraint firstItem="cyH-uN-hT0" firstAttribute="leading" secondItem="7WU-cE-EMX" secondAttribute="leading" id="I6J-dV-T8k"/>
+                                        <constraint firstAttribute="bottom" secondItem="cyH-uN-hT0" secondAttribute="bottom" id="dSh-DP-IBb"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
-                                    <outlet property="imageView" destination="JTx-Ki-SUt" id="aBX-9M-imr"/>
-                                    <segue destination="2Ib-oJ-rJr" kind="show" identifier="showDocument" id="OqS-VL-E9x"/>
+                                    <outlet property="imageView" destination="cyH-uN-hT0" id="91B-wn-adx"/>
+                                    <segue destination="2Ib-oJ-rJr" kind="show" identifier="showDocument" id="XBH-lg-0o7"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="LibraryHeaderView" id="QmV-gW-gul" customClass="LibraryHeaderView" customModule="Bookworm" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Aj-0T-H0Y">
+                                    <rect key="frame" x="20" y="6" width="105.5" height="38.5"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="7Aj-0T-H0Y" firstAttribute="centerY" secondItem="QmV-gW-gul" secondAttribute="centerY" id="Gfj-xI-YpN"/>
+                                <constraint firstItem="7Aj-0T-H0Y" firstAttribute="leading" secondItem="QmV-gW-gul" secondAttribute="leading" constant="20" id="lo2-Qd-vWx"/>
+                            </constraints>
+                        </collectionReusableView>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="ABu-MT-I6p"/>
+                    <navigationItem key="navigationItem" id="ABu-MT-I6p">
+                        <barButtonItem key="rightBarButtonItem" title="Import" id="eux-0M-Wm7"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="collectionView" destination="UsF-mM-QBD" id="rCD-Xr-0VR"/>
+                        <outlet property="collectionView" destination="o9D-Ym-vU2" id="f5F-fB-GB0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2705.7971014492755" y="97.767857142857139"/>
+            <point key="canvasLocation" x="2650.7246376811595" y="97.767857142857139"/>
         </scene>
         <!--Reader View Controller-->
         <scene sceneID="Hl6-vL-bqY">
@@ -68,14 +86,32 @@
                         <viewLayoutGuide key="safeArea" id="kYk-wi-AqL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="z5y-be-kk5"/>
+                    <navigationItem key="navigationItem" id="z5y-be-kk5">
+                        <leftBarButtonItems>
+                            <barButtonItem title="Item" image="chevron.left" catalog="system" id="Z8W-V4-Xx6" userLabel="Back">
+                                <connections>
+                                    <action selector="backWithSender:" destination="2Ib-oJ-rJr" id="XtE-4l-Ovc"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Table of Contents" image="list.bullet" catalog="system" id="dK4-qx-1V7">
+                                <connections>
+                                    <action selector="showContentsWithSender:" destination="2Ib-oJ-rJr" id="CP7-a3-ESF"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Bookmark" image="bookmark" catalog="system" id="pg7-qF-Ih9"/>
+                            <barButtonItem title="Item" image="magnifyingglass" catalog="system" id="MFg-Yl-JLU" userLabel="Search"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
+                        <outlet property="backButton" destination="Z8W-V4-Xx6" id="uyK-Ih-KTf"/>
                         <outlet property="pdfView" destination="fTk-BW-DK9" id="vde-Mr-9Iw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Huj-RL-Er9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3591.3043478260875" y="97.767857142857139"/>
+            <point key="canvasLocation" x="3504" y="98"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="i0z-W5-dge">
@@ -102,7 +138,7 @@
                     <tabBarItem key="tabBarItem" title="Library" image="books.vertical" catalog="system" id="VE6-3j-qyb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JcF-8U-qan">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -116,7 +152,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bookmark" catalog="system" width="110" height="128"/>
         <image name="books.vertical" catalog="system" width="128" height="107"/>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
+        <image name="list.bullet" catalog="system" width="128" height="87"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

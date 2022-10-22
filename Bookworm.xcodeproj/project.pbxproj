@@ -3,14 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F4138E9290484CA00B229B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F862D7028F3A4B800B6D634 /* Main.storyboard */; };
 		3F862D6B28F3A4B800B6D634 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D6A28F3A4B800B6D634 /* AppDelegate.swift */; };
 		3F862D6D28F3A4B800B6D634 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D6C28F3A4B800B6D634 /* SceneDelegate.swift */; };
 		3F862D6F28F3A4B800B6D634 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D6E28F3A4B800B6D634 /* LibraryViewController.swift */; };
-		3F862D7228F3A4B800B6D634 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F862D7028F3A4B800B6D634 /* Main.storyboard */; };
 		3F862D7428F3A4BA00B6D634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F862D7328F3A4BA00B6D634 /* Assets.xcassets */; };
 		3F862D7728F3A4BA00B6D634 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F862D7528F3A4BA00B6D634 /* LaunchScreen.storyboard */; };
 		3F862D8228F3A4BA00B6D634 /* BookwormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D8128F3A4BA00B6D634 /* BookwormTests.swift */; };
@@ -234,7 +234,7 @@
 				};
 			};
 			buildConfigurationList = 3F862D6228F3A4B800B6D634 /* Build configuration list for PBXProject "Bookworm" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -258,13 +258,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F4138E9290484CA00B229B0 /* Main.storyboard in Resources */,
 				3FC00C262900B9D700B32BAC /* Linear Algebra and Its Applications.pdf in Resources */,
 				3FC00C272900B9D700B32BAC /* Computer Networking.pdf in Resources */,
 				3F862DA228F62ACD00B6D634 /* The Last Wish.epub in Resources */,
 				3F862D9D28F6239C00B6D634 /* Clean Code.pdf in Resources */,
 				3F862D7728F3A4BA00B6D634 /* LaunchScreen.storyboard in Resources */,
 				3F862D7428F3A4BA00B6D634 /* Assets.xcassets in Resources */,
-				3F862D7228F3A4B800B6D634 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,7 +402,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -456,7 +456,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -531,7 +531,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 77S6ZLYVB2;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huy.BookwormTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -551,7 +551,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 77S6ZLYVB2;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huy.BookwormTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

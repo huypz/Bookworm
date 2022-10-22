@@ -35,6 +35,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
                 let document = documentDataSource.documents[selectedIndexPath.row]
                 let readerViewController = segue.destination as! ReaderViewController
                 readerViewController.document = document
+                readerViewController.documentPDF = PDFDocument(url: document.url)
                 
                 readerViewController.hidesBottomBarWhenPushed = true
                 readerViewController.navigationController?.hidesBarsOnTap = true
@@ -42,6 +43,11 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
         default:
             preconditionFailure("Unexpected segue identifier")
         }
+    }
+    
+    // MARK: - Actions
+    @IBAction func importDocument(sender: UIBarButtonItem) {
+        
     }
 }
 
@@ -60,4 +66,9 @@ extension LibraryViewController: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: itemWidth, height: itemWidth)
     }
+}
+
+class LibraryHeaderView: UICollectionReusableView {
+    
+    @IBOutlet var label: UILabel!
 }
