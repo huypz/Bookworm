@@ -17,33 +17,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Wmf-e7-Ksr">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="2" id="Wmf-e7-Ksr">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DocumentCollectionViewCell" id="4qU-ES-ZjR" customClass="DocumentCollectionViewCell" customModule="Bookworm" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="128" height="128"/>
+                                <rect key="frame" x="8" y="58" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7WU-cE-EMX">
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cyH-uN-hT0">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cyH-uN-hT0" userLabel="Document Image View">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="cyH-uN-hT0" secondAttribute="trailing" id="70G-Hq-5t6"/>
-                                        <constraint firstItem="cyH-uN-hT0" firstAttribute="top" secondItem="7WU-cE-EMX" secondAttribute="top" id="9Bn-4w-nys"/>
-                                        <constraint firstItem="cyH-uN-hT0" firstAttribute="leading" secondItem="7WU-cE-EMX" secondAttribute="leading" id="I6J-dV-T8k"/>
-                                        <constraint firstAttribute="bottom" secondItem="cyH-uN-hT0" secondAttribute="bottom" id="dSh-DP-IBb"/>
+                                        <constraint firstAttribute="trailing" secondItem="cyH-uN-hT0" secondAttribute="trailing" id="AOY-QQ-ciD"/>
+                                        <constraint firstAttribute="bottom" secondItem="cyH-uN-hT0" secondAttribute="bottom" id="fku-dJ-B4u"/>
+                                        <constraint firstItem="cyH-uN-hT0" firstAttribute="leading" secondItem="7WU-cE-EMX" secondAttribute="leading" id="mN9-t0-gPJ"/>
+                                        <constraint firstItem="cyH-uN-hT0" firstAttribute="top" secondItem="7WU-cE-EMX" secondAttribute="top" id="vzF-cw-bJg"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
-                                    <outlet property="imageView" destination="cyH-uN-hT0" id="91B-wn-adx"/>
+                                    <outlet property="documentImageView" destination="cyH-uN-hT0" id="Rqh-nh-1N0"/>
                                     <segue destination="2Ib-oJ-rJr" kind="show" identifier="showDocument" id="XBH-lg-0o7"/>
                                 </connections>
                             </collectionViewCell>
@@ -66,10 +67,22 @@
                         </collectionReusableView>
                     </collectionView>
                     <navigationItem key="navigationItem" id="ABu-MT-I6p">
-                        <barButtonItem key="rightBarButtonItem" title="Import" id="eux-0M-Wm7"/>
+                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="Delete" image="trash" catalog="system" id="ner-ol-XWi">
+                            <color key="tintColor" systemColor="systemRedColor"/>
+                            <connections>
+                                <action selector="deleteSelectedDocuments:" destination="BYZ-38-t0r" id="vhc-fa-tgy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Import" image="plus" catalog="system" id="Ljm-cq-wOZ">
+                            <connections>
+                                <action selector="documentMenu:" destination="BYZ-38-t0r" id="m47-DF-2jh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="o9D-Ym-vU2" id="f5F-fB-GB0"/>
+                        <outlet property="deleteButton" destination="ner-ol-XWi" id="U33-Pk-Yhs"/>
+                        <outlet property="importButton" destination="Ljm-cq-wOZ" id="ep5-sW-HUe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -157,8 +170,13 @@
         <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="trash" catalog="system" width="117" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

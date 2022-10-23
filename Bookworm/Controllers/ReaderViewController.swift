@@ -24,7 +24,6 @@ class ReaderViewController: UIViewController {
     }
     
     @IBAction func showContents(sender: UIBarButtonItem) {
-        print(documentPDF.outlineRoot!)
-        print(documentPDF.outlineRoot!.label ?? "None")
+        return
     }
 }

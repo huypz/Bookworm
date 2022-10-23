@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3F4138E9290484CA00B229B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F862D7028F3A4B800B6D634 /* Main.storyboard */; };
+		3F4215FE2904C01400F7E6A1 /* Bookworm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F4215FC2904C01400F7E6A1 /* Bookworm.xcdatamodeld */; };
+		3F4216032904C26200F7E6A1 /* Document+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4216012904C26200F7E6A1 /* Document+CoreDataClass.swift */; };
+		3F4216072904C73800F7E6A1 /* Document+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4216062904C73800F7E6A1 /* Document+CoreDataProperties.swift */; };
 		3F862D6B28F3A4B800B6D634 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D6A28F3A4B800B6D634 /* AppDelegate.swift */; };
 		3F862D6D28F3A4B800B6D634 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D6C28F3A4B800B6D634 /* SceneDelegate.swift */; };
 		3F862D6F28F3A4B800B6D634 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D6E28F3A4B800B6D634 /* LibraryViewController.swift */; };
@@ -17,14 +20,9 @@
 		3F862D8C28F3A4BA00B6D634 /* BookwormUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D8B28F3A4BA00B6D634 /* BookwormUITests.swift */; };
 		3F862D8E28F3A4BA00B6D634 /* BookwormUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D8D28F3A4BA00B6D634 /* BookwormUITestsLaunchTests.swift */; };
 		3F862D9B28F5E3BF00B6D634 /* ReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D9A28F5E3BF00B6D634 /* ReaderViewController.swift */; };
-		3F862D9D28F6239C00B6D634 /* Clean Code.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3F862D9C28F6239C00B6D634 /* Clean Code.pdf */; };
-		3F862DA228F62ACD00B6D634 /* The Last Wish.epub in Resources */ = {isa = PBXBuildFile; fileRef = 3F862DA128F62ACD00B6D634 /* The Last Wish.epub */; };
 		3FC00C1928FF1B9E00B32BAC /* DocumentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1828FF1B9E00B32BAC /* DocumentDataSource.swift */; };
 		3FC00C1B28FF1C5400B32BAC /* DocumentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1A28FF1C5400B32BAC /* DocumentCollectionViewCell.swift */; };
 		3FC00C1D28FF1D7200B32BAC /* DocumentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1C28FF1D7200B32BAC /* DocumentStore.swift */; };
-		3FC00C232900AA9E00B32BAC /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C222900AA9E00B32BAC /* Document.swift */; };
-		3FC00C262900B9D700B32BAC /* Linear Algebra and Its Applications.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3FC00C242900B9D700B32BAC /* Linear Algebra and Its Applications.pdf */; };
-		3FC00C272900B9D700B32BAC /* Computer Networking.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3FC00C252900B9D700B32BAC /* Computer Networking.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F4215FD2904C01400F7E6A1 /* Bookworm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bookworm.xcdatamodel; sourceTree = "<group>"; };
+		3F4216012904C26200F7E6A1 /* Document+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Document+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3F4216062904C73800F7E6A1 /* Document+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Document+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3F862D6728F3A4B800B6D634 /* Bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F862D6A28F3A4B800B6D634 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F862D6C28F3A4B800B6D634 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,14 +60,9 @@
 		3F862D8B28F3A4BA00B6D634 /* BookwormUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookwormUITests.swift; sourceTree = "<group>"; };
 		3F862D8D28F3A4BA00B6D634 /* BookwormUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookwormUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3F862D9A28F5E3BF00B6D634 /* ReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderViewController.swift; sourceTree = "<group>"; };
-		3F862D9C28F6239C00B6D634 /* Clean Code.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "Clean Code.pdf"; path = "../../../Downloads/Clean Code.pdf"; sourceTree = "<group>"; };
-		3F862DA128F62ACD00B6D634 /* The Last Wish.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = "The Last Wish.epub"; path = "../../../Downloads/The Last Wish.epub"; sourceTree = "<group>"; };
 		3FC00C1828FF1B9E00B32BAC /* DocumentDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDataSource.swift; sourceTree = "<group>"; };
 		3FC00C1A28FF1C5400B32BAC /* DocumentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCollectionViewCell.swift; sourceTree = "<group>"; };
 		3FC00C1C28FF1D7200B32BAC /* DocumentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStore.swift; sourceTree = "<group>"; };
-		3FC00C222900AA9E00B32BAC /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		3FC00C242900B9D700B32BAC /* Linear Algebra and Its Applications.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "Linear Algebra and Its Applications.pdf"; path = "../../../Downloads/Linear Algebra and Its Applications.pdf"; sourceTree = "<group>"; };
-		3FC00C252900B9D700B32BAC /* Computer Networking.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "Computer Networking.pdf"; path = "../../../Downloads/Computer Networking.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,13 +90,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F4216002904C19700F7E6A1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3F862D6E28F3A4B800B6D634 /* LibraryViewController.swift */,
+				3F862D9A28F5E3BF00B6D634 /* ReaderViewController.swift */,
+				3FC00C1A28FF1C5400B32BAC /* DocumentCollectionViewCell.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3F4216052904C28C00F7E6A1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3FC00C1828FF1B9E00B32BAC /* DocumentDataSource.swift */,
+				3FC00C1C28FF1D7200B32BAC /* DocumentStore.swift */,
+				3F4216012904C26200F7E6A1 /* Document+CoreDataClass.swift */,
+				3F4216062904C73800F7E6A1 /* Document+CoreDataProperties.swift */,
+				3F4215FC2904C01400F7E6A1 /* Bookworm.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		3F862D5E28F3A4B800B6D634 = {
 			isa = PBXGroup;
 			children = (
-				3FC00C252900B9D700B32BAC /* Computer Networking.pdf */,
-				3FC00C242900B9D700B32BAC /* Linear Algebra and Its Applications.pdf */,
-				3F862DA128F62ACD00B6D634 /* The Last Wish.epub */,
-				3F862D9C28F6239C00B6D634 /* Clean Code.pdf */,
 				3F862D6928F3A4B800B6D634 /* Bookworm */,
 				3F862D8028F3A4BA00B6D634 /* BookwormTests */,
 				3F862D8A28F3A4BA00B6D634 /* BookwormUITests */,
@@ -121,18 +135,14 @@
 		3F862D6928F3A4B800B6D634 /* Bookworm */ = {
 			isa = PBXGroup;
 			children = (
+				3F4216052904C28C00F7E6A1 /* Models */,
+				3F4216002904C19700F7E6A1 /* Controllers */,
 				3F862D6A28F3A4B800B6D634 /* AppDelegate.swift */,
 				3F862D6C28F3A4B800B6D634 /* SceneDelegate.swift */,
-				3F862D6E28F3A4B800B6D634 /* LibraryViewController.swift */,
 				3F862D7028F3A4B800B6D634 /* Main.storyboard */,
 				3F862D7328F3A4BA00B6D634 /* Assets.xcassets */,
 				3F862D7528F3A4BA00B6D634 /* LaunchScreen.storyboard */,
 				3F862D7828F3A4BA00B6D634 /* Info.plist */,
-				3F862D9A28F5E3BF00B6D634 /* ReaderViewController.swift */,
-				3FC00C1828FF1B9E00B32BAC /* DocumentDataSource.swift */,
-				3FC00C1A28FF1C5400B32BAC /* DocumentCollectionViewCell.swift */,
-				3FC00C1C28FF1D7200B32BAC /* DocumentStore.swift */,
-				3FC00C222900AA9E00B32BAC /* Document.swift */,
 			);
 			path = Bookworm;
 			sourceTree = "<group>";
@@ -259,10 +269,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F4138E9290484CA00B229B0 /* Main.storyboard in Resources */,
-				3FC00C262900B9D700B32BAC /* Linear Algebra and Its Applications.pdf in Resources */,
-				3FC00C272900B9D700B32BAC /* Computer Networking.pdf in Resources */,
-				3F862DA228F62ACD00B6D634 /* The Last Wish.epub in Resources */,
-				3F862D9D28F6239C00B6D634 /* Clean Code.pdf in Resources */,
 				3F862D7728F3A4BA00B6D634 /* LaunchScreen.storyboard in Resources */,
 				3F862D7428F3A4BA00B6D634 /* Assets.xcassets in Resources */,
 			);
@@ -289,13 +295,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FC00C232900AA9E00B32BAC /* Document.swift in Sources */,
+				3F4215FE2904C01400F7E6A1 /* Bookworm.xcdatamodeld in Sources */,
 				3F862D6F28F3A4B800B6D634 /* LibraryViewController.swift in Sources */,
 				3FC00C1D28FF1D7200B32BAC /* DocumentStore.swift in Sources */,
 				3FC00C1928FF1B9E00B32BAC /* DocumentDataSource.swift in Sources */,
 				3F862D6B28F3A4B800B6D634 /* AppDelegate.swift in Sources */,
+				3F4216072904C73800F7E6A1 /* Document+CoreDataProperties.swift in Sources */,
 				3F862D6D28F3A4B800B6D634 /* SceneDelegate.swift in Sources */,
 				3FC00C1B28FF1C5400B32BAC /* DocumentCollectionViewCell.swift in Sources */,
+				3F4216032904C26200F7E6A1 /* Document+CoreDataClass.swift in Sources */,
 				3F862D9B28F5E3BF00B6D634 /* ReaderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,6 +646,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3F4215FC2904C01400F7E6A1 /* Bookworm.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3F4215FD2904C01400F7E6A1 /* Bookworm.xcdatamodel */,
+			);
+			currentVersion = 3F4215FD2904C01400F7E6A1 /* Bookworm.xcdatamodel */;
+			path = Bookworm.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3F862D5F28F3A4B800B6D634 /* Project object */;
 }

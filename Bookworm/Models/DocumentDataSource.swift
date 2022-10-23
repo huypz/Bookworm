@@ -1,6 +1,3 @@
-//
-//  PDFDocumentDataSource.swift
-//  Bookworm
 import PDFKit
 
 class DocumentDataSource: NSObject, UICollectionViewDataSource {
@@ -16,11 +13,11 @@ class DocumentDataSource: NSObject, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! DocumentCollectionViewCell
         
         let document = documents[indexPath.row]
-        if let documentPDF = PDFDocument(url: document.url),
+        if let documentPDF = PDFDocument(data: document.data!),
            let page = documentPDF.page(at: 0) {
             let size = collectionView.collectionViewLayout.collectionViewContentSize
             let cover = page.thumbnail(of: size, for: .artBox)
-            cell.imageView.image = cover
+            cell.documentImageView.image = cover
         }
         
         return cell
