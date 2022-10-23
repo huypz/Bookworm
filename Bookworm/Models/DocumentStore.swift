@@ -23,7 +23,10 @@ class DocumentStore {
                 document.title = url.lastPathComponent
                 document.remoteURL = url
                 document.documentID = UUID().uuidString
+                document.lastAccessed = Date()
                 document.data = data
+                document.thumbnail = Document.thumbnail(data: data)
+                document.isSelected = false
             }
             try persistentContainer.viewContext.save()
         }
@@ -34,8 +37,8 @@ class DocumentStore {
     
     func fetchDocuments(completion: @escaping (Result<[Document], Error>) -> Void) {
         let fetchRequest: NSFetchRequest<Document> = Document.fetchRequest()
-        let sortByTitle = NSSortDescriptor(key: #keyPath(Document.title), ascending: true)
-        fetchRequest.sortDescriptors = [sortByTitle]
+        let sortByLastAccessed = NSSortDescriptor(key: #keyPath(Document.lastAccessed), ascending: false)
+        fetchRequest.sortDescriptors = [sortByLastAccessed]
         
         let viewContext = persistentContainer.viewContext
         viewContext.perform {
@@ -47,6 +50,7 @@ class DocumentStore {
                 completion(.failure(error))
             }
         }
+        
     }
     
     func delete(_ document: Document) {

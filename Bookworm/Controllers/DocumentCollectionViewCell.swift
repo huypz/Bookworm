@@ -4,14 +4,11 @@ class DocumentCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var documentImageView: UIImageView!
     
-    var isEditing: Bool = false {
+    override var isSelected: Bool {
         didSet {
-            if isEditing {
-                documentImageView.alpha = 0.5
-            }
-            else {
-                documentImageView.alpha = 1
-            }
+            documentImageView.alpha = isEditing ? (isSelected ? 1.0 : 0.5) : 1.0
         }
     }
+    
+    var isEditing: Bool = false
 }

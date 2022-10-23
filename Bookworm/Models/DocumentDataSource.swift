@@ -4,6 +4,8 @@ class DocumentDataSource: NSObject, UICollectionViewDataSource {
     
     var documents = [Document]()
     
+    var isEditing: Bool = false
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return documents.count
     }
@@ -13,12 +15,9 @@ class DocumentDataSource: NSObject, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! DocumentCollectionViewCell
         
         let document = documents[indexPath.row]
-        if let documentPDF = PDFDocument(data: document.data!),
-           let page = documentPDF.page(at: 0) {
-            let size = collectionView.collectionViewLayout.collectionViewContentSize
-            let cover = page.thumbnail(of: size, for: .artBox)
-            cell.documentImageView.image = cover
-        }
+        cell.documentImageView.image = UIImage(data: document.thumbnail!)
+        cell.isEditing = isEditing
+        cell.isSelected = document.isSelected
         
         return cell
     }

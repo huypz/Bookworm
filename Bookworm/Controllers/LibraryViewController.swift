@@ -27,8 +27,13 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
         collectionView.delegate = self
         
         updateDataSource()
-        
         updateNavigationItem()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateDataSource()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,10 +57,10 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
         case "showDocument":
             if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
                 let document = documentDataSource.documents[selectedIndexPath.row]
+                document.lastAccessed = Date()
                 let readerViewController = segue.destination as! ReaderViewController
                 readerViewController.document = document
                 readerViewController.documentPDF = PDFDocument(data: document.data!)
-                
                 readerViewController.hidesBottomBarWhenPushed = true
                 readerViewController.navigationController?.hidesBarsOnTap = true
             }
@@ -78,22 +83,45 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     }
     
     // MARK: - Actions
-    @IBAction func toggleEditingMode(_ sender: UIBarButtonItem) {
+    @IBAction func toggleEditingMode(_ sender: Any?) {
+        print(documentDataSource.documents.count)
+        
+        documentDataSource.isEditing = !isEditing
+        documentDataSource.documents.forEach {
+            $0.isSelected = false
+        }
+        
         if isEditing {
+            collectionView.allowsMultipleSelection = false
+            collectionView.indexPathsForSelectedItems?.forEach {
+                collectionView.deselectItem(at: $0, animated: true)
+            }
+            collectionView.visibleCells.forEach {
+                let cell = $0 as! DocumentCollectionViewCell
+                cell.isEditing = false
+                cell.isSelected = false
+            }
+            deleteButton.isEnabled = false
             setEditing(false, animated: true)
         }
         else {
+            collectionView.allowsMultipleSelection = true
+            collectionView.visibleCells.forEach {
+                let cell = $0 as! DocumentCollectionViewCell
+                cell.isEditing = true
+                cell.isSelected = false
+            }
             setEditing(true, animated: true)
         }
+        collectionView.reloadSections(IndexSet(integer: 0))
         updateNavigationItem()
     }
     
     @IBAction func deleteSelectedDocuments(_ sender: UIBarButtonItem) {
-        collectionView.indexPathsForSelectedItems?.forEach { (indexPath) in
-            let document = documentDataSource.documents[indexPath.row]
+        documentDataSource.documents.filter({ $0.isSelected }).forEach({ (document) in
             documentStore.delete(document)
-            updateDataSource()
-        }
+        })
+        updateDataSource()
         deleteButton.isEnabled = false
     }
     
@@ -107,30 +135,30 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     
     // MARK: - Collection View
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! DocumentCollectionViewCell
-        cell.documentImageView.alpha = 1
-        
-        if collectionView.indexPathsForSelectedItems?.count ?? 0 > 0 {
-            deleteButton.isEnabled = true
+        if isEditing {
+            let cell = collectionView.cellForItem(at: indexPath) as! DocumentCollectionViewCell
+            cell.isSelected = true
+            
+            let document = documentDataSource.documents[indexPath.row]
+            document.isSelected = true
+            
+            if documentDataSource.documents.filter({ $0.isSelected }).count > 0 {
+                deleteButton.isEnabled = true
+            }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! DocumentCollectionViewCell
-        cell.documentImageView.alpha = 0.5
-        
-        if collectionView.indexPathsForSelectedItems?.count ?? 0 == 0 {
-            deleteButton.isEnabled = false
-        }
-    }
-    
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        
-        collectionView.allowsMultipleSelection = editing
-        collectionView.indexPathsForVisibleItems.forEach { (indexPath) in
+        if isEditing {
             let cell = collectionView.cellForItem(at: indexPath) as! DocumentCollectionViewCell
-            cell.isEditing = editing
+            cell.isSelected = false
+            
+            let document = documentDataSource.documents[indexPath.row]
+            document.isSelected = false
+            
+            if documentDataSource.documents.filter({ $0.isSelected }).count == 0 {
+                deleteButton.isEnabled = false
+            }
         }
     }
     
@@ -166,17 +194,13 @@ extension LibraryViewController: UICollectionViewDelegateFlowLayout {
 extension LibraryViewController: UIDocumentPickerDelegate {
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        print("documentPicker didPickDocumentsAt")
         for url in urls {
             CFURLStartAccessingSecurityScopedResource(url as CFURL)
             documentStore.processDocument(url: url)
             CFURLStopAccessingSecurityScopedResource(url as CFURL)
         }
         updateDataSource()
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
-    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        controller.dismiss(animated: true, completion: nil)
     }
 }
 
