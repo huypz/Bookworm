@@ -25,13 +25,7 @@ class ReaderViewController: UIViewController, WKUIDelegate {
         case "pdf":
             webView.load(document.data!, mimeType: "application/pdf", characterEncodingName: "UTF-8", baseURL: .applicationDirectory)
         case "epub":
-            do {
-                let htmlString = try NSString(contentsOfFile: document.url?.path() ?? "", encoding: NSUTF8StringEncoding)
-                webView.loadHTMLString(htmlString as String, baseURL: nil)
-            }
-            catch {
-                print("Error loading epub document: \(error)")
-            }
+            webView.load(document.data!, mimeType: "application/epub+zip", characterEncodingName: "UTF-8", baseURL: .applicationDirectory)
         default:
             print("WebView Unknown file extension: \(fileExtension)")
             return
