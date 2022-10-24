@@ -5,19 +5,16 @@ class ImageStore {
     let cache = NSCache<NSString, UIImage>()
     
     func imageURL(forKey key: String) -> URL {
-        let documentsDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectories = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
         let documentDirectory = documentsDirectories.first!
         return documentDirectory.appendingPathComponent(key)
     }
     
     func setImage(_ image: UIImage, forKey key: String) {
         cache.setObject(image, forKey: key as NSString)
-        print("Caching image with key: \(key)")
         let url = imageURL(forKey: key)
-        print("At url: \(url)")
         if let data = image.jpegData(compressionQuality: 0.5) {
             try? data.write(to: url)
-            print("Success!")
         }
     }
     

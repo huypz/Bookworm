@@ -15,7 +15,7 @@ class DocumentStore {
         let container = NSPersistentContainer(name: "Bookworm")
         container.loadPersistentStores { (description, error) in
             if let error = error {
-                print("Error setting up Core Data (\(error)).")
+                print("Error setting up CoreData (\(error))")
             }
         }
         return container
