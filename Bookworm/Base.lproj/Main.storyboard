@@ -31,20 +31,28 @@
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cyH-uN-hT0" userLabel="Document Image View">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cyH-uN-hT0">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="9Mc-bD-qoo">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="9Mc-bD-qoo" secondAttribute="bottom" id="4bN-2f-L9J"/>
+                                        <constraint firstItem="9Mc-bD-qoo" firstAttribute="leading" secondItem="7WU-cE-EMX" secondAttribute="leading" id="5dq-pU-fux"/>
                                         <constraint firstAttribute="trailing" secondItem="cyH-uN-hT0" secondAttribute="trailing" id="AOY-QQ-ciD"/>
+                                        <constraint firstItem="9Mc-bD-qoo" firstAttribute="top" secondItem="7WU-cE-EMX" secondAttribute="top" id="PjR-cd-SwT"/>
+                                        <constraint firstAttribute="trailing" secondItem="9Mc-bD-qoo" secondAttribute="trailing" id="ewu-uW-Br7"/>
                                         <constraint firstAttribute="bottom" secondItem="cyH-uN-hT0" secondAttribute="bottom" id="fku-dJ-B4u"/>
                                         <constraint firstItem="cyH-uN-hT0" firstAttribute="leading" secondItem="7WU-cE-EMX" secondAttribute="leading" id="mN9-t0-gPJ"/>
                                         <constraint firstItem="cyH-uN-hT0" firstAttribute="top" secondItem="7WU-cE-EMX" secondAttribute="top" id="vzF-cw-bJg"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
-                                    <outlet property="documentImageView" destination="cyH-uN-hT0" id="Rqh-nh-1N0"/>
+                                    <outlet property="imageView" destination="cyH-uN-hT0" id="Rqh-nh-1N0"/>
+                                    <outlet property="spinner" destination="9Mc-bD-qoo" id="p3C-bg-Rz2"/>
                                     <segue destination="2Ib-oJ-rJr" kind="show" identifier="showDocument" id="XBH-lg-0o7"/>
                                 </connections>
                             </collectionViewCell>
@@ -54,7 +62,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Aj-0T-H0Y">
-                                    <rect key="frame" x="20" y="6" width="105.5" height="38.5"/>
+                                    <rect key="frame" x="20" y="5.5" width="105.5" height="39"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -93,7 +101,7 @@
         <scene sceneID="Hl6-vL-bqY">
             <objects>
                 <viewController id="2Ib-oJ-rJr" customClass="ReaderViewController" customModule="Bookworm" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fTk-BW-DK9" customClass="PDFView">
+                    <view key="view" contentMode="scaleToFill" id="fTk-BW-DK9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <viewLayoutGuide key="safeArea" id="kYk-wi-AqL"/>
@@ -119,7 +127,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="backButton" destination="Z8W-V4-Xx6" id="uyK-Ih-KTf"/>
-                        <outlet property="pdfView" destination="fTk-BW-DK9" id="vde-Mr-9Iw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Huj-RL-Er9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

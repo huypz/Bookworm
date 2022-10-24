@@ -1,21 +1,27 @@
 import UIKit
-import PDFKit
+import WebKit
 
-class ReaderViewController: UIViewController {
-    
-    @IBOutlet weak var pdfView: PDFView?
+class ReaderViewController: UIViewController, WKUIDelegate {
     
     @IBOutlet var backButton: UIBarButtonItem!
     
+    var webView: WKWebView!
+    
     var document: Document!
-    var documentPDF: PDFDocument!
     
     // MARK: - View lifecycle
+    override func loadView() {
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.uiDelegate = self
+        view = webView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pdfView?.document = documentPDF
-        pdfView?.autoScales = true
+        print("WebView loading...")
+        webView.load(document.data!, mimeType: "application/pdf", characterEncodingName: "UTF-8", baseURL: .applicationDirectory)
     }
     
     // MARK: - Actions

@@ -1,4 +1,5 @@
 import UIKit
+import QuickLookThumbnailing
 import PDFKit
 import UniformTypeIdentifiers
 
@@ -10,7 +11,8 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet var deleteButton: UIBarButtonItem!
     
     var documentStore: DocumentStore!
-    let documentDataSource = DocumentDataSource()
+    var imageStore: ImageStore!
+    let dataSource = DocumentDataSource()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -23,17 +25,11 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.dataSource = documentDataSource
+        collectionView.dataSource = dataSource
         collectionView.delegate = self
         
         updateDataSource()
         updateNavigationItem()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        updateDataSource()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -56,11 +52,10 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
         switch segue.identifier {
         case "showDocument":
             if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
-                let document = documentDataSource.documents[selectedIndexPath.row]
+                let document = dataSource.documents[selectedIndexPath.row]
                 document.lastAccessed = Date()
                 let readerViewController = segue.destination as! ReaderViewController
                 readerViewController.document = document
-                readerViewController.documentPDF = PDFDocument(data: document.data!)
                 readerViewController.hidesBottomBarWhenPushed = true
                 readerViewController.navigationController?.hidesBarsOnTap = true
             }
@@ -74,9 +69,9 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
         documentStore.fetchDocuments { (result) in
             switch result {
             case let .success(documents):
-                self.documentDataSource.documents = documents
+                self.dataSource.documents = documents
             case .failure:
-                self.documentDataSource.documents.removeAll()
+                self.dataSource.documents.removeAll()
             }
             self.collectionView.reloadSections(IndexSet(integer: 0))
         }
@@ -84,10 +79,8 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     
     // MARK: - Actions
     @IBAction func toggleEditingMode(_ sender: Any?) {
-        print(documentDataSource.documents.count)
-        
-        documentDataSource.isEditing = !isEditing
-        documentDataSource.documents.forEach {
+        dataSource.isEditing = !isEditing
+        dataSource.documents.forEach {
             $0.isSelected = false
         }
         
@@ -102,6 +95,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
                 cell.isSelected = false
             }
             deleteButton.isEnabled = false
+            collectionView.reloadSections(IndexSet(integer: 0))
             setEditing(false, animated: true)
         }
         else {
@@ -113,12 +107,11 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
             }
             setEditing(true, animated: true)
         }
-        collectionView.reloadSections(IndexSet(integer: 0))
         updateNavigationItem()
     }
     
     @IBAction func deleteSelectedDocuments(_ sender: UIBarButtonItem) {
-        documentDataSource.documents.filter({ $0.isSelected }).forEach({ (document) in
+        dataSource.documents.filter({ $0.isSelected }).forEach({ (document) in
             documentStore.delete(document)
         })
         updateDataSource()
@@ -126,7 +119,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     }
     
     @IBAction func documentMenu(_ sender: UIBarButtonItem) {
-        let pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.pdf])
+        let pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.pdf, UTType.epub])
         pickerViewController.delegate = self
         pickerViewController.allowsMultipleSelection = true
         pickerViewController.modalPresentationStyle = .popover
@@ -139,10 +132,10 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
             let cell = collectionView.cellForItem(at: indexPath) as! DocumentCollectionViewCell
             cell.isSelected = true
             
-            let document = documentDataSource.documents[indexPath.row]
+            let document = dataSource.documents[indexPath.row]
             document.isSelected = true
             
-            if documentDataSource.documents.filter({ $0.isSelected }).count > 0 {
+            if dataSource.documents.filter({ $0.isSelected }).count > 0 {
                 deleteButton.isEnabled = true
             }
         }
@@ -153,11 +146,37 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
             let cell = collectionView.cellForItem(at: indexPath) as! DocumentCollectionViewCell
             cell.isSelected = false
             
-            let document = documentDataSource.documents[indexPath.row]
+            let document = dataSource.documents[indexPath.row]
             document.isSelected = false
             
-            if documentDataSource.documents.filter({ $0.isSelected }).count == 0 {
+            if dataSource.documents.filter({ $0.isSelected }).count == 0 {
                 deleteButton.isEnabled = false
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let document = dataSource.documents[indexPath.row]
+        if let cell = cell as? DocumentCollectionViewCell, let image = documentStore.thumbnail(for: document) {
+            cell.update(displaying: image)
+        }
+        else {
+            let url = document.url!
+            let size = cell.frame.size
+            let scale = UIScreen.main.scale
+            let request = QLThumbnailGenerator.Request(fileAt: url, size: size, scale: scale, representationTypes: .thumbnail)
+            let generator = QLThumbnailGenerator.shared
+            generator.generateRepresentations(for: request) { (thumbnail, type, error) in
+                OperationQueue.main.addOperation {
+                    guard let documentIndex = self.dataSource.documents.firstIndex(of: document), let image = thumbnail?.uiImage else {
+                        return
+                    }
+                    let documentIndexPath = IndexPath(item: documentIndex, section: 0)
+                    if let cell = self.collectionView.cellForItem(at: documentIndexPath) as? DocumentCollectionViewCell {
+                        self.documentStore.imageStore.setImage(image, forKey: document.id!)
+                        cell.update(displaying: image)
+                    }
+                }
             }
         }
     }
@@ -197,7 +216,7 @@ extension LibraryViewController: UIDocumentPickerDelegate {
         print("documentPicker didPickDocumentsAt")
         for url in urls {
             CFURLStartAccessingSecurityScopedResource(url as CFURL)
-            documentStore.processDocument(url: url)
+            documentStore.fetchDocument(url: url)
             CFURLStopAccessingSecurityScopedResource(url as CFURL)
         }
         updateDataSource()

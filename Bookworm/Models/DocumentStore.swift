@@ -1,7 +1,15 @@
 import Foundation
 import CoreData
+import QuickLook
+
+enum ImageError: Error {
+    case imageCreationError
+    case missingImageURL
+}
 
 class DocumentStore {
+    
+    var imageStore: ImageStore!
     
     let persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Bookworm")
@@ -12,21 +20,24 @@ class DocumentStore {
         }
         return container
     }()
+    
+    func thumbnail(for document: Document) -> UIImage? {
+        return imageStore.image(forKey: document.id!)
+    }
 
-    func processDocument(url: URL) {
+    func fetchDocument(url: URL) {
         do {
             let data = try Data(contentsOf: url)
             let context = persistentContainer.viewContext
             var document: Document!
             context.performAndWait {
                 document = Document(context: context)
+                document.id = UUID().uuidString
                 document.title = url.lastPathComponent
-                document.remoteURL = url
-                document.documentID = UUID().uuidString
+                document.isSelected = false
                 document.lastAccessed = Date()
                 document.data = data
-                document.thumbnail = Document.thumbnail(data: data)
-                document.isSelected = false
+                document.url = url
             }
             try persistentContainer.viewContext.save()
         }
@@ -35,7 +46,7 @@ class DocumentStore {
         }
     }
     
-    func fetchDocuments(completion: @escaping (Result<[Document], Error>) -> Void) {
+    func fetchDocuments(completion: @escaping (Result<[Document], Error>) -> Void) {        
         let fetchRequest: NSFetchRequest<Document> = Document.fetchRequest()
         let sortByLastAccessed = NSSortDescriptor(key: #keyPath(Document.lastAccessed), ascending: false)
         fetchRequest.sortDescriptors = [sortByLastAccessed]
@@ -63,6 +74,23 @@ class DocumentStore {
         }
         catch {
             print("Error deleting document: \(error)")
+        }
+    }
+    
+    func flush() {
+        let fetchRequest: NSFetchRequest<Document> = Document.fetchRequest()
+        let viewContext = persistentContainer.viewContext
+        do {
+            try viewContext.performAndWait {
+                let documents = try viewContext.fetch(fetchRequest)
+                documents.forEach {
+                    viewContext.delete($0 as NSManagedObject)
+                }
+                try persistentContainer.viewContext.save()
+            }
+        }
+        catch {
+            print("Error flushing data: \(error)")
         }
     }
 }

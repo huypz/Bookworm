@@ -1,4 +1,4 @@
-import PDFKit
+import QuickLook
 
 class DocumentDataSource: NSObject, UICollectionViewDataSource {
     
@@ -14,11 +14,11 @@ class DocumentDataSource: NSObject, UICollectionViewDataSource {
         let identifier = "DocumentCollectionViewCell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! DocumentCollectionViewCell
         
+        
         let document = documents[indexPath.row]
-        cell.documentImageView.image = UIImage(data: document.thumbnail!)
         cell.isEditing = isEditing
         cell.isSelected = document.isSelected
-        
+        cell.update(displaying: nil)
         return cell
     }
     
