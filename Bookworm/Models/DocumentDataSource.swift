@@ -1,4 +1,4 @@
-import QuickLook
+import UIKit
 
 class DocumentDataSource: NSObject, UICollectionViewDataSource {
     

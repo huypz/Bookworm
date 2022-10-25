@@ -1,6 +1,5 @@
-import Foundation
+import UIKit
 import CoreData
-import QuickLook
 
 enum ImageError: Error {
     case imageCreationError

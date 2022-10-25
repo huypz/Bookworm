@@ -25,13 +25,13 @@ class ReaderViewController: UIViewController, WKUIDelegate {
         case "pdf":
             webView.load(document.data!, mimeType: "application/pdf", characterEncodingName: "UTF-8", baseURL: .applicationDirectory)
         case "epub":
-            webView.load(document.data!, mimeType: "application/epub+zip", characterEncodingName: "UTF-8", baseURL: .applicationDirectory)
+            let url = URL(string: "https://reader.ttsu.app")
+            let request = URLRequest(url: url!)
+            webView.load(request)
         default:
             print("WebView Unknown file extension: \(fileExtension)")
             return
         }
-        
-        
     }
     
     // MARK: - Actions
