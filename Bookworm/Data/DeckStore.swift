@@ -57,7 +57,7 @@ class DeckStore {
         saveContext()
     }
     
-    func deleteDeck(deck: Deck) {
+    func removeDeck(deck: Deck) {
         let viewContext = persistentContainer.viewContext
         viewContext.performAndWait {
             viewContext.delete(deck as NSManagedObject)

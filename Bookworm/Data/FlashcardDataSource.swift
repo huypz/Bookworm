@@ -22,7 +22,6 @@ class FlashcardDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         if editingStyle == .delete {
             let flashcard = flashcards[indexPath.row]
             if let index = flashcards.firstIndex(of: flashcard) {

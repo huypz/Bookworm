@@ -38,6 +38,18 @@ class FlashcardsViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "addFlashcard":
+            let flashcardAddViewController = (segue.destination as! UINavigationController).topViewController as! FlashcardAddViewController
+            flashcardAddViewController.store = store
+            flashcardAddViewController.deck = deck
+            flashcardAddViewController.delegate = self
+        default:
+            preconditionFailure("Unexpected segue identifier")
+        }
+    }
+    
     private func updateNavigationItem() {
         if isEditing {
             navigationItem.setRightBarButtonItems([editButtonItem, addButtonItem], animated: true)
@@ -47,7 +59,7 @@ class FlashcardsViewController: UITableViewController {
         }
     }
     
-    private func updateFlashcards() {
+    func updateFlashcards() {
         store.fetchFlashcards { (result) in
             switch result {
             case .success(_):
@@ -70,17 +82,5 @@ class FlashcardsViewController: UITableViewController {
             setEditing(true, animated: true)
         }
         updateNavigationItem()
-    }
-    
-    @IBAction func addFlashcard() {
-        let context = store.persistentContainer.viewContext
-        let term = UUID().uuidString
-        let definition = "Default definition"
-        let flashcard = Flashcard(context: context)
-        flashcard.setValue(term, forKey: "term")
-        flashcard.setValue(definition, forKey: "definition")
-        store.addFlashcard(flashcard: flashcard, to: deck)
-        
-        updateFlashcards()
     }
 }

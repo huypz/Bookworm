@@ -13,8 +13,8 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     var imageStore: ImageStore!
     let dataSource = DocumentDataSource()
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
         
         navigationItem.rightBarButtonItem = editButtonItem
         editButtonItem.action = #selector(toggleEditingMode)

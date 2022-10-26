@@ -6,17 +6,20 @@ class DecksViewController: UITableViewController {
     
     let dataSource = DeckDataSource()
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
         
         navigationItem.leftBarButtonItem = editButtonItem
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.register(DecksTableViewHeader.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
     
         tableView.delegate = self
         
+        dataSource.store = store
         tableView.dataSource = dataSource
         updateDataSource()
         
@@ -58,6 +61,12 @@ class DecksViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "sectionHeader") as! DecksTableViewHeader
+        view.title.text = "Name"
+        return view
+    }
+    
     @IBAction func addDeck(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Add Empty Deck", message: nil, preferredStyle: .alert)
         
@@ -71,6 +80,16 @@ class DecksViewController: UITableViewController {
                 return
             }
             
+            guard title.count > 0 else {
+                let alertEmpty = UIAlertController(title: "Empty text field", message: "Deck title cannot be empty", preferredStyle: .alert)
+                alertEmpty.addAction(UIAlertAction(title: "OK", style: .cancel) { _ in
+                    alertEmpty.dismiss(animated: true, completion: nil)
+                    alert.dismiss(animated: true, completion: nil)
+                })
+                present(alertEmpty, animated: true, completion: nil)
+                return
+            }
+            
             self.store.addDeck(title: title)
             self.updateDataSource()
         })
@@ -78,4 +97,31 @@ class DecksViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
+}
+
+class DecksTableViewHeader: UITableViewHeaderFooterView {
+    let title = UILabel()
+    
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        configureContents()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    func configureContents() {
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        
+        contentView.addSubview(title)
+        
+        NSLayoutConstraint.activate([
+            title.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            title.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            title.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
+        
+    }
 }
