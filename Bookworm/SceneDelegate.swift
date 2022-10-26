@@ -13,12 +13,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let imageStore = ImageStore()
         let documentStore = DocumentStore()
         documentStore.imageStore = imageStore
+        let deckStore = DeckStore()
         
         let rootViewController = window!.rootViewController as! UITabBarController
-        let navigationController = rootViewController.viewControllers!.first as! UINavigationController
-        let libraryViewController = navigationController.topViewController as! LibraryViewController
+
+        let libraryViewController = (rootViewController.viewControllers![0] as! UINavigationController).topViewController as! LibraryViewController
         libraryViewController.documentStore = documentStore
         
+        let decksViewController = (rootViewController.viewControllers![1] as! UINavigationController).topViewController as! DecksViewController
+        decksViewController.store = deckStore
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

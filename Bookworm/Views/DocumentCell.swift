@@ -1,6 +1,6 @@
 import UIKit
 
-class DocumentCollectionViewCell: UICollectionViewCell {
+class DocumentCell: UICollectionViewCell {
     
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var spinner: UIActivityIndicatorView!
@@ -24,7 +24,7 @@ class DocumentCollectionViewCell: UICollectionViewCell {
         else {
             spinner.startAnimating()
             imageView.image = nil
-
         }
+        update()
     }
 }

@@ -6,8 +6,8 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet var collectionView: UICollectionView!
     
-    @IBOutlet var importButton: UIBarButtonItem!
-    @IBOutlet var deleteButton: UIBarButtonItem!
+    @IBOutlet var importButtonItem: UIBarButtonItem!
+    @IBOutlet var deleteButtonItem: UIBarButtonItem!
     
     var documentStore: DocumentStore!
     var imageStore: ImageStore!
@@ -74,7 +74,8 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
             switch result {
             case let .success(documents):
                 self.dataSource.documents = documents
-            case .failure:
+            case let .failure(error):
+                print("Error fetching documents: \(error)")
                 self.dataSource.documents.removeAll()
             }
             self.collectionView.reloadSections(IndexSet(integer: 0))
@@ -86,8 +87,9 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
         if isEditing {
             collectionView.allowsMultipleSelection = false
             collectionView.visibleCells.forEach {
-                let cell = $0 as! DocumentCollectionViewCell
+                let cell = $0 as! DocumentCell
                 cell.isEditing = false
+                cell.isSelected = false
                 cell.update()
             }
             setEditing(false, animated: true)
@@ -95,8 +97,9 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
         else {
             collectionView.allowsMultipleSelection = true
             collectionView.visibleCells.forEach {
-                let cell = $0 as! DocumentCollectionViewCell
+                let cell = $0 as! DocumentCell
                 cell.isEditing = true
+                cell.isSelected = false
                 cell.update()
             }
             setEditing(true, animated: true)
@@ -107,10 +110,10 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     
     @IBAction func deleteSelectedDocuments(_ sender: UIBarButtonItem) {
         dataSource.documents.filter({ $0.isSelected }).forEach({ (document) in
-            documentStore.delete(document)
+            documentStore.deleteDocument(document)
         })
         updateDataSource()
-        deleteButton.isEnabled = false
+        deleteButtonItem.isEnabled = false
     }
     
     @IBAction func documentMenu(_ sender: UIBarButtonItem) {
@@ -131,11 +134,11 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
         let document = dataSource.documents[indexPath.row]
         document.isSelected = true
         
-        let cell = collectionView.cellForItem(at: indexPath) as! DocumentCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as! DocumentCell
         cell.update()
         
         if collectionView.indexPathsForSelectedItems?.count != 0 {
-            deleteButton.isEnabled = true
+            deleteButtonItem.isEnabled = true
         }
     }
     
@@ -147,54 +150,37 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
         let document = dataSource.documents[indexPath.row]
         document.isSelected = false
         
-        let cell = collectionView.cellForItem(at: indexPath) as! DocumentCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as! DocumentCell
         cell.update()
         
         if collectionView.indexPathsForSelectedItems?.count == 0 {
-            deleteButton.isEnabled = false
+            deleteButtonItem.isEnabled = false
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let document = dataSource.documents[indexPath.row]
-        if let cell = cell as? DocumentCollectionViewCell, let image = documentStore.thumbnail(for: document) {
-            cell.isEditing = isEditing
-            cell.isSelected = document.isSelected
-            cell.update()
-            cell.update(displaying: image)
-        }
-        else {
-            let url = document.url!
-            let size = cell.frame.size
-            let scale = UIScreen.main.scale
-            let request = QLThumbnailGenerator.Request(fileAt: url, size: size, scale: scale, representationTypes: .thumbnail)
-            let generator = QLThumbnailGenerator.shared
-            generator.generateBestRepresentation(for: request) { (thumbnail, error) in
-                OperationQueue.main.addOperation {
-                    if thumbnail == nil || error != nil {
-                        print("Error fetching thumbnail: \(error!)")
-                    }
-                    guard let documentIndex = self.dataSource.documents.firstIndex(of: document), let image = thumbnail?.uiImage else {
-                        return
-                    }
-                    let documentIndexPath = IndexPath(item: documentIndex, section: 0)
-                    if let cell = self.collectionView.cellForItem(at: documentIndexPath) as? DocumentCollectionViewCell {
-                        self.documentStore.imageStore.setImage(image, forKey: document.id!)
-                        cell.isEditing = self.isEditing
-                        cell.isSelected = document.isSelected
-                        cell.update()
-                        cell.update(displaying: image)
-                    }
-                    CFURLStopAccessingSecurityScopedResource(url as CFURL)
-                }
+        
+        documentStore.fetchThumbnail(for: document, size: cell.frame.size) { (result) in
+            guard
+                let documentIndex = self.dataSource.documents.firstIndex(of: document),
+                case let .success(image) = result else {
+                return
+            }
+            let documentIndexPath = IndexPath(item: documentIndex, section: 0)
+            if let cell = self.collectionView.cellForItem(at: documentIndexPath) as? DocumentCell {
+                self.documentStore.imageStore.setImage(image, forKey: document.id!)
+                cell.isEditing = self.isEditing
+                cell.isSelected = document.isSelected
+                cell.update(displaying: image)
             }
         }
     }
     
     func updateNavigationItem() {
         if isEditing {
-            navigationItem.setLeftBarButtonItems([deleteButton], animated: true)
-            navigationItem.setRightBarButtonItems([editButtonItem, importButton], animated: true)
+            navigationItem.setLeftBarButtonItems([deleteButtonItem], animated: true)
+            navigationItem.setRightBarButtonItems([editButtonItem, importButtonItem], animated: true)
         }
         else {
             navigationItem.setLeftBarButtonItems(nil, animated: true)
@@ -225,7 +211,7 @@ extension LibraryViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         for url in urls {
             CFURLStartAccessingSecurityScopedResource(url as CFURL)
-            documentStore.fetchDocument(url: url)
+            documentStore.addDocument(url: url)
         }
         updateDataSource()
     }

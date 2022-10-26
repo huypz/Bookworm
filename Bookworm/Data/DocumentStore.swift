@@ -1,10 +1,6 @@
 import UIKit
 import CoreData
-
-enum ImageError: Error {
-    case imageCreationError
-    case missingImageURL
-}
+import QuickLookThumbnailing
 
 class DocumentStore {
     
@@ -20,11 +16,39 @@ class DocumentStore {
         return container
     }()
     
-    func thumbnail(for document: Document) -> UIImage? {
-        return imageStore.image(forKey: document.id!)
+    func fetchThumbnail(for document: Document, size: CGSize, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        let key = document.id!
+        if let image = imageStore.image(forKey: key) {
+            OperationQueue.main.addOperation {
+                completion(.success(image))
+            }
+            return
+        }
+        
+        guard let url = document.url else {
+            completion(.failure(ImageError.missingURL))
+            return
+        }
+        let scale = UIScreen.main.scale
+        let request = QLThumbnailGenerator.Request(fileAt: url, size: size, scale: scale, representationTypes: .thumbnail)
+        let generator = QLThumbnailGenerator.shared
+        generator.generateBestRepresentation(for: request) { (thumbnail, error) in
+            OperationQueue.main.addOperation {
+                if thumbnail == nil {
+                    completion(.failure(ImageError.imageCreationError))
+                }
+                else if error != nil {
+                    completion(.failure(error!))
+                }
+                else {
+                    completion(.success(thumbnail!.uiImage))
+                }
+                CFURLStopAccessingSecurityScopedResource(url as CFURL)
+            }
+        }
     }
 
-    func fetchDocument(url: URL) {
+    func addDocument(url: URL) {
         do {
             let data = try Data(contentsOf: url)
             let context = persistentContainer.viewContext
@@ -41,7 +65,7 @@ class DocumentStore {
             try persistentContainer.viewContext.save()
         }
         catch {
-            print("Error processing document: \(error)")
+            print("Error addDocument: \(error)")
         }
     }
     
@@ -56,27 +80,34 @@ class DocumentStore {
                 let documents = try viewContext.fetch(fetchRequest)
                 completion(.success(documents))
             }
-            catch {
+            catch let error {
                 completion(.failure(error))
             }
         }
         
     }
     
-    func delete(_ document: Document) {
-        do {
-            let viewContext = persistentContainer.viewContext
-            try viewContext.performAndWait {
-                viewContext.delete(document as NSManagedObject)
-                try persistentContainer.viewContext.save()
-            }
+    func deleteDocument(_ document: Document) {
+        let viewContext = persistentContainer.viewContext
+        viewContext.performAndWait {
+            viewContext.delete(document as NSManagedObject)
         }
-        catch {
-            print("Error deleting document: \(error)")
+        saveContext()
+    }
+    
+    func saveContext() {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            }
+            catch {
+                fatalError("Error saveContext: \(error)")
+            }
         }
     }
     
-    func flush() {
+    func flushContext() {
         let fetchRequest: NSFetchRequest<Document> = Document.fetchRequest()
         let viewContext = persistentContainer.viewContext
         do {
@@ -85,11 +116,11 @@ class DocumentStore {
                 documents.forEach {
                     viewContext.delete($0 as NSManagedObject)
                 }
-                try persistentContainer.viewContext.save()
             }
         }
         catch {
-            print("Error flushing data: \(error)")
+            fatalError("Error flushContext: \(error)")
         }
+        saveContext()
     }
 }

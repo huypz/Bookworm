@@ -10,7 +10,6 @@ class ReaderViewController: UIViewController, WKUIDelegate {
     var document: Document!
     
     // MARK: - View lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

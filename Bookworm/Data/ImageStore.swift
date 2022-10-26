@@ -1,5 +1,10 @@
 import UIKit
 
+enum ImageError: Error {
+    case imageCreationError
+    case missingURL
+}
+
 class ImageStore {
     
     let cache = NSCache<NSString, UIImage>()
