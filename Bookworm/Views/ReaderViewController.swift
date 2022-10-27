@@ -14,8 +14,12 @@ class ReaderViewController: UIViewController {
     var documentExtension: String?
     
     var pdfView: PDFView?
+    var page: PDFPage?
+    var selection: PDFSelection?
     
     var webView: WKWebView?
+    
+    var editMenuInteraction: UIEditMenuInteraction?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +27,7 @@ class ReaderViewController: UIViewController {
         switch documentExtension {
         case "pdf":
             initPDF()
+            initPDFMenuInteraction()
         case "epub":
             initEPUB()
         default:
@@ -49,11 +54,36 @@ extension ReaderViewController: PDFViewDelegate {
         if let document = PDFDocument(data: document.data!) {
             pdfView!.document = document
             pdfView!.autoScales = true
+            pdfView!.isFindInteractionEnabled = true
         }
     }
     
-    private func initMenuInteraction() {
+    private func initPDFMenuInteraction() {
+        editMenuInteraction = UIEditMenuInteraction(delegate: self)
+        pdfView!.addInteraction(editMenuInteraction!)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTap(_:)))
+        tap.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
+        pdfView!.addGestureRecognizer(tap)
+    }
+    
+    @objc private func didTap(_ recognizer: UIGestureRecognizer) {
+        let location = recognizer.location(in: pdfView!)
+        
+        page = pdfView!.page(for: location, nearest: false)
+        guard page != nil else { return }
+        
+        let convertedLocation = pdfView!.convert(location, to: page!)
+        if page!.annotation(at: convertedLocation) == nil {
+            selection = page!.selectionForWord(at: convertedLocation)
+            guard let word = selection?.string else { return }
+            
+            pdfView!.setCurrentSelection(selection, animate: false)
+            if let interaction = editMenuInteraction {
+                let config = UIEditMenuConfiguration(identifier: nil, sourcePoint: location)
+                interaction.presentEditMenu(with: config)
+            }
+        }
     }
 }
 
@@ -77,5 +107,18 @@ extension ReaderViewController: WKUIDelegate {
         let url = URL(string: "https://reader.ttsu.app")
         let request = URLRequest(url: url!)
         webView!.load(request)
+    }
+}
+
+extension ReaderViewController: UIEditMenuInteractionDelegate {
+    
+    func editMenuInteraction(_ interaction: UIEditMenuInteraction, menuFor configuration: UIEditMenuConfiguration, suggestedActions: [UIMenuElement]) -> UIMenu? {
+        let menu = UIMenu(options: .displayInline, children: [
+            UIAction(title: "Look Up") { _ in
+                let ref = UIReferenceLibraryViewController(term: self.selection?.string ?? "")
+                self.present(ref, animated: true, completion: nil)
+            }
+        ])
+        return menu
     }
 }
