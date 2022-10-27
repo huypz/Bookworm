@@ -104,24 +104,8 @@
                     <view key="view" contentMode="scaleToFill" id="fTk-BW-DK9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tAz-cP-sod">
-                                <rect key="frame" x="0.0" y="92" width="414" height="721"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="kYk-wi-AqL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="kYk-wi-AqL" firstAttribute="trailing" secondItem="tAz-cP-sod" secondAttribute="trailing" id="57W-eb-9Zj"/>
-                            <constraint firstItem="kYk-wi-AqL" firstAttribute="bottom" secondItem="tAz-cP-sod" secondAttribute="bottom" id="9CP-5H-UK2"/>
-                            <constraint firstItem="tAz-cP-sod" firstAttribute="leading" secondItem="kYk-wi-AqL" secondAttribute="leading" id="B8l-lu-mgY"/>
-                            <constraint firstItem="tAz-cP-sod" firstAttribute="top" secondItem="kYk-wi-AqL" secondAttribute="top" id="zuI-sf-Ve5"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="z5y-be-kk5">
                         <rightBarButtonItems>
@@ -129,9 +113,6 @@
                             <barButtonItem systemItem="search" id="MFg-Yl-JLU" userLabel="Search"/>
                         </rightBarButtonItems>
                     </navigationItem>
-                    <connections>
-                        <outlet property="webView" destination="tAz-cP-sod" id="HOb-VL-FWg"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Huj-RL-Er9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

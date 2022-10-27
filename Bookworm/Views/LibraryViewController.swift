@@ -85,6 +85,9 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - Actions
     @IBAction func toggleEditingMode(_ sender: Any?) {
         if isEditing {
+            dataSource.documents.forEach {
+                $0.isSelected = false
+            }
             collectionView.allowsMultipleSelection = false
             collectionView.visibleCells.forEach {
                 let cell = $0 as! DocumentCell
@@ -92,6 +95,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
                 cell.isSelected = false
                 cell.update()
             }
+            deleteButtonItem.isEnabled = false
             setEditing(false, animated: true)
         }
         else {

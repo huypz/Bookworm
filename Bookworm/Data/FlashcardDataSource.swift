@@ -40,7 +40,6 @@ class FlashcardDataSource: NSObject, UITableViewDataSource {
         if fromIndex == toIndex {
             return
         }
-        
         let movedFlashcard = flashcards[fromIndex]
         flashcards.remove(at: fromIndex)
         flashcards.insert(movedFlashcard, at: toIndex)
