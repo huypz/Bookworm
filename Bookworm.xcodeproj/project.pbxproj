@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F0D102E290AEAF500E2411F /* FreeDictionaryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D102D290AEAF500E2411F /* FreeDictionaryAPI.swift */; };
 		3F2535762908E8250094B23A /* FlashcardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2535752908E8240094B23A /* FlashcardCell.swift */; };
 		3F25357C2908EE860094B23A /* FlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25357B2908EE860094B23A /* FlashcardsViewController.swift */; };
 		3F25357E2908EEA80094B23A /* DeckStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25357D2908EEA80094B23A /* DeckStore.swift */; };
-		3F2535892908F18C0094B23A /* Document+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2535852908F18C0094B23A /* Document+CoreDataClass.swift */; };
-		3F25358A2908F18C0094B23A /* Document+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2535862908F18C0094B23A /* Document+CoreDataProperties.swift */; };
 		3F25359A2908F7D80094B23A /* FlashcardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2535992908F7D80094B23A /* FlashcardDataSource.swift */; };
 		3F25359E290905BB0094B23A /* DecksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25359D290905BB0094B23A /* DecksViewController.swift */; };
 		3F2535A0290906C60094B23A /* DeckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25359F290906C60094B23A /* DeckCell.swift */; };
@@ -19,9 +18,10 @@
 		3F376D6C29061B4100DAA761 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F376D6B29061B4100DAA761 /* ImageStore.swift */; };
 		3F4138E9290484CA00B229B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F862D7028F3A4B800B6D634 /* Main.storyboard */; };
 		3F4215FE2904C01400F7E6A1 /* Bookworm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F4215FC2904C01400F7E6A1 /* Bookworm.xcdatamodeld */; };
+		3F43F637290B806E0072514F /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F636290B806E0072514F /* EntriesViewController.swift */; };
+		3F43F639290B80860072514F /* EntryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F638290B80860072514F /* EntryStore.swift */; };
+		3F43F63B290B820C0072514F /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F63A290B820C0072514F /* EntryCell.swift */; };
 		3F76970F2909EAC800799399 /* FlashcardAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F76970E2909EAC800799399 /* FlashcardAddViewController.swift */; };
-		3F7697122909F9C400799399 /* Deck+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7697102909F9C400799399 /* Deck+CoreDataProperties.swift */; };
-		3F7697132909F9C400799399 /* Deck+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7697112909F9C400799399 /* Deck+CoreDataClass.swift */; };
 		3F862D6B28F3A4B800B6D634 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D6A28F3A4B800B6D634 /* AppDelegate.swift */; };
 		3F862D6D28F3A4B800B6D634 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D6C28F3A4B800B6D634 /* SceneDelegate.swift */; };
 		3F862D6F28F3A4B800B6D634 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D6E28F3A4B800B6D634 /* LibraryViewController.swift */; };
@@ -54,20 +54,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F0D102D290AEAF500E2411F /* FreeDictionaryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeDictionaryAPI.swift; sourceTree = "<group>"; };
 		3F2535752908E8240094B23A /* FlashcardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardCell.swift; sourceTree = "<group>"; };
 		3F25357B2908EE860094B23A /* FlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsViewController.swift; sourceTree = "<group>"; };
 		3F25357D2908EEA80094B23A /* DeckStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckStore.swift; sourceTree = "<group>"; };
-		3F2535852908F18C0094B23A /* Document+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Document+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3F2535862908F18C0094B23A /* Document+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Document+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3F2535992908F7D80094B23A /* FlashcardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardDataSource.swift; sourceTree = "<group>"; };
 		3F25359D290905BB0094B23A /* DecksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksViewController.swift; sourceTree = "<group>"; };
 		3F25359F290906C60094B23A /* DeckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCell.swift; sourceTree = "<group>"; };
 		3F2535A129090AF70094B23A /* DeckDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckDataSource.swift; sourceTree = "<group>"; };
 		3F376D6B29061B4100DAA761 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		3F4215FD2904C01400F7E6A1 /* Bookworm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bookworm.xcdatamodel; sourceTree = "<group>"; };
+		3F43F636290B806E0072514F /* EntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
+		3F43F638290B80860072514F /* EntryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryStore.swift; sourceTree = "<group>"; };
+		3F43F63A290B820C0072514F /* EntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
 		3F76970E2909EAC800799399 /* FlashcardAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardAddViewController.swift; sourceTree = "<group>"; };
-		3F7697102909F9C400799399 /* Deck+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3F7697112909F9C400799399 /* Deck+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3F862D6728F3A4B800B6D634 /* Bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F862D6A28F3A4B800B6D634 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F862D6C28F3A4B800B6D634 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,10 +119,12 @@
 				3F862D9A28F5E3BF00B6D634 /* ReaderViewController.swift */,
 				3FC00C1A28FF1C5400B32BAC /* DocumentCell.swift */,
 				3F2535752908E8240094B23A /* FlashcardCell.swift */,
+				3F43F63A290B820C0072514F /* EntryCell.swift */,
 				3F25357B2908EE860094B23A /* FlashcardsViewController.swift */,
 				3F25359D290905BB0094B23A /* DecksViewController.swift */,
 				3F25359F290906C60094B23A /* DeckCell.swift */,
 				3F76970E2909EAC800799399 /* FlashcardAddViewController.swift */,
+				3F43F636290B806E0072514F /* EntriesViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -130,11 +132,8 @@
 		3F4216052904C28C00F7E6A1 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				3F7697112909F9C400799399 /* Deck+CoreDataClass.swift */,
-				3F7697102909F9C400799399 /* Deck+CoreDataProperties.swift */,
 				3F4215FC2904C01400F7E6A1 /* Bookworm.xcdatamodeld */,
-				3F2535852908F18C0094B23A /* Document+CoreDataClass.swift */,
-				3F2535862908F18C0094B23A /* Document+CoreDataProperties.swift */,
+				3F43F638290B80860072514F /* EntryStore.swift */,
 				3F376D6B29061B4100DAA761 /* ImageStore.swift */,
 				3FC00C1C28FF1D7200B32BAC /* DocumentStore.swift */,
 				3FC00C1828FF1B9E00B32BAC /* DocumentDataSource.swift */,
@@ -143,6 +142,14 @@
 				3F2535992908F7D80094B23A /* FlashcardDataSource.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		3F43F634290B711D0072514F /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				3F0D102D290AEAF500E2411F /* FreeDictionaryAPI.swift */,
+			);
+			path = Libraries;
 			sourceTree = "<group>";
 		};
 		3F862D5E28F3A4B800B6D634 = {
@@ -168,6 +175,7 @@
 		3F862D6928F3A4B800B6D634 /* Bookworm */ = {
 			isa = PBXGroup;
 			children = (
+				3F43F634290B711D0072514F /* Libraries */,
 				3F4216052904C28C00F7E6A1 /* Data */,
 				3F4216002904C19700F7E6A1 /* Views */,
 				3F862D6A28F3A4B800B6D634 /* AppDelegate.swift */,
@@ -328,17 +336,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F43F637290B806E0072514F /* EntriesViewController.swift in Sources */,
+				3F0D102E290AEAF500E2411F /* FreeDictionaryAPI.swift in Sources */,
 				3F376D6C29061B4100DAA761 /* ImageStore.swift in Sources */,
-				3F2535892908F18C0094B23A /* Document+CoreDataClass.swift in Sources */,
-				3F7697122909F9C400799399 /* Deck+CoreDataProperties.swift in Sources */,
-				3F25358A2908F18C0094B23A /* Document+CoreDataProperties.swift in Sources */,
+				3F43F63B290B820C0072514F /* EntryCell.swift in Sources */,
 				3F4215FE2904C01400F7E6A1 /* Bookworm.xcdatamodeld in Sources */,
 				3F76970F2909EAC800799399 /* FlashcardAddViewController.swift in Sources */,
 				3F25357E2908EEA80094B23A /* DeckStore.swift in Sources */,
 				3F862D6F28F3A4B800B6D634 /* LibraryViewController.swift in Sources */,
+				3F43F639290B80860072514F /* EntryStore.swift in Sources */,
 				3FC00C1D28FF1D7200B32BAC /* DocumentStore.swift in Sources */,
 				3FC00C1928FF1B9E00B32BAC /* DocumentDataSource.swift in Sources */,
-				3F7697132909F9C400799399 /* Deck+CoreDataClass.swift in Sources */,
 				3F2535A229090AF70094B23A /* DeckDataSource.swift in Sources */,
 				3F862D6B28F3A4B800B6D634 /* AppDelegate.swift in Sources */,
 				3F2535A0290906C60094B23A /* DeckCell.swift in Sources */,

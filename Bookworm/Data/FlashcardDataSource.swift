@@ -15,9 +15,10 @@ class FlashcardDataSource: NSObject, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FlashcardCell", for: indexPath) as! FlashcardCell
         let flashcard = flashcards[indexPath.row]
         cell.termLabel.text = flashcard.term
-        cell.definitionLabel.text = flashcard.definition
+        cell.infoLabel.text = "\(flashcard.meanings?.count ?? 0) meanings"
         cell.contentView.setNeedsLayout()
         cell.contentView.layoutIfNeeded()
+    
         return cell
     }
     

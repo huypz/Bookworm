@@ -45,9 +45,12 @@ class FlashcardAddViewController: UIViewController {
         let context = store.persistentContainer.viewContext
         let term = termTextField.text
         let definition = definitionTextView.text
+        let meaning = Meaning(context: context)
+        meaning.setValue(definition, forKey: "definition")
+
         let flashcard = Flashcard(context: context)
         flashcard.setValue(term, forKey: "term")
-        flashcard.setValue(definition, forKey: "definition")
+        flashcard.addToMeanings(meaning)
         store.addFlashcard(flashcard: flashcard, to: deck)
         delegate.updateFlashcards()
         

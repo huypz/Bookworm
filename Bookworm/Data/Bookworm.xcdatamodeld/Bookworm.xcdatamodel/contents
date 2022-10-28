@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Deck" representedClassName="Deck" syncable="YES">
+    <entity name="Deck" representedClassName="Deck" syncable="YES" codeGenerationType="class">
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="flashcards" toMany="YES" deletionRule="Nullify" destinationEntity="Flashcard" inverseName="decks" inverseEntity="Flashcard"/>
     </entity>
-    <entity name="Document" representedClassName="Document" syncable="YES">
+    <entity name="Document" representedClassName="Document" syncable="YES" codeGenerationType="class">
         <attribute name="data" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -13,8 +13,18 @@
         <attribute name="url" optional="YES" attributeType="URI"/>
     </entity>
     <entity name="Flashcard" representedClassName="Flashcard" syncable="YES" codeGenerationType="class">
-        <attribute name="definition" optional="YES" attributeType="String"/>
+        <attribute name="audio" optional="YES" attributeType="String"/>
+        <attribute name="phonetic" optional="YES" attributeType="String"/>
         <attribute name="term" optional="YES" attributeType="String"/>
         <relationship name="decks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Deck" inverseName="flashcards" inverseEntity="Deck"/>
+        <relationship name="meanings" toMany="YES" deletionRule="Nullify" destinationEntity="Meaning" inverseName="flashcards" inverseEntity="Meaning"/>
+    </entity>
+    <entity name="Meaning" representedClassName="Meaning" syncable="YES" codeGenerationType="class">
+        <attribute name="antonyms" optional="YES" attributeType="Binary"/>
+        <attribute name="definition" optional="YES" attributeType="String"/>
+        <attribute name="example" optional="YES" attributeType="String"/>
+        <attribute name="partOfSpeech" optional="YES" attributeType="String"/>
+        <attribute name="synonyms" optional="YES" attributeType="Binary"/>
+        <relationship name="flashcards" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Flashcard" inverseName="meanings" inverseEntity="Flashcard"/>
     </entity>
 </model>

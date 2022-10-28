@@ -1,6 +1,8 @@
 import UIKit
 
-class DecksViewController: UITableViewController {
+class DecksViewController: UITableViewController, UISearchBarDelegate {
+    
+    @IBOutlet var searchBar: UISearchBar!
     
     var store: DeckStore!
     
@@ -53,9 +55,11 @@ class DecksViewController: UITableViewController {
             switch result {
             case let .success(decks):
                 self.dataSource.decks = decks
+                self.dataSource.filteredDecks = decks
             case let .failure(error):
                 print("Error fetching decks: \(error)")
                 self.dataSource.decks.removeAll()
+                self.dataSource.filteredDecks.removeAll()
             }
             self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         }
@@ -63,10 +67,10 @@ class DecksViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "sectionHeader") as! DecksTableViewHeader
-        view.title.text = "Name"
+        view.titleLabel.text = "Name"
         return view
     }
-    
+        
     @IBAction func addDeck(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Add Empty Deck", message: nil, preferredStyle: .alert)
         
@@ -97,10 +101,22 @@ class DecksViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            dataSource.filteredDecks = dataSource.decks
+        }
+        else {
+            let filteredDecks = dataSource.decks.filter({ (deck) in
+                deck.title!.lowercased().contains(searchText.lowercased())
+            })
+            dataSource.filteredDecks = filteredDecks
+        }
+        tableView.reloadData()
+    }
 }
 
 class DecksTableViewHeader: UITableViewHeaderFooterView {
-    let title = UILabel()
+    let titleLabel = UILabel()
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -112,15 +128,15 @@ class DecksTableViewHeader: UITableViewHeaderFooterView {
     }
     
     func configureContents() {
-        title.translatesAutoresizingMaskIntoConstraints = false
-        title.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         
-        contentView.addSubview(title)
+        contentView.addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
-            title.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-            title.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-            title.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
         
     }

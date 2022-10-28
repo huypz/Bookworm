@@ -14,12 +14,32 @@ class ReaderViewController: UIViewController {
     var documentExtension: String?
     
     var pdfView: PDFView?
-    var page: PDFPage?
-    var selection: PDFSelection?
     
     var webView: WKWebView?
     
     var editMenuInteraction: UIEditMenuInteraction?
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "lookup":
+            let entriesViewController = segue.destination as! EntriesViewController
+            entriesViewController.term = pdfView?.currentSelection?.string?.lowercased()
+            if entriesViewController.store == nil {
+                entriesViewController.store = EntryStore()
+            }
+        default:
+            preconditionFailure("Unexpected segue identifier")
+        }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        switch identifier {
+        case "lookup":
+            return isValidSelection(selection: pdfView?.currentSelection?.string ?? "")
+        default:
+            return true
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,20 +90,31 @@ extension ReaderViewController: PDFViewDelegate {
     @objc private func didTap(_ recognizer: UIGestureRecognizer) {
         let location = recognizer.location(in: pdfView!)
         
-        page = pdfView!.page(for: location, nearest: false)
+        let page = pdfView!.page(for: location, nearest: false)
         guard page != nil else { return }
         
         let convertedLocation = pdfView!.convert(location, to: page!)
         if page!.annotation(at: convertedLocation) == nil {
-            selection = page!.selectionForWord(at: convertedLocation)
-            guard let word = selection?.string else { return }
-            
+            let selection = page!.selectionForWord(at: convertedLocation)
             pdfView!.setCurrentSelection(selection, animate: false)
+            
+            guard isValidSelection(selection: selection?.string ?? "") else { return }
+            
             if let interaction = editMenuInteraction {
                 let config = UIEditMenuConfiguration(identifier: nil, sourcePoint: location)
                 interaction.presentEditMenu(with: config)
             }
         }
+    }
+    
+    func isValidSelection(selection: String) -> Bool {
+        guard !selection.isEmpty else { return false }
+        for ch in selection.lowercased() {
+            if !(ch >= "a" && ch <= "z") {
+                return false
+            }
+        }
+        return true
     }
 }
 
@@ -115,8 +146,7 @@ extension ReaderViewController: UIEditMenuInteractionDelegate {
     func editMenuInteraction(_ interaction: UIEditMenuInteraction, menuFor configuration: UIEditMenuConfiguration, suggestedActions: [UIMenuElement]) -> UIMenu? {
         let menu = UIMenu(options: .displayInline, children: [
             UIAction(title: "Look Up") { _ in
-                let ref = UIReferenceLibraryViewController(term: self.selection?.string ?? "")
-                self.present(ref, animated: true, completion: nil)
+                self.performSegue(withIdentifier: "lookup", sender: self)
             }
         ])
         return menu
