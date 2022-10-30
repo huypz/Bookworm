@@ -39,7 +39,7 @@ class DeckDataSource: NSObject, UITableViewDataSource {
             return
         }
         
-        let movedDeck = decks[fromIndex]
+        let movedDeck = filteredDecks[fromIndex]
         decks.remove(at: fromIndex)
         decks.insert(movedDeck, at: toIndex)
     }

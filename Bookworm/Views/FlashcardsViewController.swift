@@ -1,7 +1,7 @@
 import UIKit
 import CoreData
 
-class FlashcardsViewController: UITableViewController {
+class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet var addButtonItem: UIBarButtonItem!
     
@@ -67,6 +67,7 @@ class FlashcardsViewController: UITableViewController {
                     return
                 }
                 self.dataSource.flashcards = deckFlashcards
+                self.dataSource.filteredFlashcards = deckFlashcards
             case let .failure(error):
                 print("Error fetching flashcards: \(error)")
             }
@@ -82,5 +83,18 @@ class FlashcardsViewController: UITableViewController {
             setEditing(true, animated: true)
         }
         updateNavigationItem()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            dataSource.filteredFlashcards = dataSource.flashcards
+        }
+        else {
+            let filteredFlashcards = dataSource.flashcards.filter({ (flashcard) in
+                flashcard.term!.lowercased().contains(searchText.lowercased())
+            })
+            dataSource.filteredFlashcards = filteredFlashcards
+        }
+        tableView.reloadData()
     }
 }
