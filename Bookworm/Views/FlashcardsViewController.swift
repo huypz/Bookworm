@@ -10,8 +10,8 @@ class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
     
     let dataSource = FlashcardDataSource()
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
         
         navigationItem.rightBarButtonItem = editButtonItem
         editButtonItem.action = #selector(toggleEditingMode)
@@ -67,7 +67,7 @@ class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
                     return
                 }
                 self.dataSource.flashcards = deckFlashcards
-                self.dataSource.filteredFlashcards = deckFlashcards
+                self.dataSource.filteredFlashcards = deckFlashcards 
             case let .failure(error):
                 print("Error fetching flashcards: \(error)")
             }

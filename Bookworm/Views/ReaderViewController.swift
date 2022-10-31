@@ -22,7 +22,8 @@ class ReaderViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "lookup":
-            let entriesViewController = segue.destination as! EntriesViewController
+            let navigationController = segue.destination as! UINavigationController
+            let entriesViewController = navigationController.topViewController as! EntriesViewController
             entriesViewController.term = pdfView?.currentSelection?.string?.lowercased()
             if entriesViewController.store == nil {
                 entriesViewController.store = EntryStore()

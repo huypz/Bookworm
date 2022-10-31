@@ -1,12 +1,20 @@
 import UIKit
 
-class EntriesViewController: UITableViewController {
+class EntriesViewController: UITableViewController, UISearchBarDelegate {
+    
+    @IBOutlet var doneButtonItem: UIBarButtonItem!
+    @IBOutlet var searchBar: UISearchBar!
     
     var term: String!
     var store: EntryStore!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "Dictionary"
+        
+        searchBar.searchTextField.autocapitalizationType = .none
+        searchBar.searchTextField.text = term
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -57,5 +65,28 @@ class EntriesViewController: UITableViewController {
             return entry.meanings.count
         }
         return 0
+    }
+    
+    @IBAction func done(sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        term = searchBar.searchTextField.text ?? ""
+        guard !term.isEmpty else { return }
+        store.fetchEntries(for: term) { (result) -> Void in
+            switch result {
+            case let .success(entries):
+                self.store.entries = entries
+                self.store.entries.forEach { (entry) in
+                    entry.meanings.forEach { (meaning) in
+                        self.store.definitions.append(contentsOf: meaning.definitions)
+                    }
+                }
+                self.tableView.reloadData()
+            case let .failure(error):
+                print("Error fetching dictionary information: \(error)")
+            }
+        }
     }
 }
