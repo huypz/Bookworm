@@ -25,9 +25,5 @@ In the search tab, the user can look for a specific book, deck, or card (word). 
 ### Options:
 Configurations for the app’s user interface, dictionaries, etc. are found here.
 
-
-## Wireframe:
-https://wireframe.cc/pro/pp/0104422bd585759
-
 ## Prototype:
 https://marvelapp.com/prototype/b6e7b4b
