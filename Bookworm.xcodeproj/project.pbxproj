@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14F17A621318391BDF92D41E /* Pods_BookwormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2549E89B1AEAD48674F3BD21 /* Pods_BookwormTests.framework */; };
 		3F0D102E290AEAF500E2411F /* FreeDictionaryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D102D290AEAF500E2411F /* FreeDictionaryAPI.swift */; };
 		3F2535762908E8250094B23A /* FlashcardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2535752908E8240094B23A /* FlashcardCell.swift */; };
 		3F25357C2908EE860094B23A /* FlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25357B2908EE860094B23A /* FlashcardsViewController.swift */; };
@@ -34,6 +35,16 @@
 		3FC00C1928FF1B9E00B32BAC /* DocumentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1828FF1B9E00B32BAC /* DocumentDataSource.swift */; };
 		3FC00C1B28FF1C5400B32BAC /* DocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1A28FF1C5400B32BAC /* DocumentCell.swift */; };
 		3FC00C1D28FF1D7200B32BAC /* DocumentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1C28FF1D7200B32BAC /* DocumentStore.swift */; };
+		3FF1BC072916F290001D5FB0 /* EPUBParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF1BC062916F290001D5FB0 /* EPUBParser.swift */; };
+		3FF1BC092916F856001D5FB0 /* EPUBDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF1BC082916F856001D5FB0 /* EPUBDocument.swift */; };
+		3FF1BC0E2916FFCC001D5FB0 /* ContainerDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF1BC0D2916FFCC001D5FB0 /* ContainerDocument.swift */; };
+		3FF1BC1029170042001D5FB0 /* XParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF1BC0F29170042001D5FB0 /* XParser.swift */; };
+		3FF1BC132917149C001D5FB0 /* OPFDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF1BC122917149C001D5FB0 /* OPFDocument.swift */; };
+		3FF1BC152917166B001D5FB0 /* OPFMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF1BC142917166B001D5FB0 /* OPFMetadata.swift */; };
+		3FF1BC1729171718001D5FB0 /* OPFManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF1BC1629171718001D5FB0 /* OPFManifest.swift */; };
+		3FF1BC1929171737001D5FB0 /* OPFSpine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF1BC1829171737001D5FB0 /* OPFSpine.swift */; };
+		A09194E2744CD7352556AB28 /* Pods_Bookworm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157C596AF7DF0891DBD79ACF /* Pods_Bookworm.framework */; };
+		CE7AE2C259DF1B4E4803BB34 /* Pods_Bookworm_BookwormUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1245C6EF4490FAC8BEFC269 /* Pods_Bookworm_BookwormUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +65,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B174803E2F1D955BD8DA681 /* Pods-Bookworm-BookwormUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookworm-BookwormUITests.debug.xcconfig"; path = "Target Support Files/Pods-Bookworm-BookwormUITests/Pods-Bookworm-BookwormUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		0C9CE89F48B813267362D0F3 /* Pods-Bookworm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookworm.release.xcconfig"; path = "Target Support Files/Pods-Bookworm/Pods-Bookworm.release.xcconfig"; sourceTree = "<group>"; };
+		157C596AF7DF0891DBD79ACF /* Pods_Bookworm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookworm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2549E89B1AEAD48674F3BD21 /* Pods_BookwormTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookwormTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		25F7C45FF439E539CB0EE443 /* Pods-BookwormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookwormTests.release.xcconfig"; path = "Target Support Files/Pods-BookwormTests/Pods-BookwormTests.release.xcconfig"; sourceTree = "<group>"; };
+		38240A61C47FC635E555EFFF /* Pods-Bookworm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookworm.debug.xcconfig"; path = "Target Support Files/Pods-Bookworm/Pods-Bookworm.debug.xcconfig"; sourceTree = "<group>"; };
 		3F0D102D290AEAF500E2411F /* FreeDictionaryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeDictionaryAPI.swift; sourceTree = "<group>"; };
 		3F2535752908E8240094B23A /* FlashcardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardCell.swift; sourceTree = "<group>"; };
 		3F25357B2908EE860094B23A /* FlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +102,17 @@
 		3FC00C1828FF1B9E00B32BAC /* DocumentDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDataSource.swift; sourceTree = "<group>"; };
 		3FC00C1A28FF1C5400B32BAC /* DocumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCell.swift; sourceTree = "<group>"; };
 		3FC00C1C28FF1D7200B32BAC /* DocumentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStore.swift; sourceTree = "<group>"; };
+		3FF1BC062916F290001D5FB0 /* EPUBParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPUBParser.swift; sourceTree = "<group>"; };
+		3FF1BC082916F856001D5FB0 /* EPUBDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPUBDocument.swift; sourceTree = "<group>"; };
+		3FF1BC0D2916FFCC001D5FB0 /* ContainerDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerDocument.swift; sourceTree = "<group>"; };
+		3FF1BC0F29170042001D5FB0 /* XParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XParser.swift; sourceTree = "<group>"; };
+		3FF1BC122917149C001D5FB0 /* OPFDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPFDocument.swift; sourceTree = "<group>"; };
+		3FF1BC142917166B001D5FB0 /* OPFMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPFMetadata.swift; sourceTree = "<group>"; };
+		3FF1BC1629171718001D5FB0 /* OPFManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPFManifest.swift; sourceTree = "<group>"; };
+		3FF1BC1829171737001D5FB0 /* OPFSpine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPFSpine.swift; sourceTree = "<group>"; };
+		B264872CD56B930C25D2A34B /* Pods-BookwormTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookwormTests.debug.xcconfig"; path = "Target Support Files/Pods-BookwormTests/Pods-BookwormTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D46198522078A69B31108B4D /* Pods-Bookworm-BookwormUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookworm-BookwormUITests.release.xcconfig"; path = "Target Support Files/Pods-Bookworm-BookwormUITests/Pods-Bookworm-BookwormUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E1245C6EF4490FAC8BEFC269 /* Pods_Bookworm_BookwormUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookworm_BookwormUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A09194E2744CD7352556AB28 /* Pods_Bookworm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F17A621318391BDF92D41E /* Pods_BookwormTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,12 +136,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE7AE2C259DF1B4E4803BB34 /* Pods_Bookworm_BookwormUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		392C6C7DB32752A4887EF87A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				157C596AF7DF0891DBD79ACF /* Pods_Bookworm.framework */,
+				E1245C6EF4490FAC8BEFC269 /* Pods_Bookworm_BookwormUITests.framework */,
+				2549E89B1AEAD48674F3BD21 /* Pods_BookwormTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3F4216002904C19700F7E6A1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +188,7 @@
 		3F43F634290B711D0072514F /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				3FF1BC052916F264001D5FB0 /* EPUB */,
 				3F0D102D290AEAF500E2411F /* FreeDictionaryAPI.swift */,
 			);
 			path = Libraries;
@@ -159,6 +201,8 @@
 				3F862D8028F3A4BA00B6D634 /* BookwormTests */,
 				3F862D8A28F3A4BA00B6D634 /* BookwormUITests */,
 				3F862D6828F3A4B800B6D634 /* Products */,
+				88DF3F3102C5E6E503BF8939 /* Pods */,
+				392C6C7DB32752A4887EF87A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -205,6 +249,50 @@
 			path = BookwormUITests;
 			sourceTree = "<group>";
 		};
+		3FF1BC052916F264001D5FB0 /* EPUB */ = {
+			isa = PBXGroup;
+			children = (
+				3FF1BC0C2916FEFD001D5FB0 /* Parser */,
+				3FF1BC082916F856001D5FB0 /* EPUBDocument.swift */,
+			);
+			path = EPUB;
+			sourceTree = "<group>";
+		};
+		3FF1BC0C2916FEFD001D5FB0 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				3FF1BC1129171491001D5FB0 /* OPF */,
+				3FF1BC062916F290001D5FB0 /* EPUBParser.swift */,
+				3FF1BC0D2916FFCC001D5FB0 /* ContainerDocument.swift */,
+				3FF1BC0F29170042001D5FB0 /* XParser.swift */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		3FF1BC1129171491001D5FB0 /* OPF */ = {
+			isa = PBXGroup;
+			children = (
+				3FF1BC122917149C001D5FB0 /* OPFDocument.swift */,
+				3FF1BC142917166B001D5FB0 /* OPFMetadata.swift */,
+				3FF1BC1629171718001D5FB0 /* OPFManifest.swift */,
+				3FF1BC1829171737001D5FB0 /* OPFSpine.swift */,
+			);
+			path = OPF;
+			sourceTree = "<group>";
+		};
+		88DF3F3102C5E6E503BF8939 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				38240A61C47FC635E555EFFF /* Pods-Bookworm.debug.xcconfig */,
+				0C9CE89F48B813267362D0F3 /* Pods-Bookworm.release.xcconfig */,
+				0B174803E2F1D955BD8DA681 /* Pods-Bookworm-BookwormUITests.debug.xcconfig */,
+				D46198522078A69B31108B4D /* Pods-Bookworm-BookwormUITests.release.xcconfig */,
+				B264872CD56B930C25D2A34B /* Pods-BookwormTests.debug.xcconfig */,
+				25F7C45FF439E539CB0EE443 /* Pods-BookwormTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -212,9 +300,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F862D9128F3A4BA00B6D634 /* Build configuration list for PBXNativeTarget "Bookworm" */;
 			buildPhases = (
+				65E90D2F8FD5478304D1C652 /* [CP] Check Pods Manifest.lock */,
 				3F862D6328F3A4B800B6D634 /* Sources */,
 				3F862D6428F3A4B800B6D634 /* Frameworks */,
 				3F862D6528F3A4B800B6D634 /* Resources */,
+				A8B7B67F1F28D073DE19107C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -229,6 +319,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F862D9428F3A4BA00B6D634 /* Build configuration list for PBXNativeTarget "BookwormTests" */;
 			buildPhases = (
+				CD3CAAA2402CC4530341E6D5 /* [CP] Check Pods Manifest.lock */,
 				3F862D7928F3A4BA00B6D634 /* Sources */,
 				3F862D7A28F3A4BA00B6D634 /* Frameworks */,
 				3F862D7B28F3A4BA00B6D634 /* Resources */,
@@ -247,9 +338,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F862D9728F3A4BA00B6D634 /* Build configuration list for PBXNativeTarget "BookwormUITests" */;
 			buildPhases = (
+				84CFF9AD0EE483BB5C6330AE /* [CP] Check Pods Manifest.lock */,
 				3F862D8328F3A4BA00B6D634 /* Sources */,
 				3F862D8428F3A4BA00B6D634 /* Frameworks */,
 				3F862D8528F3A4BA00B6D634 /* Resources */,
+				702123231825113D4199AB36 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -331,6 +424,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		65E90D2F8FD5478304D1C652 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Bookworm-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		702123231825113D4199AB36 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Bookworm-BookwormUITests/Pods-Bookworm-BookwormUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Bookworm-BookwormUITests/Pods-Bookworm-BookwormUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bookworm-BookwormUITests/Pods-Bookworm-BookwormUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84CFF9AD0EE483BB5C6330AE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Bookworm-BookwormUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8B7B67F1F28D073DE19107C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Bookworm/Pods-Bookworm-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Bookworm/Pods-Bookworm-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bookworm/Pods-Bookworm-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD3CAAA2402CC4530341E6D5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BookwormTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3F862D6328F3A4B800B6D634 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -340,18 +536,26 @@
 				3F0D102E290AEAF500E2411F /* FreeDictionaryAPI.swift in Sources */,
 				3F376D6C29061B4100DAA761 /* ImageStore.swift in Sources */,
 				3F43F63B290B820C0072514F /* EntryCell.swift in Sources */,
+				3FF1BC0E2916FFCC001D5FB0 /* ContainerDocument.swift in Sources */,
+				3FF1BC1929171737001D5FB0 /* OPFSpine.swift in Sources */,
 				3F4215FE2904C01400F7E6A1 /* Bookworm.xcdatamodeld in Sources */,
 				3F76970F2909EAC800799399 /* FlashcardAddViewController.swift in Sources */,
 				3F25357E2908EEA80094B23A /* DeckStore.swift in Sources */,
 				3F862D6F28F3A4B800B6D634 /* LibraryViewController.swift in Sources */,
+				3FF1BC072916F290001D5FB0 /* EPUBParser.swift in Sources */,
 				3F43F639290B80860072514F /* EntryStore.swift in Sources */,
 				3FC00C1D28FF1D7200B32BAC /* DocumentStore.swift in Sources */,
 				3FC00C1928FF1B9E00B32BAC /* DocumentDataSource.swift in Sources */,
 				3F2535A229090AF70094B23A /* DeckDataSource.swift in Sources */,
 				3F862D6B28F3A4B800B6D634 /* AppDelegate.swift in Sources */,
 				3F2535A0290906C60094B23A /* DeckCell.swift in Sources */,
+				3FF1BC1029170042001D5FB0 /* XParser.swift in Sources */,
 				3F2535762908E8250094B23A /* FlashcardCell.swift in Sources */,
+				3FF1BC152917166B001D5FB0 /* OPFMetadata.swift in Sources */,
+				3FF1BC132917149C001D5FB0 /* OPFDocument.swift in Sources */,
+				3FF1BC1729171718001D5FB0 /* OPFManifest.swift in Sources */,
 				3F862D6D28F3A4B800B6D634 /* SceneDelegate.swift in Sources */,
+				3FF1BC092916F856001D5FB0 /* EPUBDocument.swift in Sources */,
 				3FC00C1B28FF1C5400B32BAC /* DocumentCell.swift in Sources */,
 				3F25357C2908EE860094B23A /* FlashcardsViewController.swift in Sources */,
 				3F25359A2908F7D80094B23A /* FlashcardDataSource.swift in Sources */,
@@ -528,6 +732,7 @@
 		};
 		3F862D9228F3A4BA00B6D634 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38240A61C47FC635E555EFFF /* Pods-Bookworm.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -559,6 +764,7 @@
 		};
 		3F862D9328F3A4BA00B6D634 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C9CE89F48B813267362D0F3 /* Pods-Bookworm.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -590,6 +796,7 @@
 		};
 		3F862D9528F3A4BA00B6D634 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B264872CD56B930C25D2A34B /* Pods-BookwormTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -610,6 +817,7 @@
 		};
 		3F862D9628F3A4BA00B6D634 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25F7C45FF439E539CB0EE443 /* Pods-BookwormTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -630,6 +838,7 @@
 		};
 		3F862D9828F3A4BA00B6D634 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B174803E2F1D955BD8DA681 /* Pods-Bookworm-BookwormUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -648,6 +857,7 @@
 		};
 		3F862D9928F3A4BA00B6D634 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D46198522078A69B31108B4D /* Pods-Bookworm-BookwormUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

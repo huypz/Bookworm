@@ -1,0 +1,20 @@
+PODS:
+  - Kanna (5.2.7)
+  - SSZipArchive (2.5.2)
+
+DEPENDENCIES:
+  - Kanna (~> 5.2.2)
+  - SSZipArchive
+
+SPEC REPOS:
+  trunk:
+    - Kanna
+    - SSZipArchive
+
+SPEC CHECKSUMS:
+  Kanna: 01cfbddc127f5ff0963692f285fcbc8a9d62d234
+  SSZipArchive: 155943602f0dd5ca75464bcb77e57a0bf33144a5
+
+PODFILE CHECKSUM: fe92f1ef103b0e0dacd4fc9c63111f9b690fcb92
+
+COCOAPODS: 1.11.3
