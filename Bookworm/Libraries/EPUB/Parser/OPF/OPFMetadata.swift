@@ -34,7 +34,7 @@ public struct OPFMetadata {
     public private(set) var coverImageID: String?
     
     init?(package: XMLElement) {
-        guard let metadata = package.at_xpath("opf:metadata", namespaces: XPath.dc.namespace) else { return nil }
+        guard let metadata = package.at_xpath("opf:metadata", namespaces: XPath.opf.namespace) else { return nil }
         
         let dcmes = metadata.xpath("dc:*", namespaces: XPath.dc.namespace)
         for dc in dcmes {
@@ -46,6 +46,8 @@ public struct OPFMetadata {
                 titles.append(text)
             case "language":
                 languages.append(text)
+            case "creator":
+                creators.append(text)
             default:
                 break
             }

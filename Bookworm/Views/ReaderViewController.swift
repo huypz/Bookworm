@@ -122,6 +122,10 @@ extension ReaderViewController: PDFViewDelegate {
 extension ReaderViewController: WKUIDelegate {
     
     private func initEPUB() {
+        
+        let parser = EPUBParser()
+        let ebook = parser.parse(at: document.url!)
+        
         let config = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: config)
         webView!.uiDelegate = self
