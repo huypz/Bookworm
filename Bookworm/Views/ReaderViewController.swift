@@ -122,9 +122,14 @@ extension ReaderViewController: PDFViewDelegate {
 extension ReaderViewController: WKUIDelegate {
     
     private func initEPUB() {
-        
         let parser = EPUBParser()
-        let ebook = parser.parse(at: document.url!)
+        guard
+            let book = parser.parse(at: document.url!),
+            let pages = book.pages
+        else {
+            print("Error parsing epub at \(document.url!)")
+            return
+        }
         
         let config = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: config)
@@ -139,9 +144,8 @@ extension ReaderViewController: WKUIDelegate {
             webView!.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             webView!.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        
-        let url = URL(string: "https://reader.ttsu.app")
-        let request = URLRequest(url: url!)
+        let url = pages.first!
+        let request = URLRequest(url: url)
         webView!.load(request)
     }
 }

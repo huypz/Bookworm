@@ -19,7 +19,7 @@ public struct SpineItemref {
 public struct OPFSpine {
     
     public let toc: String?
-    public private(set) var idrefs = [SpineItemref]()
+    public private(set) var itemrefs = [SpineItemref]()
     
     init?(package: XMLElement) {
         guard let spine = package.at_xpath("opf:spine", namespaces: XPath.opf.namespace) else { return nil }
@@ -27,7 +27,7 @@ public struct OPFSpine {
         let itemrefElements = spine.xpath("opf:itemref", namespaces: XPath.opf.namespace)
         for itemrefElement in itemrefElements {
             guard let itemref = SpineItemref(itemrefElement) else { continue }
-            idrefs.append(itemref)
+            itemrefs.append(itemref)
         }
     }
 }
