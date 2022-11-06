@@ -1,6 +1,7 @@
 import Kanna
 
 public struct ContainerDocument {
+    
     public let opfPath: String
     
     public let document: XMLDocument

@@ -1,6 +1,7 @@
 import Foundation
 
 open class EPUBDocument {
+    
     public let identifier: String
     public let baseURL: URL
     public let resourceBaseURL: URL

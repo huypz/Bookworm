@@ -1,6 +1,7 @@
 import Kanna
 
 public struct OPFDocument {
+    
     public let uniqueIdentifierID: String
     public let metadata: OPFMetadata
     public let manifest: OPFManifest
