@@ -22,8 +22,8 @@ class DeckDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let deck = filteredDecks[indexPath.row]
-            if let index = decks.firstIndex(of: deck) {
-                decks.remove(at: index)
+            if let index = filteredDecks.firstIndex(of: deck) {
+                filteredDecks.remove(at: index)
                 store.removeDeck(deck: deck)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
@@ -40,7 +40,7 @@ class DeckDataSource: NSObject, UITableViewDataSource {
         }
         
         let movedDeck = filteredDecks[fromIndex]
-        decks.remove(at: fromIndex)
-        decks.insert(movedDeck, at: toIndex)
+        filteredDecks.remove(at: fromIndex)
+        filteredDecks.insert(movedDeck, at: toIndex)
     }
 }

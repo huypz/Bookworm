@@ -10,8 +10,8 @@ class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
     
     let dataSource = FlashcardDataSource()
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         
         navigationItem.rightBarButtonItem = editButtonItem
         editButtonItem.action = #selector(toggleEditingMode)

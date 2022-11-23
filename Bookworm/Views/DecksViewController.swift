@@ -8,8 +8,8 @@ class DecksViewController: UITableViewController, UISearchBarDelegate {
     
     let dataSource = DeckDataSource()
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         
         navigationItem.leftBarButtonItem = editButtonItem
     }

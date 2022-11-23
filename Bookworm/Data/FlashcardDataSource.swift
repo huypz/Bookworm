@@ -26,8 +26,8 @@ class FlashcardDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let flashcard = filteredFlashcards[indexPath.row]
-            if let index = flashcards.firstIndex(of: flashcard) {
-                flashcards.remove(at: index)
+            if let index = filteredFlashcards.firstIndex(of: flashcard) {
+                filteredFlashcards.remove(at: index)
                 store.removeFlashcard(flashcard: flashcard, from: deck)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
@@ -43,7 +43,7 @@ class FlashcardDataSource: NSObject, UITableViewDataSource {
             return
         }
         let movedFlashcard = filteredFlashcards[fromIndex]
-        flashcards.remove(at: fromIndex)
-        flashcards.insert(movedFlashcard, at: toIndex)
+        filteredFlashcards.remove(at: fromIndex)
+        filteredFlashcards.insert(movedFlashcard, at: toIndex)
     }
 }

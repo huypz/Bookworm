@@ -13,8 +13,8 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     var imageStore: ImageStore!
     let dataSource = DocumentDataSource()
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         
         navigationItem.rightBarButtonItem = editButtonItem
         editButtonItem.action = #selector(toggleEditingMode)
@@ -121,7 +121,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     }
     
     @IBAction func documentMenu(_ sender: UIBarButtonItem) {
-        let pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.pdf, UTType.epub])
+        let pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.epub])
     
         pickerViewController.delegate = self
         pickerViewController.allowsMultipleSelection = true

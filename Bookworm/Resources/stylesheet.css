@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+    margin: 0;
+    vertical-align: baseline;
+}
+
+:root {
+    --main-font: 'Open Sans', sans-serif;
+}
+
+body {
+    display: block;
+    padding: 0 20px !important;
+}
+
+p {
+    display: block;
+    margin: 1em 0;
+}
+
+h1 {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0.67em 0;
+}
+
+h2 {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0.83em 0;
+}
+
+h3 {
+    display: block;
+    font-size: 1.17em;
+    font-weight: bold;
+    margin: 1em 0;
+}
+
+h4 {
+    display: block;
+    font-weight: bold;
+    margin: 1.33em 0;
+}
+
+h5 {
+    display: block;
+    font-size: 0.83em;
+    font-weight: bold;
+    margin: 1.67em 0;
+}
+
+h6 {
+    display: block;
+    font-family: 0.67em;
+    font-weight: bold;
+    margin: 2.33em 0;
+}
+
+pre {
+    display: block;
+    font-family: monospace;
+    white-space: pre-wrap;
+    margin: 1em 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+@page {
+    margin: 0 0 !important;
+}
+
+table, ol, il {
+    text-align: -webkit-auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: -webkit-auto;
+    text-rendering: optimizeLegibility;
+}
+
+img, object, svg|svg {
+    width: auto;
+    height: auto;
+}

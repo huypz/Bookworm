@@ -35,6 +35,7 @@
 		3FC00C1928FF1B9E00B32BAC /* DocumentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1828FF1B9E00B32BAC /* DocumentDataSource.swift */; };
 		3FC00C1B28FF1C5400B32BAC /* DocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1A28FF1C5400B32BAC /* DocumentCell.swift */; };
 		3FC00C1D28FF1D7200B32BAC /* DocumentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1C28FF1D7200B32BAC /* DocumentStore.swift */; };
+		3FEA57C1292E8F2900945A2C /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 3FEA57C0292E8F2900945A2C /* stylesheet.css */; };
 		3FF1BC072916F290001D5FB0 /* EPUBParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF1BC062916F290001D5FB0 /* EPUBParser.swift */; };
 		3FF1BC092916F856001D5FB0 /* EPUBDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF1BC082916F856001D5FB0 /* EPUBDocument.swift */; };
 		3FF1BC0E2916FFCC001D5FB0 /* ContainerDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF1BC0D2916FFCC001D5FB0 /* ContainerDocument.swift */; };
@@ -102,6 +103,7 @@
 		3FC00C1828FF1B9E00B32BAC /* DocumentDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDataSource.swift; sourceTree = "<group>"; };
 		3FC00C1A28FF1C5400B32BAC /* DocumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCell.swift; sourceTree = "<group>"; };
 		3FC00C1C28FF1D7200B32BAC /* DocumentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStore.swift; sourceTree = "<group>"; };
+		3FEA57C0292E8F2900945A2C /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = stylesheet.css; sourceTree = "<group>"; };
 		3FF1BC062916F290001D5FB0 /* EPUBParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPUBParser.swift; sourceTree = "<group>"; };
 		3FF1BC082916F856001D5FB0 /* EPUBDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPUBDocument.swift; sourceTree = "<group>"; };
 		3FF1BC0D2916FFCC001D5FB0 /* ContainerDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerDocument.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 		3F862D6928F3A4B800B6D634 /* Bookworm */ = {
 			isa = PBXGroup;
 			children = (
+				3FE71EAE291C397B00D2AF74 /* Resources */,
 				3F43F634290B711D0072514F /* Libraries */,
 				3F4216052904C28C00F7E6A1 /* Data */,
 				3F4216002904C19700F7E6A1 /* Views */,
@@ -247,6 +250,14 @@
 				3F862D8D28F3A4BA00B6D634 /* BookwormUITestsLaunchTests.swift */,
 			);
 			path = BookwormUITests;
+			sourceTree = "<group>";
+		};
+		3FE71EAE291C397B00D2AF74 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3FEA57C0292E8F2900945A2C /* stylesheet.css */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		3FF1BC052916F264001D5FB0 /* EPUB */ = {
@@ -402,6 +413,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FEA57C1292E8F2900945A2C /* stylesheet.css in Resources */,
 				3F4138E9290484CA00B229B0 /* Main.storyboard in Resources */,
 				3F862D7728F3A4BA00B6D634 /* LaunchScreen.storyboard in Resources */,
 				3F862D7428F3A4BA00B6D634 /* Assets.xcassets in Resources */,
