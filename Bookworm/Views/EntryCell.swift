@@ -16,6 +16,7 @@ class EntryCell: UITableViewCell {
     
     @IBAction func add(_ sender: UIButton) {
         delegate.selectedDefinition = definitionLabel.text
+        delegate.selectedPartOfSpeech = partOfSpeechLabel.text
         delegate.performSegue(withIdentifier: "addEntry", sender: delegate)
     }
     

@@ -11,6 +11,8 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     var term: String?
     var definition: String?
+    var audio: String?
+    var partOfSpeech: String?
     
     var decks = [Deck]()
     var deckStore: DeckStore!
@@ -67,6 +69,8 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let newFlashcard = NSEntityDescription.insertNewObject(forEntityName: "Flashcard", into: context)
         newFlashcard.setValue(term, forKey: "term")
         newFlashcard.setValue(definition, forKey: "definition")
+        newFlashcard.setValue(audio, forKey: "audio")
+        newFlashcard.setValue(partOfSpeech, forKey: "partOfSpeech")
         deckStore.addFlashcard(flashcard: newFlashcard as! Flashcard, to: deck)
         
         navigationController?.popViewController(animated: true)

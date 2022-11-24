@@ -9,6 +9,7 @@ class EntriesViewController: UITableViewController, UISearchBarDelegate {
     var store: EntryStore!
     
     var selectedDefinition: String?
+    var selectedPartOfSpeech: String?
     var audio: URL?
     
     var deckStore: DeckStore!
@@ -37,6 +38,8 @@ class EntriesViewController: UITableViewController, UISearchBarDelegate {
             entryAddViewController.deckStore = deckStore
             entryAddViewController.term = term
             entryAddViewController.definition = selectedDefinition
+            entryAddViewController.audio = audio?.absoluteString
+            entryAddViewController.partOfSpeech = selectedPartOfSpeech
         default:
             preconditionFailure("Unexpected segue identifier")
         }
