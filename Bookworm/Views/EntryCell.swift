@@ -1,5 +1,5 @@
-import UIKit
 import AVKit
+import UIKit
 
 class EntryCell: UITableViewCell {
     

@@ -15,8 +15,7 @@ class FlashcardDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FlashcardCell", for: indexPath) as! FlashcardCell
         let flashcard = filteredFlashcards[indexPath.row]
-        cell.termLabel.text = flashcard.term
-        cell.infoLabel.text = "\(flashcard.meanings?.count ?? 0) meanings"
+        cell.flashcard = flashcard
         cell.contentView.setNeedsLayout()
         cell.contentView.layoutIfNeeded()
     

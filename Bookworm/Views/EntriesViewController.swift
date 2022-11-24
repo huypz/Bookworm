@@ -37,7 +37,6 @@ class EntriesViewController: UITableViewController, UISearchBarDelegate {
             entryAddViewController.deckStore = deckStore
             entryAddViewController.term = term
             entryAddViewController.definition = selectedDefinition
-            entryAddViewController.deckStore = deckStore
         default:
             preconditionFailure("Unexpected segue identifier")
         }
@@ -53,9 +52,6 @@ class EntriesViewController: UITableViewController, UISearchBarDelegate {
             cell.partOfSpeechLabel.text = entry.meanings[indexPath.section].partOfSpeech
             cell.definitionLabel.text = definition.definition
             cell.audio = audio
-            if audio == nil {
-                cell.audioButton.isEnabled = false
-            }
         }
         
         return cell
@@ -109,6 +105,10 @@ class EntriesViewController: UITableViewController, UISearchBarDelegate {
                     }
                 }
                 self.tableView.reloadData()
+                self.tableView.visibleCells.forEach { (cell) in
+                    let entryCell = cell as! EntryCell
+                    entryCell.audioButton.isEnabled = self.audio != nil
+                }
             case let .failure(error):
                 print("Error fetching dictionary information: \(error)")
             }

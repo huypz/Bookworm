@@ -1,3 +1,4 @@
+import CoreData
 import UIKit
 
 class FlashcardAddViewController: UIViewController {
@@ -21,9 +22,13 @@ class FlashcardAddViewController: UIViewController {
         termTextField.leftViewMode = .always
         termTextField.layer.borderColor = UIColor.lightGray.cgColor
         termTextField.layer.borderWidth = 1
+        termTextField.autocorrectionType = .no
+        termTextField.autocapitalizationType = .none
         
         definitionTextView.layer.borderColor = UIColor.lightGray.cgColor
         definitionTextView.layer.borderWidth = 1
+        definitionTextView.autocorrectionType = .no
+        definitionTextView.autocapitalizationType = .none
     }
     
     @IBAction func addFlashcard(_ sender: UIBarButtonItem) {
@@ -39,13 +44,11 @@ class FlashcardAddViewController: UIViewController {
         let context = store.persistentContainer.viewContext
         let term = termTextField.text
         let definition = definitionTextView.text
-        let meaning = Meaning(context: context)
-        meaning.setValue(definition, forKey: "definition")
 
-        let flashcard = Flashcard(context: context)
-        flashcard.setValue(term, forKey: "term")
-        flashcard.addToMeanings(meaning)
-        store.addFlashcard(flashcard: flashcard, to: deck)
+        let newFlashcard = NSEntityDescription.insertNewObject(forEntityName: "Flashcard", into: context)
+        newFlashcard.setValue(term, forKey: "term")
+        newFlashcard.setValue(definition, forKey: "definition")
+        store.addFlashcard(flashcard: newFlashcard as! Flashcard, to: deck)
         delegate.updateFlashcards()
         
         cancel(sender)

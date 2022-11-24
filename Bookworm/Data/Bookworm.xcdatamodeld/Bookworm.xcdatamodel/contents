@@ -14,17 +14,11 @@
     </entity>
     <entity name="Flashcard" representedClassName="Flashcard" syncable="YES" codeGenerationType="class">
         <attribute name="audio" optional="YES" attributeType="String"/>
+        <attribute name="definition" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="partOfSpeech" optional="YES" attributeType="String"/>
         <attribute name="phonetic" optional="YES" attributeType="String"/>
         <attribute name="term" optional="YES" attributeType="String"/>
         <relationship name="decks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Deck" inverseName="flashcards" inverseEntity="Deck"/>
-        <relationship name="meanings" toMany="YES" deletionRule="Nullify" destinationEntity="Meaning" inverseName="flashcards" inverseEntity="Meaning"/>
-    </entity>
-    <entity name="Meaning" representedClassName="Meaning" syncable="YES" codeGenerationType="class">
-        <attribute name="antonyms" optional="YES" attributeType="Binary"/>
-        <attribute name="definition" optional="YES" attributeType="String"/>
-        <attribute name="example" optional="YES" attributeType="String"/>
-        <attribute name="partOfSpeech" optional="YES" attributeType="String"/>
-        <attribute name="synonyms" optional="YES" attributeType="Binary"/>
-        <relationship name="flashcards" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Flashcard" inverseName="meanings" inverseEntity="Flashcard"/>
     </entity>
 </model>

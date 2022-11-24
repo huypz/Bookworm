@@ -294,40 +294,13 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FlashcardCell" rowHeight="64" id="tRJ-2U-2dg" customClass="FlashcardCell" customModule="Bookworm" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="94" width="414" height="64"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FlashcardCell" rowHeight="256" id="tRJ-2U-2dg" customClass="FlashcardCell" customModule="Bookworm" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="94" width="414" height="256"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tRJ-2U-2dg" id="9iY-q6-xaQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="256"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Term" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFJ-TK-gdy">
-                                            <rect key="frame" x="20" y="11" width="374" height="21"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# meanings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcU-9i-9PX">
-                                            <rect key="frame" x="20" y="36" width="374" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" systemColor="secondaryLabelColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="UFJ-TK-gdy" firstAttribute="leading" secondItem="9iY-q6-xaQ" secondAttribute="leadingMargin" id="0p3-Ki-ReV"/>
-                                        <constraint firstItem="UFJ-TK-gdy" firstAttribute="top" secondItem="9iY-q6-xaQ" secondAttribute="topMargin" id="AAS-1X-Kxo"/>
-                                        <constraint firstItem="VcU-9i-9PX" firstAttribute="leading" secondItem="UFJ-TK-gdy" secondAttribute="leading" id="AE7-e9-L1i"/>
-                                        <constraint firstItem="VcU-9i-9PX" firstAttribute="trailing" secondItem="UFJ-TK-gdy" secondAttribute="trailing" id="PSG-Bb-2vI"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="UFJ-TK-gdy" secondAttribute="trailing" id="WfA-al-aDY"/>
-                                        <constraint firstItem="VcU-9i-9PX" firstAttribute="top" secondItem="UFJ-TK-gdy" secondAttribute="bottom" constant="4" id="xd5-ps-Ah7"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="VcU-9i-9PX" secondAttribute="bottom" id="yaC-0R-aC5"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="infoLabel" destination="VcU-9i-9PX" id="wy6-j7-0Wt"/>
-                                    <outlet property="termLabel" destination="UFJ-TK-gdy" id="YRs-QH-gGW"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -348,7 +321,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UGk-f4-b2v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3503" y="867"/>
+            <point key="canvasLocation" x="3502.898550724638" y="866.51785714285711"/>
         </scene>
         <!--Flashcard Add View Controller-->
         <scene sceneID="ODB-jY-MTU">

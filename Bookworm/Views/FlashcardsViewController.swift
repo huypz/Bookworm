@@ -1,5 +1,5 @@
-import UIKit
 import CoreData
+import UIKit
 
 class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
     
@@ -27,8 +27,7 @@ class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
         tableView.dataSource = dataSource
         updateFlashcards()
 
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 64
+        tableView.rowHeight = 256
     }
     
     override func viewWillAppear(_ animated: Bool) {

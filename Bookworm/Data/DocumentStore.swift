@@ -1,6 +1,6 @@
-import UIKit
 import CoreData
 import QuickLookThumbnailing
+import UIKit
 
 class DocumentStore {
     

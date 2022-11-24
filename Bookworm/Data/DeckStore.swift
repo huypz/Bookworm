@@ -1,5 +1,5 @@
-import UIKit
 import CoreData
+import UIKit
 
 class DeckStore {
     
@@ -15,8 +15,8 @@ class DeckStore {
     
     func fetchDecks(completion: @escaping (Result<[Deck], Error>) -> Void) {
         let fetchRequest: NSFetchRequest<Deck> = Deck.fetchRequest()
-        let sortByTitle = NSSortDescriptor(key: "\(#keyPath(Deck.title))", ascending: true)
-        fetchRequest.sortDescriptors = [sortByTitle]
+        // let sortByTitle = NSSortDescriptor(key: "\(#keyPath(Deck.title))", ascending: true)
+        // fetchRequest.sortDescriptors = [sortByTitle]
         
         let viewContext = persistentContainer.viewContext
         viewContext.perform {
@@ -32,8 +32,8 @@ class DeckStore {
     
     func fetchFlashcards(completion: @escaping (Result<[Flashcard], Error>) -> Void) {
         let fetchRequest: NSFetchRequest<Flashcard> = Flashcard.fetchRequest()
-        let sortByTerm = NSSortDescriptor(key: "\(#keyPath(Flashcard.term))", ascending: true)
-        fetchRequest.sortDescriptors = [sortByTerm]
+        // let sortByTerm = NSSortDescriptor(key: "\(#keyPath(Flashcard.term))", ascending: true)
+        // fetchRequest.sortDescriptors = [sortByTerm]
         
         let viewContext = persistentContainer.viewContext
         viewContext.perform {
@@ -49,11 +49,8 @@ class DeckStore {
     
     func addDeck(title: String) {
         let context = persistentContainer.viewContext
-        var deck: Deck!
-        context.performAndWait {
-            deck = Deck(context: context)
-            deck.title = title
-        }
+        let newDeck = NSEntityDescription.insertNewObject(forEntityName: "Deck", into: context)
+        newDeck.setValue(title, forKey: "title")
         saveContext()
     }
     

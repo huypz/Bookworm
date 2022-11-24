@@ -1,3 +1,4 @@
+import CoreData
 import UIKit
 
 class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -26,9 +27,13 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         termTextField.leftViewMode = .always
         termTextField.layer.borderColor = UIColor.lightGray.cgColor
         termTextField.layer.borderWidth = 1
+        termTextField.autocorrectionType = .no
+        termTextField.autocapitalizationType = .none
         
         definitionTextView.layer.borderColor = UIColor.lightGray.cgColor
         definitionTextView.layer.borderWidth = 1
+        definitionTextView.autocapitalizationType = .none
+        definitionTextView.autocorrectionType = .no
     }
     
     override func viewDidLoad() {
@@ -58,13 +63,11 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let context = deckStore.persistentContainer.viewContext
         let term = termTextField.text
         let definition = definitionTextView.text
-        let meaning = Meaning(context: context)
-        meaning.setValue(definition, forKey: "definition")
-
-        let flashcard = Flashcard(context: context)
-        flashcard.setValue(term, forKey: "term")
-        flashcard.addToMeanings(meaning)
-        deckStore.addFlashcard(flashcard: flashcard, to: deck)
+        
+        let newFlashcard = NSEntityDescription.insertNewObject(forEntityName: "Flashcard", into: context)
+        newFlashcard.setValue(term, forKey: "term")
+        newFlashcard.setValue(definition, forKey: "definition")
+        deckStore.addFlashcard(flashcard: newFlashcard as! Flashcard, to: deck)
         
         navigationController?.popViewController(animated: true)
     }
