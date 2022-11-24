@@ -14,6 +14,8 @@ class ReaderViewController: UIViewController {
     var webView: ReaderWebView?
     var selectedText: String?
     
+    var deckStore: DeckStore!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,7 +38,8 @@ class ReaderViewController: UIViewController {
         case "lookUp":
             let navigationController = segue.destination as! UINavigationController
             let entriesViewController = navigationController.topViewController as! EntriesViewController
-            entriesViewController.term = selectedText
+            entriesViewController.deckStore = deckStore
+            entriesViewController.term = selectedText?.lowercased()
             if entriesViewController.store == nil {
                 entriesViewController.store = EntryStore()
             }

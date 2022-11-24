@@ -13,6 +13,8 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     var imageStore: ImageStore!
     let dataSource = DocumentDataSource()
     
+    var deckStore: DeckStore!
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -59,6 +61,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
                 let document = dataSource.documents[selectedIndexPath.row]
                 document.lastAccessed = Date()
                 let readerViewController = segue.destination as! ReaderViewController
+                readerViewController.deckStore = deckStore
                 readerViewController.document = document
                 readerViewController.hidesBottomBarWhenPushed = true
                 readerViewController.navigationController?.hidesBarsOnTap = true

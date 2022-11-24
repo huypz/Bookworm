@@ -19,6 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let libraryViewController = (rootViewController.viewControllers![0] as! UINavigationController).topViewController as! LibraryViewController
         libraryViewController.documentStore = documentStore
+        libraryViewController.deckStore = deckStore
+        
         
         let decksViewController = (rootViewController.viewControllers![1] as! UINavigationController).topViewController as! DecksViewController
         decksViewController.store = deckStore

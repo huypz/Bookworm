@@ -8,7 +8,10 @@ class EntriesViewController: UITableViewController, UISearchBarDelegate {
     var term: String!
     var store: EntryStore!
     
+    var selectedDefinition: String?
     var audio: URL?
+    
+    var deckStore: DeckStore!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +30,24 @@ class EntriesViewController: UITableViewController, UISearchBarDelegate {
         updateEntries(for: term)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "addEntry":
+            let entryAddViewController = segue.destination as! EntryAddViewController
+            entryAddViewController.deckStore = deckStore
+            entryAddViewController.term = term
+            entryAddViewController.definition = selectedDefinition
+            entryAddViewController.deckStore = deckStore
+        default:
+            preconditionFailure("Unexpected segue identifier")
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! EntryCell
         
         if let entry = store.entries.first {
+            cell.delegate = self
             let definition = entry.meanings[indexPath.section].definitions[indexPath.row]
             cell.termLabel.text = term
             cell.partOfSpeechLabel.text = entry.meanings[indexPath.section].partOfSpeech

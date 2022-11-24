@@ -12,11 +12,6 @@ class FlashcardAddViewController: UIViewController {
     var deck: Deck!
     var delegate: FlashcardsViewController!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
