@@ -7,6 +7,8 @@ class EntriesViewController: UITableViewController, UISearchBarDelegate {
     
     var term: String!
     var store: EntryStore!
+    
+    var audio: URL?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,20 +24,7 @@ class EntriesViewController: UITableViewController, UISearchBarDelegate {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 96
         
-        store.fetchEntries(for: term) { (result) -> Void in
-            switch result {
-            case let .success(entries):
-                self.store.entries = entries
-                self.store.entries.forEach { (entry) in
-                    entry.meanings.forEach { (meaning) in
-                        self.store.definitions.append(contentsOf: meaning.definitions)
-                    }
-                }
-                self.tableView.reloadData()
-            case let .failure(error):
-                print("Error fetching dictionary information: \(error)")
-            }
-        }
+        updateEntries(for: term)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,6 +35,10 @@ class EntriesViewController: UITableViewController, UISearchBarDelegate {
             cell.termLabel.text = term
             cell.partOfSpeechLabel.text = entry.meanings[indexPath.section].partOfSpeech
             cell.definitionLabel.text = definition.definition
+            cell.audio = audio
+            if audio == nil {
+                cell.audioButton.isEnabled = false
+            }
         }
         
         return cell
@@ -74,11 +67,26 @@ class EntriesViewController: UITableViewController, UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         term = searchBar.searchTextField.text ?? ""
         guard !term.isEmpty else { return }
+    
+        updateEntries(for: term)
+    }
+    
+    func updateEntries(for term: String) {
+        audio = nil
+        
         store.fetchEntries(for: term) { (result) -> Void in
             switch result {
             case let .success(entries):
                 self.store.entries = entries
                 self.store.entries.forEach { (entry) in
+                    if self.audio == nil {
+                        entry.phonetics.forEach { (phonetic) in
+                            if let audioString = phonetic.audio,
+                               !audioString.isEmpty {
+                                self.audio = URL(string: audioString)
+                            }
+                        }
+                    }
                     entry.meanings.forEach { (meaning) in
                         self.store.definitions.append(contentsOf: meaning.definitions)
                     }

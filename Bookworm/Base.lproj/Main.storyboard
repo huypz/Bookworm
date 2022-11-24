@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -114,7 +115,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <segue destination="beA-zQ-jO2" kind="presentation" identifier="lookup" id="IMg-7p-e2c"/>
+                        <segue destination="beA-zQ-jO2" kind="presentation" identifier="lookUp" id="IMg-7p-e2c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Huj-RL-Er9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -151,10 +152,6 @@
                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speaker.wave.3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="geN-lp-xr1">
-                                            <rect key="frame" x="366" y="11.5" width="28" height="18.5"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Definition" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8Y-eT-xiq">
                                             <rect key="frame" x="20" y="52" width="374" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -167,24 +164,34 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIx-H2-knO" userLabel="Audio Button">
+                                            <rect key="frame" x="342" y="11" width="52" height="34"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain">
+                                                <imageReference key="image" image="speaker.wave.3.fill" catalog="system" symbolScale="medium"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="playAudio:" destination="HXS-tJ-znu" eventType="touchUpInside" id="CCa-Qf-5ih"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="XwU-x6-9R3" firstAttribute="trailing" secondItem="geN-lp-xr1" secondAttribute="trailing" id="6m7-6O-Ate"/>
+                                        <constraint firstItem="c8Y-eT-xiq" firstAttribute="trailing" secondItem="xIx-H2-knO" secondAttribute="trailing" id="3iN-xK-vo3"/>
+                                        <constraint firstItem="ou8-tt-BGt" firstAttribute="trailing" secondItem="xIx-H2-knO" secondAttribute="trailing" id="98h-Of-jV6"/>
                                         <constraint firstItem="XwU-x6-9R3" firstAttribute="top" secondItem="ou8-tt-BGt" secondAttribute="bottom" id="ATH-zz-5JN"/>
+                                        <constraint firstItem="xIx-H2-knO" firstAttribute="top" secondItem="viE-bv-dfj" secondAttribute="topMargin" id="Jod-bM-X16"/>
                                         <constraint firstItem="c8Y-eT-xiq" firstAttribute="leading" secondItem="XwU-x6-9R3" secondAttribute="leading" id="OVl-fF-6Qv"/>
                                         <constraint firstItem="ou8-tt-BGt" firstAttribute="leading" secondItem="viE-bv-dfj" secondAttribute="leadingMargin" id="QX2-i9-qW3"/>
-                                        <constraint firstItem="geN-lp-xr1" firstAttribute="trailing" secondItem="viE-bv-dfj" secondAttribute="trailingMargin" id="USl-Aj-dID"/>
                                         <constraint firstItem="XwU-x6-9R3" firstAttribute="leading" secondItem="ou8-tt-BGt" secondAttribute="leading" id="Z1M-Zl-BCP"/>
-                                        <constraint firstItem="geN-lp-xr1" firstAttribute="trailing" secondItem="ou8-tt-BGt" secondAttribute="trailing" id="abS-yS-Udq"/>
-                                        <constraint firstItem="c8Y-eT-xiq" firstAttribute="trailing" secondItem="geN-lp-xr1" secondAttribute="trailing" id="cd2-9k-CTs"/>
+                                        <constraint firstItem="xIx-H2-knO" firstAttribute="trailing" secondItem="viE-bv-dfj" secondAttribute="trailingMargin" id="aii-nu-q32"/>
                                         <constraint firstItem="c8Y-eT-xiq" firstAttribute="top" secondItem="XwU-x6-9R3" secondAttribute="bottom" constant="4.5" id="cqf-ca-QKN"/>
                                         <constraint firstItem="c8Y-eT-xiq" firstAttribute="bottom" secondItem="viE-bv-dfj" secondAttribute="bottomMargin" id="gQX-jq-SzC"/>
-                                        <constraint firstItem="geN-lp-xr1" firstAttribute="top" secondItem="viE-bv-dfj" secondAttribute="topMargin" id="o6e-dF-s1o"/>
+                                        <constraint firstItem="XwU-x6-9R3" firstAttribute="trailing" secondItem="xIx-H2-knO" secondAttribute="trailing" id="mk5-Ud-Pxy"/>
                                         <constraint firstItem="ou8-tt-BGt" firstAttribute="top" secondItem="viE-bv-dfj" secondAttribute="topMargin" id="uFJ-gU-Wh9"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="audioImageView" destination="geN-lp-xr1" id="Nzu-mI-h1a"/>
+                                    <outlet property="audioButton" destination="xIx-H2-knO" id="oqt-hu-imW"/>
                                     <outlet property="definitionLabel" destination="c8Y-eT-xiq" id="6P0-QX-e7c"/>
                                     <outlet property="partOfSpeechLabel" destination="ou8-tt-BGt" id="pgK-g2-Ko0"/>
                                     <outlet property="termLabel" destination="XwU-x6-9R3" id="SzE-bl-OTT"/>

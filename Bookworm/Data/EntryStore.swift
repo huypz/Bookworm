@@ -18,14 +18,15 @@ class EntryStore {
     }
     
     func fetchEntries(for term: String, completion: @escaping (Result<[FreeDictionaryEntry], Error>) -> Void) {
-        let url = FreeDictionaryAPI.entryInfoURL(for: term)
-        let request = URLRequest(url: url)
-        let task = session.dataTask(with: request) { (data, response, error) in
-            let result = self.processEntriesRequest(data: data, error: error)
-            OperationQueue.main.addOperation {
-                completion(result)
+        if let url = FreeDictionaryAPI.entryInfoURL(for: term) {
+            let request = URLRequest(url: url)
+            let task = session.dataTask(with: request) { (data, response, error) in
+                let result = self.processEntriesRequest(data: data, error: error)
+                OperationQueue.main.addOperation {
+                    completion(result)
+                }
             }
+            task.resume()
         }
-        task.resume()
     }
 }

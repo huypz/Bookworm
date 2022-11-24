@@ -34,9 +34,9 @@ struct FreeDictionaryAPI {
         return URLSession(configuration: config)
     }()
     
-    static func entryInfoURL(for term: String) -> URL {
+    static func entryInfoURL(for term: String) -> URL? {
         let entryInfoURLString = entriesURLString + term
-        return URL(string: entryInfoURLString)!
+        return URL(string: entryInfoURLString)
     }
     
     static func entries(fromJSON data: Data) -> Result<[FreeDictionaryEntry], Error> {

@@ -11,10 +11,14 @@ class ReaderViewController: UIViewController {
     
     var documentExtension: String?
     
-    var webView: WKWebView?
+    var webView: ReaderWebView?
+    var selectedText: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let lookUp = UIMenuItem(title: "Look Up", action: #selector(lookUp))
+        UIMenuController.shared.menuItems = [lookUp]
         
         switch documentExtension {
         case "pdf":
@@ -26,11 +30,34 @@ class ReaderViewController: UIViewController {
             fatalError("Unexpected document file extension")
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "lookUp":
+            let navigationController = segue.destination as! UINavigationController
+            let entriesViewController = navigationController.topViewController as! EntriesViewController
+            entriesViewController.term = selectedText
+            if entriesViewController.store == nil {
+                entriesViewController.store = EntryStore()
+            }
+        default:
+            preconditionFailure("Unexpected segue identifier")
+        }
+    }
+    
+    @objc func lookUp() {
+        webView!.evaluateJavaScript("window.getSelection().toString()") { (result, error) in
+            if let result = result as? String {
+                self.selectedText = result
+                self.performSegue(withIdentifier: "lookUp", sender: self)
+            }
+        }
+    }
 }
 
 extension ReaderViewController: WKUIDelegate, WKNavigationDelegate {
     
-    private func initEPUB() {
+    func initEPUB() {
         let parser = EPUBParser()
         guard
             let book = parser.parse(at: document.url!),
@@ -40,8 +67,9 @@ extension ReaderViewController: WKUIDelegate, WKNavigationDelegate {
             return
         }
         
+        // Init WebView
         let config = WKWebViewConfiguration()
-        webView = WKWebView(frame: .zero, configuration: config)
+        webView = ReaderWebView(frame: .zero, configuration: config)
         webView!.uiDelegate = self
         webView!.navigationDelegate = self
         
@@ -87,5 +115,17 @@ extension ReaderViewController: WKUIDelegate, WKNavigationDelegate {
         else {
             decisionHandler(.allow)
         }
+    }
+     
+}
+
+class ReaderWebView: WKWebView {
+
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if NSStringFromSelector(action) == "lookUp:" {
+            return super.canPerformAction(action, withSender: sender)
+        }
+        
+        return false
     }
 }
