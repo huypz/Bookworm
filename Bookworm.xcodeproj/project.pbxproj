@@ -35,6 +35,7 @@
 		3FC00C1928FF1B9E00B32BAC /* DocumentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1828FF1B9E00B32BAC /* DocumentDataSource.swift */; };
 		3FC00C1B28FF1C5400B32BAC /* DocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1A28FF1C5400B32BAC /* DocumentCell.swift */; };
 		3FC00C1D28FF1D7200B32BAC /* DocumentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1C28FF1D7200B32BAC /* DocumentStore.swift */; };
+		3FD082CD2931EFD10086797F /* reader.js in Resources */ = {isa = PBXBuildFile; fileRef = 3FD082CC2931EFD10086797F /* reader.js */; };
 		3FEA57C1292E8F2900945A2C /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 3FEA57C0292E8F2900945A2C /* stylesheet.css */; };
 		3FEA57C9292F156400945A2C /* EntryAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA57C8292F156400945A2C /* EntryAddViewController.swift */; };
 		3FF1BC072916F290001D5FB0 /* EPUBParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF1BC062916F290001D5FB0 /* EPUBParser.swift */; };
@@ -104,6 +105,7 @@
 		3FC00C1828FF1B9E00B32BAC /* DocumentDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDataSource.swift; sourceTree = "<group>"; };
 		3FC00C1A28FF1C5400B32BAC /* DocumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCell.swift; sourceTree = "<group>"; };
 		3FC00C1C28FF1D7200B32BAC /* DocumentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStore.swift; sourceTree = "<group>"; };
+		3FD082CC2931EFD10086797F /* reader.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = reader.js; sourceTree = "<group>"; };
 		3FEA57C0292E8F2900945A2C /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = stylesheet.css; sourceTree = "<group>"; };
 		3FEA57C8292F156400945A2C /* EntryAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryAddViewController.swift; sourceTree = "<group>"; };
 		3FF1BC062916F290001D5FB0 /* EPUBParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPUBParser.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				3FEA57C0292E8F2900945A2C /* stylesheet.css */,
+				3FD082CC2931EFD10086797F /* reader.js */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				3FEA57C1292E8F2900945A2C /* stylesheet.css in Resources */,
 				3F4138E9290484CA00B229B0 /* Main.storyboard in Resources */,
 				3F862D7728F3A4BA00B6D634 /* LaunchScreen.storyboard in Resources */,
+				3FD082CD2931EFD10086797F /* reader.js in Resources */,
 				3F862D7428F3A4BA00B6D634 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

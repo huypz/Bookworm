@@ -111,10 +111,26 @@
                     <navigationItem key="navigationItem" id="z5y-be-kk5">
                         <rightBarButtonItems>
                             <barButtonItem title="Bookmark" image="bookmark" catalog="system" id="pg7-qF-Ih9"/>
-                            <barButtonItem systemItem="search" id="MFg-Yl-JLU" userLabel="Search"/>
+                            <barButtonItem tag="1" title="A +" id="JgU-RT-kLY" userLabel="Font Plus Button">
+                                <imageReference key="image" image="a" catalog="system" symbolScale="large"/>
+                                <connections>
+                                    <action selector="showFontView:" destination="2Ib-oJ-rJr" id="EaV-oS-g2C"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="A -" id="XzW-xm-J5y" userLabel="Font Minus Button">
+                                <imageReference key="image" image="a" catalog="system" symbolScale="medium"/>
+                                <connections>
+                                    <action selector="showFontView:" destination="2Ib-oJ-rJr" id="DaX-Cw-dUL"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="search" id="MFg-Yl-JLU" userLabel="Search Button"/>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="bookmarkButton" destination="pg7-qF-Ih9" id="ftR-aE-6y0"/>
+                        <outlet property="fontMinusButton" destination="XzW-xm-J5y" id="twj-Gs-NdL"/>
+                        <outlet property="fontPlusButton" destination="JgU-RT-kLY" id="Flc-2z-VUi"/>
+                        <outlet property="searchButton" destination="MFg-Yl-JLU" id="bMq-Fc-lE1"/>
                         <segue destination="beA-zQ-jO2" kind="presentation" identifier="lookUp" id="IMg-7p-e2c"/>
                     </connections>
                 </viewController>
@@ -636,6 +652,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="a" catalog="system" width="128" height="128"/>
         <image name="bookmark" catalog="system" width="110" height="128"/>
         <image name="books.vertical" catalog="system" width="128" height="107"/>
         <image name="doc.fill.badge.plus" catalog="system" width="120" height="128"/>
