@@ -8,6 +8,9 @@ class FlashcardAddViewController: UIViewController {
     
     @IBOutlet var termTextField: UITextField!
     @IBOutlet var definitionTextView: UITextView!
+    @IBOutlet var partOfSpeechTextField: UITextField!
+    @IBOutlet var audioTextField: UITextField!
+    @IBOutlet var imageButton: UIButton!
     
     var store: DeckStore!
     var deck: Deck!
@@ -29,6 +32,20 @@ class FlashcardAddViewController: UIViewController {
         definitionTextView.layer.borderWidth = 1
         definitionTextView.autocorrectionType = .no
         definitionTextView.autocapitalizationType = .none
+        
+        partOfSpeechTextField.leftView = UIView(frame: CGRectMake(0, 0, 4, 0))
+        partOfSpeechTextField.leftViewMode = .always
+        partOfSpeechTextField.layer.borderColor = UIColor.lightGray.cgColor
+        partOfSpeechTextField.layer.borderWidth = 1
+        partOfSpeechTextField.autocorrectionType = .no
+        partOfSpeechTextField.autocapitalizationType = .none
+        
+        audioTextField.leftView = UIView(frame: CGRectMake(0, 0, 4, 0))
+        audioTextField.leftViewMode = .always
+        audioTextField.layer.borderColor = UIColor.lightGray.cgColor
+        audioTextField.layer.borderWidth = 1
+        audioTextField.autocorrectionType = .no
+        audioTextField.autocapitalizationType = .none
     }
     
     @IBAction func addFlashcard(_ sender: UIBarButtonItem) {
@@ -44,10 +61,14 @@ class FlashcardAddViewController: UIViewController {
         let context = store.persistentContainer.viewContext
         let term = termTextField.text
         let definition = definitionTextView.text
+        let partOfSpeech = partOfSpeechTextField.text
+        let audio = audioTextField.text
 
         let newFlashcard = NSEntityDescription.insertNewObject(forEntityName: "Flashcard", into: context)
         newFlashcard.setValue(term, forKey: "term")
         newFlashcard.setValue(definition, forKey: "definition")
+        newFlashcard.setValue(partOfSpeech, forKey: "partOfSpeech")
+        newFlashcard.setValue(audio, forKey: "audio")
         store.addFlashcard(flashcard: newFlashcard as! Flashcard, to: deck)
         delegate.updateFlashcards()
         

@@ -8,6 +8,8 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet var pickerView: UIPickerView!
     @IBOutlet var termTextField: UITextField!
     @IBOutlet var definitionTextView: UITextView!
+    @IBOutlet var partOfSpeechTextField: UITextField!
+    @IBOutlet var audioTextField: UITextField!
     
     var term: String?
     var definition: String?
@@ -36,6 +38,20 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         definitionTextView.layer.borderWidth = 1
         definitionTextView.autocapitalizationType = .none
         definitionTextView.autocorrectionType = .no
+        
+        partOfSpeechTextField.leftView = UIView(frame: CGRectMake(0, 0, 4, 0))
+        partOfSpeechTextField.leftViewMode = .always
+        partOfSpeechTextField.layer.borderColor = UIColor.lightGray.cgColor
+        partOfSpeechTextField.layer.borderWidth = 1
+        partOfSpeechTextField.autocorrectionType = .no
+        partOfSpeechTextField.autocapitalizationType = .none
+        
+        audioTextField.leftView = UIView(frame: CGRectMake(0, 0, 4, 0))
+        audioTextField.leftViewMode = .always
+        audioTextField.layer.borderColor = UIColor.lightGray.cgColor
+        audioTextField.layer.borderWidth = 1
+        audioTextField.autocorrectionType = .no
+        audioTextField.autocapitalizationType = .none
     }
     
     override func viewDidLoad() {
@@ -48,6 +64,8 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         termTextField.text = term
         definitionTextView.text = definition
+        partOfSpeechTextField.text = partOfSpeech
+        audioTextField.text = audio
     }
     
     @IBAction func addFlashcard(_ sender: UIBarButtonItem) {
@@ -63,8 +81,10 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let deck = decks[pickerView.selectedRow(inComponent: 0)]
         
         let context = deckStore.persistentContainer.viewContext
-        let term = termTextField.text
-        let definition = definitionTextView.text
+        term = termTextField.text
+        definition = definitionTextView.text
+        partOfSpeech = partOfSpeechTextField.text
+        audio = audioTextField.text
         
         let newFlashcard = NSEntityDescription.insertNewObject(forEntityName: "Flashcard", into: context)
         newFlashcard.setValue(term, forKey: "term")

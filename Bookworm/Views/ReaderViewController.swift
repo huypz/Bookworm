@@ -8,7 +8,7 @@ class ReaderViewController: UIViewController {
     @IBOutlet var fontMinusButton: UIBarButtonItem!
     @IBOutlet var bookmarkButton: UIBarButtonItem!
     
-    var fontSize: Int = 100
+    var fontSize: Int = 150
     
     var document: Document! {
         didSet {
@@ -58,7 +58,7 @@ class ReaderViewController: UIViewController {
     @IBAction func showFontView(_ sender: UIBarButtonItem) {
         switch sender.tag {
         case 0: // A -
-            fontSize = fontSize > 50 ? fontSize - 10 : fontSize
+            fontSize = fontSize > 100 ? fontSize - 10 : fontSize
         case 1: // A +
             fontSize = fontSize < 300 ? fontSize + 10 : fontSize
         default:
@@ -124,9 +124,6 @@ extension ReaderViewController: WKUIDelegate, WKNavigationDelegate {
         }
         
         webView!.loadHTMLString(bookHtmlString, baseURL: book.baseURL)
-        
-        let js = "document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust = '\(fontSize)%'"
-        webView?.evaluateJavaScript(js)
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
