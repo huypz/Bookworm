@@ -7,6 +7,14 @@ open class EPUBDocument {
     public let container: ContainerDocument
     public let opf: OPFDocument
     
+    public lazy var coverURL: URL? = {
+        let coverImageID = opf.metadata.coverImageID
+        for item in opf.manifest.items.values where item.id == coverImageID {
+            return resourceBaseURL.appendingPathComponent(item.href)
+        }
+        return nil
+    }()
+    
     public lazy var tocURL: URL? = {
         for item in opf.manifest.items.values where item.properties == "nav" {
             return resourceBaseURL.appendingPathComponent(item.href)

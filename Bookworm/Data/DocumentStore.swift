@@ -34,11 +34,16 @@ class DocumentStore {
         let generator = QLThumbnailGenerator.shared
         generator.generateBestRepresentation(for: request) { (thumbnail, error) in
             OperationQueue.main.addOperation {
-                if thumbnail == nil {
-                    completion(.failure(ImageError.imageCreationError))
-                }
-                else if error != nil {
-                    completion(.failure(error!))
+                if thumbnail == nil || error != nil {
+                    let parser = EPUBParser()
+                    if let book = parser.parse(at: url),
+                       let coverURL = book.coverURL,
+                       let coverImage = UIImage(contentsOfFile: coverURL.path) {
+                        completion(.success(coverImage))
+                    }
+                    else {
+                        completion(.failure(error ?? ImageError.imageCreationError))
+                    }
                 }
                 else {
                     completion(.success(thumbnail!.uiImage))
@@ -49,23 +54,32 @@ class DocumentStore {
     }
 
     func addDocument(url: URL) {
-        do {
-            let data = try Data(contentsOf: url)
-            let context = persistentContainer.viewContext
-            var document: Document!
-            context.performAndWait {
-                document = Document(context: context)
-                document.id = UUID().uuidString
-                document.title = url.lastPathComponent
-                document.isSelected = false
-                document.lastAccessed = Date()
-                document.data = data
-                document.url = url
+        if let book = EPUBParser().parse(at: url) {
+            fetchDocuments { (result) in
+                switch result {
+                case let .success(documents):
+                    for document in documents {
+                        if book.identifier == document.id! {
+                            print("Error adding document: duplicate file exists")
+                            return
+                        }
+                    }
+                    
+                    let context = self.persistentContainer.viewContext
+                    let newDeck = NSEntityDescription.insertNewObject(forEntityName: "Document", into: context)
+                    newDeck.setValue(book.identifier, forKey: "id")
+                    newDeck.setValue(url.lastPathComponent, forKey: "title")
+                    newDeck.setValue(false, forKey: "isSelected")
+                    newDeck.setValue(Date(), forKey: "lastAccessed")
+                    newDeck.setValue(url, forKey: "url")
+                    self.saveContext()
+                case let .failure(error):
+                    print("Warning adding document: \(error)")
+                }
             }
-            try persistentContainer.viewContext.save()
         }
-        catch {
-            print("Error addDocument: \(error)")
+        else {
+            print("Error adding document")
         }
     }
     

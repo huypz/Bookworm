@@ -172,6 +172,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
             guard
                 let documentIndex = self.dataSource.documents.firstIndex(of: document),
                 case let .success(image) = result else {
+                print("Failed to generate thumbnail for: \(result)")
                 return
             }
             let documentIndexPath = IndexPath(item: documentIndex, section: 0)

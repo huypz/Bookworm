@@ -61,6 +61,7 @@ class ReaderViewController: UIViewController {
 extension ReaderViewController: WKUIDelegate, WKNavigationDelegate {
     
     func initEPUB() {
+        
         let parser = EPUBParser()
         guard
             let book = parser.parse(at: document.url!),
