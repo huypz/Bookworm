@@ -8,6 +8,8 @@ class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
     var deckStore: DeckStore!
     var deck: Deck!
     
+    var selectedFlashcard: Flashcard?
+    
     let dataSource = FlashcardDataSource()
 
     required init?(coder aDecoder: NSCoder) {
@@ -21,7 +23,7 @@ class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         tableView.delegate = self
-        
+        dataSource.delegate = self
         dataSource.deckStore = deckStore
         dataSource.deck = deck
         tableView.dataSource = dataSource
@@ -44,6 +46,10 @@ class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
             flashcardAddViewController.deckStore = deckStore
             flashcardAddViewController.deck = deck
             flashcardAddViewController.delegate = self
+        case "editFlashcard":
+            let flashcardEditViewController = (segue.destination as! UINavigationController).topViewController as! FlashcardEditViewController
+            flashcardEditViewController.flashcard = selectedFlashcard
+            flashcardEditViewController.delegate = self
         default:
             preconditionFailure("Unexpected segue identifier")
         }

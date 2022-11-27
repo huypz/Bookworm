@@ -2,6 +2,8 @@ import UIKit
 
 class FlashcardDataSource: NSObject, UITableViewDataSource {
     
+    var delegate: FlashcardsViewController!
+    
     var deckStore: DeckStore!
     var deck: Deck!
     
@@ -17,6 +19,8 @@ class FlashcardDataSource: NSObject, UITableViewDataSource {
         let flashcard = filteredFlashcards[indexPath.row]
         cell.imageStore = deckStore.imageStore
         cell.flashcard = flashcard
+        cell.delegate = delegate
+        
         cell.contentView.setNeedsLayout()
         cell.contentView.layoutIfNeeded()
     

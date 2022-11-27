@@ -3,6 +3,8 @@ import UIKit
 
 class FlashcardCell: UITableViewCell {
     
+    var delegate: FlashcardsViewController!
+    
     var imageStore: ImageStore!
     var player: AVPlayer?
     
@@ -26,10 +28,6 @@ class FlashcardCell: UITableViewCell {
             if flashcard.audio?.isEmpty ?? true {
                 frontAudioButton.isEnabled = false
                 backAudioButton.isEnabled = false
-            }
-            
-            if let image = imageStore.image(forKey: flashcard.id!) {
-                backImageView.image = image
             }
         }
     }
@@ -69,6 +67,8 @@ class FlashcardCell: UITableViewCell {
         frontEditButton.titleLabel?.text = ""
         frontEditButton.setImage(UIImage(systemName: "gearshape.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .medium)), for: .normal)
         frontEditButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        frontEditButton.addTarget(self, action: #selector(edit), for: .touchUpInside)
         return frontEditButton
     }()
     
@@ -93,14 +93,16 @@ class FlashcardCell: UITableViewCell {
     }()
     var backImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.darkGray
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    var imageHeightConstraint: NSLayoutConstraint?
     var backEditButton: UIButton = {
         let backEditButton = UIButton()
         backEditButton.setImage(UIImage(systemName: "gearshape.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .medium)), for: .normal)
         backEditButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        backEditButton.addTarget(self, action: #selector(edit), for: .touchUpInside)
         return backEditButton
     }()
     
@@ -119,6 +121,7 @@ class FlashcardCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
+        backImageView.image = nil
         if isFlipped {
             initFrontView()
             UIView.transition(from: backView!, to: frontView!, duration: 0.5, options: UIView.AnimationOptions.transitionFlipFromLeft)
@@ -137,10 +140,24 @@ class FlashcardCell: UITableViewCell {
         }
         else {
             initBackView()
+            if let image = imageStore.image(forKey: flashcard.id!) {
+                imageHeightConstraint?.constant = 128.0
+                backImageView.image = image
+            }
+            else {
+                imageHeightConstraint?.constant = 0.0
+            }
+            
             UIView.transition(from: frontView!, to: backView!, duration: 0.5, options: UIView.AnimationOptions.transitionFlipFromRight)
+            
             isFlipped = true
             frontView!.removeFromSuperview()
         }
+    }
+    
+    @objc func edit() {
+        delegate.selectedFlashcard = flashcard
+        delegate.performSegue(withIdentifier: "editFlashcard", sender: delegate)
     }
     
     @objc func playAudio() {
@@ -208,6 +225,9 @@ class FlashcardCell: UITableViewCell {
         backView!.addSubview(backImageView)
         backView!.addSubview(backEditButton)
         
+        imageHeightConstraint = backImageView.heightAnchor.constraint(equalToConstant: 128.0)
+        imageHeightConstraint?.isActive = true
+        
         NSLayoutConstraint.activate([
             backAudioButton.widthAnchor.constraint(equalToConstant: 32.0),
             backAudioButton.heightAnchor.constraint(equalToConstant: 32.0),
@@ -220,7 +240,6 @@ class FlashcardCell: UITableViewCell {
             
             backImageView.topAnchor.constraint(equalTo: backDefinitionLabel.bottomAnchor, constant: 8.0),
             backImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            backImageView.heightAnchor.constraint(equalToConstant: 128.0),
             backImageView.widthAnchor.constraint(equalToConstant: 128.0),
             backImageView.bottomAnchor.constraint(equalTo: backEditButton.topAnchor, constant: 0.0),
             
