@@ -16,7 +16,7 @@ class FlashcardAddViewController: UIViewController, UIImagePickerControllerDeleg
     var deck: Deck!
     var delegate: FlashcardsViewController!
     
-    var id: String?
+    var id: String = UUID().uuidString
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -76,9 +76,7 @@ class FlashcardAddViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     @IBAction func clearImage(_ sender: UIButton) {
-        if let id = id {
-            deckStore.imageStore.deleteImage(forKey: id)
-        }
+        deckStore.imageStore.deleteImage(forKey: id)
         imageView.image = nil
     }
     
@@ -97,7 +95,6 @@ class FlashcardAddViewController: UIViewController, UIImagePickerControllerDeleg
         let definition = definitionTextView.text
         let partOfSpeech = partOfSpeechTextField.text
         let audio = audioTextField.text
-        id = UUID().uuidString
 
         let newFlashcard = NSEntityDescription.insertNewObject(forEntityName: "Flashcard", into: context)
         newFlashcard.setValue(term, forKey: "term")
@@ -125,9 +122,7 @@ class FlashcardAddViewController: UIViewController, UIImagePickerControllerDeleg
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.editedImage] as! UIImage
-        if let id = id {
-            deckStore.imageStore.setImage(image, forKey: id)
-        }
+        deckStore.imageStore.setImage(image, forKey: id)
         imageView.image = image
         dismiss(animated: true, completion: nil)
     }

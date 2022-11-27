@@ -16,7 +16,7 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var definition: String?
     var audio: String?
     var partOfSpeech: String?
-    var id = UUID().uuidString
+    var id: String = UUID().uuidString
     
     var decks = [Deck]()
     var deckStore: DeckStore!
