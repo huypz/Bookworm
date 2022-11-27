@@ -2,7 +2,7 @@ import UIKit
 
 class FlashcardDataSource: NSObject, UITableViewDataSource {
     
-    var store: DeckStore!
+    var deckStore: DeckStore!
     var deck: Deck!
     
     var flashcards = [Flashcard]()
@@ -15,6 +15,7 @@ class FlashcardDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FlashcardCell", for: indexPath) as! FlashcardCell
         let flashcard = filteredFlashcards[indexPath.row]
+        cell.imageStore = deckStore.imageStore
         cell.flashcard = flashcard
         cell.contentView.setNeedsLayout()
         cell.contentView.layoutIfNeeded()
@@ -27,7 +28,7 @@ class FlashcardDataSource: NSObject, UITableViewDataSource {
             let flashcard = filteredFlashcards[indexPath.row]
             if let index = filteredFlashcards.firstIndex(of: flashcard) {
                 filteredFlashcards.remove(at: index)
-                store.removeFlashcard(flashcard: flashcard, from: deck)
+                deckStore.removeFlashcard(flashcard: flashcard, from: deck)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
         }

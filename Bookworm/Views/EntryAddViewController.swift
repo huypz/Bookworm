@@ -1,7 +1,7 @@
 import CoreData
 import UIKit
 
-class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet var addButtonItem: UIBarButtonItem!
     
@@ -10,11 +10,13 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet var definitionTextView: UITextView!
     @IBOutlet var partOfSpeechTextField: UITextField!
     @IBOutlet var audioTextField: UITextField!
+    @IBOutlet var imageView: UIImageView!
     
     var term: String?
     var definition: String?
     var audio: String?
     var partOfSpeech: String?
+    var id = UUID().uuidString
     
     var decks = [Deck]()
     var deckStore: DeckStore!
@@ -91,8 +93,43 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         newFlashcard.setValue(definition, forKey: "definition")
         newFlashcard.setValue(audio, forKey: "audio")
         newFlashcard.setValue(partOfSpeech, forKey: "partOfSpeech")
+        newFlashcard.setValue(id, forKey: "id")
         deckStore.addFlashcard(flashcard: newFlashcard as! Flashcard, to: deck)
         
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func choosePhotoSource(_ sender: UIButton) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertController.modalPresentationStyle = .popover
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let cameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
+                let imagePicker = self.imagePicker(for: .camera)
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+            alertController.addAction(cameraAction)
+        }
+        
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { _ in
+            let imagePicker = self.imagePicker(for: .photoLibrary)
+            imagePicker.modalPresentationStyle = .popover
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        alertController.addAction(photoLibraryAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func clearImage(_ sender: UIButton) {
+        deckStore.imageStore.deleteImage(forKey: id)
+        imageView.image = nil
+    }
+    
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
     }
     
@@ -128,5 +165,20 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             }
             self.pickerView.reloadAllComponents()
         }
+    }
+    
+    func imagePicker(for sourceType: UIImagePickerController.SourceType) -> UIImagePickerController {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        return imagePicker
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as! UIImage
+        deckStore.imageStore.setImage(image, forKey: id)
+        imageView.image = image
+        dismiss(animated: true, completion: nil)
     }
 }

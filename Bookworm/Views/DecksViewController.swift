@@ -43,7 +43,7 @@ class DecksViewController: UITableViewController, UISearchBarDelegate {
                 let deck = dataSource.decks[row]
                 let flashcardsViewController = segue.destination as! FlashcardsViewController
                 flashcardsViewController.deck = deck
-                flashcardsViewController.store = store
+                flashcardsViewController.deckStore = store
             }
         default:
             preconditionFailure("Unexpected segue identifier")

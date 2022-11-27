@@ -5,7 +5,7 @@ class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet var addButtonItem: UIBarButtonItem!
     
-    var store: DeckStore!
+    var deckStore: DeckStore!
     var deck: Deck!
     
     let dataSource = FlashcardDataSource()
@@ -22,12 +22,12 @@ class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
         
         tableView.delegate = self
         
-        dataSource.store = store
+        dataSource.deckStore = deckStore
         dataSource.deck = deck
         tableView.dataSource = dataSource
         updateFlashcards()
 
-        tableView.rowHeight = 256
+        tableView.rowHeight = 384
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +41,7 @@ class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
         switch segue.identifier {
         case "addFlashcard":
             let flashcardAddViewController = (segue.destination as! UINavigationController).topViewController as! FlashcardAddViewController
-            flashcardAddViewController.deckStore = store
+            flashcardAddViewController.deckStore = deckStore
             flashcardAddViewController.deck = deck
             flashcardAddViewController.delegate = self
         default:
@@ -59,7 +59,7 @@ class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func updateFlashcards() {
-        store.fetchFlashcards { (result) in
+        deckStore.fetchFlashcards { (result) in
             switch result {
             case .success(_):
                 guard let deckFlashcards = self.deck.flashcards?.allObjects as? [Flashcard] else {

@@ -15,7 +15,6 @@
         <attribute name="audio" optional="YES" attributeType="String"/>
         <attribute name="definition" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="partOfSpeech" optional="YES" attributeType="String"/>
         <attribute name="phonetic" optional="YES" attributeType="String"/>
         <attribute name="term" optional="YES" attributeType="String"/>

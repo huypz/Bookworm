@@ -10,7 +10,6 @@ class FlashcardAddViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet var definitionTextView: UITextView!
     @IBOutlet var partOfSpeechTextField: UITextField!
     @IBOutlet var audioTextField: UITextField!
-    @IBOutlet var imageButton: UIButton!
     @IBOutlet var imageView: UIImageView!
     
     var deckStore: DeckStore!

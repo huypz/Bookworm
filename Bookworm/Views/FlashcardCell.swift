@@ -3,6 +3,7 @@ import UIKit
 
 class FlashcardCell: UITableViewCell {
     
+    var imageStore: ImageStore!
     var player: AVPlayer?
     
     var flashcard: Flashcard! {
@@ -25,6 +26,10 @@ class FlashcardCell: UITableViewCell {
             if flashcard.audio?.isEmpty ?? true {
                 frontAudioButton.isEnabled = false
                 backAudioButton.isEnabled = false
+            }
+            
+            if let image = imageStore.image(forKey: flashcard.id!) {
+                backImageView.image = image
             }
         }
     }
@@ -85,6 +90,12 @@ class FlashcardCell: UITableViewCell {
         backDefinitionLabel.adjustsFontSizeToFitWidth = true
         backDefinitionLabel.translatesAutoresizingMaskIntoConstraints = false
         return backDefinitionLabel
+    }()
+    var backImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = UIColor.darkGray
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     var backEditButton: UIButton = {
         let backEditButton = UIButton()
@@ -194,6 +205,7 @@ class FlashcardCell: UITableViewCell {
         
         backView!.addSubview(backAudioButton)
         backView!.addSubview(backDefinitionLabel)
+        backView!.addSubview(backImageView)
         backView!.addSubview(backEditButton)
         
         NSLayoutConstraint.activate([
@@ -205,7 +217,13 @@ class FlashcardCell: UITableViewCell {
             backDefinitionLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 0.0),
             backDefinitionLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: 0.0),
             backDefinitionLabel.topAnchor.constraint(equalTo: backAudioButton.bottomAnchor, constant: 0.0),
-            backDefinitionLabel.bottomAnchor.constraint(equalTo: backEditButton.topAnchor, constant: 0.0),
+            
+            backImageView.topAnchor.constraint(equalTo: backDefinitionLabel.bottomAnchor, constant: 8.0),
+            backImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            backImageView.heightAnchor.constraint(equalToConstant: 128.0),
+            backImageView.widthAnchor.constraint(equalToConstant: 128.0),
+            backImageView.bottomAnchor.constraint(equalTo: backEditButton.topAnchor, constant: 0.0),
+            
             
             backEditButton.widthAnchor.constraint(equalToConstant: 32.0),
             backEditButton.heightAnchor.constraint(equalToConstant: 32.0),
