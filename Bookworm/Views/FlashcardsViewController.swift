@@ -41,7 +41,7 @@ class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
         switch segue.identifier {
         case "addFlashcard":
             let flashcardAddViewController = (segue.destination as! UINavigationController).topViewController as! FlashcardAddViewController
-            flashcardAddViewController.store = store
+            flashcardAddViewController.deckStore = store
             flashcardAddViewController.deck = deck
             flashcardAddViewController.delegate = self
         default:

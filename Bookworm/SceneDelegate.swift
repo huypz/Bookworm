@@ -14,6 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let documentStore = DocumentStore()
         documentStore.imageStore = imageStore
         let deckStore = DeckStore()
+        deckStore.imageStore = imageStore
         
         let rootViewController = window!.rootViewController as! UITabBarController
 

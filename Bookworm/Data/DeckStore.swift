@@ -3,6 +3,8 @@ import UIKit
 
 class DeckStore {
     
+    var imageStore: ImageStore!
+    
     let persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Bookworm")
         container.loadPersistentStores { (description, error) in

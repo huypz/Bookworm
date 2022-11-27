@@ -348,7 +348,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="AFR-NQ-ML2">
-                                <rect key="frame" x="20" y="76" width="374" height="420.5"/>
+                                <rect key="frame" x="20" y="76" width="374" height="692.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="1rA-nX-1ha">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="56.5"/>
@@ -437,13 +437,30 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2Y-ed-Vku">
-                                                <rect key="frame" x="260.5" y="0.0" width="113.5" height="34.5"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2Y-ed-Vku" userLabel="Upload Image">
+                                                <rect key="frame" x="119.5" y="0.0" width="113.5" height="34.5"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="photo" catalog="system" title=" Upload"/>
+                                                <connections>
+                                                    <action selector="choosePhotoSource:" destination="ejO-cR-a9b" eventType="touchUpInside" id="aGa-JC-Eoh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umI-fa-Xfl" userLabel="Clear Image">
+                                                <rect key="frame" x="305.5" y="0.0" width="68.5" height="34.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" Clear"/>
+                                                <connections>
+                                                    <action selector="clearImage:" destination="ejO-cR-a9b" eventType="touchUpInside" id="Tz3-gS-Ks3"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jwc-Nh-z9U">
+                                        <rect key="frame" x="0.0" y="436.5" width="374" height="256"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="256" id="stK-V0-2pY"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -473,6 +490,7 @@
                         <outlet property="cancelButtonItem" destination="qHz-Ob-qif" id="1tp-HS-KQj"/>
                         <outlet property="definitionTextView" destination="B9c-dz-a3M" id="PvN-aI-fAt"/>
                         <outlet property="imageButton" destination="I2Y-ed-Vku" id="gwR-at-jtv"/>
+                        <outlet property="imageView" destination="jwc-Nh-z9U" id="bU2-gD-ErF"/>
                         <outlet property="partOfSpeechTextField" destination="2go-Bt-egx" id="NO3-sm-SMN"/>
                         <outlet property="termTextField" destination="ifh-Kd-i69" id="Tyf-Ac-uLU"/>
                     </connections>

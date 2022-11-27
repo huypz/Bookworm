@@ -1,7 +1,7 @@
 import CoreData
 import UIKit
 
-class FlashcardAddViewController: UIViewController {
+class FlashcardAddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet var addButtonItem: UIBarButtonItem!
     @IBOutlet var cancelButtonItem: UIBarButtonItem!
@@ -11,10 +11,13 @@ class FlashcardAddViewController: UIViewController {
     @IBOutlet var partOfSpeechTextField: UITextField!
     @IBOutlet var audioTextField: UITextField!
     @IBOutlet var imageButton: UIButton!
+    @IBOutlet var imageView: UIImageView!
     
-    var store: DeckStore!
+    var deckStore: DeckStore!
     var deck: Deck!
     var delegate: FlashcardsViewController!
+    
+    var id: String?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -48,6 +51,38 @@ class FlashcardAddViewController: UIViewController {
         audioTextField.autocapitalizationType = .none
     }
     
+    @IBAction func choosePhotoSource(_ sender: UIButton) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertController.modalPresentationStyle = .popover
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let cameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
+                let imagePicker = self.imagePicker(for: .camera)
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+            alertController.addAction(cameraAction)
+        }
+        
+        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { _ in
+            let imagePicker = self.imagePicker(for: .photoLibrary)
+            imagePicker.modalPresentationStyle = .popover
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        alertController.addAction(photoLibraryAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func clearImage(_ sender: UIButton) {
+        if let id = id {
+            deckStore.imageStore.deleteImage(forKey: id)
+        }
+        imageView.image = nil
+    }
+    
     @IBAction func addFlashcard(_ sender: UIBarButtonItem) {
         guard termTextField.text!.count > 0 else {
             let alert = UIAlertController(title: "Empty text field", message: "Term cannot be empty", preferredStyle: .alert)
@@ -58,24 +93,43 @@ class FlashcardAddViewController: UIViewController {
             return
         }
         
-        let context = store.persistentContainer.viewContext
+        let context = deckStore.persistentContainer.viewContext
         let term = termTextField.text
         let definition = definitionTextView.text
         let partOfSpeech = partOfSpeechTextField.text
         let audio = audioTextField.text
+        id = UUID().uuidString
 
         let newFlashcard = NSEntityDescription.insertNewObject(forEntityName: "Flashcard", into: context)
         newFlashcard.setValue(term, forKey: "term")
         newFlashcard.setValue(definition, forKey: "definition")
         newFlashcard.setValue(partOfSpeech, forKey: "partOfSpeech")
         newFlashcard.setValue(audio, forKey: "audio")
-        store.addFlashcard(flashcard: newFlashcard as! Flashcard, to: deck)
+        newFlashcard.setValue(id, forKey: "id")
+        deckStore.addFlashcard(flashcard: newFlashcard as! Flashcard, to: deck)
         delegate.updateFlashcards()
         
         cancel(sender)
     }
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePicker(for sourceType: UIImagePickerController.SourceType) -> UIImagePickerController {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        return imagePicker
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as! UIImage
+        if let id = id {
+            deckStore.imageStore.setImage(image, forKey: id)
+        }
+        imageView.image = image
         dismiss(animated: true, completion: nil)
     }
 }
