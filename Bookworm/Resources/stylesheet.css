@@ -12,6 +12,7 @@
 body {
     display: block;
     padding: 0 20px !important;
+    -webkit-text-size-adjust: 100%;
 }
 
 p {

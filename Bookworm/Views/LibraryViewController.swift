@@ -129,6 +129,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
         pickerViewController.delegate = self
         pickerViewController.allowsMultipleSelection = true
         pickerViewController.modalPresentationStyle = .popover
+        pickerViewController.popoverPresentationController?.sourceItem = sender
         present(pickerViewController, animated: true, completion: nil)
     }
     

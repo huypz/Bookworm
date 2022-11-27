@@ -23,6 +23,7 @@ class DocumentDataSource: NSObject, UICollectionViewDataSource {
             return view
         default:
             assert(false, "Invalid UICollectionView element type")
+            return UICollectionReusableView()
         }
     }
 }

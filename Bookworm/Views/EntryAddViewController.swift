@@ -102,6 +102,7 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBAction func choosePhotoSource(_ sender: UIButton) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.modalPresentationStyle = .popover
+        alertController.popoverPresentationController?.sourceItem = sender
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let cameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
@@ -114,6 +115,7 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { _ in
             let imagePicker = self.imagePicker(for: .photoLibrary)
             imagePicker.modalPresentationStyle = .popover
+            imagePicker.popoverPresentationController?.sourceItem = sender
             self.present(imagePicker, animated: true, completion: nil)
         }
         alertController.addAction(photoLibraryAction)

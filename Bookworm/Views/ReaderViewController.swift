@@ -8,7 +8,7 @@ class ReaderViewController: UIViewController {
     @IBOutlet var fontMinusButton: UIBarButtonItem!
     @IBOutlet var bookmarkButton: UIBarButtonItem!
     
-    var fontSize: Int = 150
+    var fontSize: Int = 100
     
     var document: Document! {
         didSet {
@@ -94,6 +94,8 @@ extension ReaderViewController: WKUIDelegate, WKNavigationDelegate {
         
         // Init WebView
         let config = WKWebViewConfiguration()
+        config.defaultWebpagePreferences.preferredContentMode = .mobile
+        
         webView = ReaderWebView(frame: .zero, configuration: config)
         webView!.uiDelegate = self
         webView!.navigationDelegate = self
