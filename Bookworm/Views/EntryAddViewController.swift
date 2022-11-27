@@ -88,6 +88,10 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         partOfSpeech = partOfSpeechTextField.text
         audio = audioTextField.text
         
+        if let image = imageView.image {
+            deckStore.imageStore.setImage(image, forKey: id)
+        }
+        
         let newFlashcard = NSEntityDescription.insertNewObject(forEntityName: "Flashcard", into: context)
         newFlashcard.setValue(term, forKey: "term")
         newFlashcard.setValue(definition, forKey: "definition")
@@ -127,7 +131,6 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @IBAction func clearImage(_ sender: UIButton) {
-        deckStore.imageStore.deleteImage(forKey: id)
         imageView.image = nil
     }
     
@@ -179,7 +182,6 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.editedImage] as! UIImage
-        deckStore.imageStore.setImage(image, forKey: id)
         imageView.image = image
         dismiss(animated: true, completion: nil)
     }
