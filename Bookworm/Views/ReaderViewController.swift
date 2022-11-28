@@ -1,3 +1,4 @@
+import PDFKit
 import UIKit
 import WebKit
 
@@ -10,29 +11,25 @@ class ReaderViewController: UIViewController {
     
     var fontSize: Int = 100
     
-    var document: Document! {
-        didSet {
-            documentExtension = document.url?.pathExtension
-        }
-    }
+    var document: Document!
     
-    var documentExtension: String?
+    var pdfView: ReaderPDFView?
     
     var webView: ReaderWebView?
+    
     var selectedText: String?
     
     var deckStore: DeckStore!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let lookUp = UIMenuItem(title: "Look Up", action: #selector(lookUp))
         UIMenuController.shared.menuItems = [lookUp]
         
-        switch documentExtension {
+        switch document.url?.pathExtension {
         case "pdf":
-            print("Error loading pdf: the document type is currently not supported")
-            return
+            initPDF()
         case "epub":
             initEPUB()
         default:
@@ -70,10 +67,18 @@ class ReaderViewController: UIViewController {
     }
     
     @objc func lookUp() {
-        webView!.evaluateJavaScript("window.getSelection().toString()") { (result, error) in
-            if let result = result as? String {
+        if pdfView != nil {
+            if let result = pdfView?.currentSelection?.string {
                 self.selectedText = result
                 self.performSegue(withIdentifier: "lookUp", sender: self)
+            }
+        }
+        else if webView != nil {
+            webView!.evaluateJavaScript("window.getSelection().toString()") { (result, error) in
+                if let result = result as? String {
+                    self.selectedText = result
+                    self.performSegue(withIdentifier: "lookUp", sender: self)
+                }
             }
         }
     }
@@ -81,8 +86,35 @@ class ReaderViewController: UIViewController {
 
 extension ReaderViewController: WKUIDelegate, WKNavigationDelegate {
     
-    func initEPUB() {
+    func initPDF() {
+        guard
+            let data = document.data,
+            let pdfDocument = PDFDocument(data: data) else {
+            print("Error loading PDF: missing data")
+            return
+        }
+    
+        pdfView = ReaderPDFView(frame: .zero)
+        pdfView!.document = pdfDocument
+        pdfView!.autoScales = true
+        pdfView!.isUserInteractionEnabled = true
+        pdfView!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        view.addSubview(pdfView!)
+        
+        pdfView!.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            pdfView!.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            pdfView!.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            pdfView!.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            pdfView!.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        
+        fontPlusButton.isHidden = true
+        fontMinusButton.isHidden = true
+    }
+    
+    func initEPUB() {
         let parser = EPUBParser()
         guard
             let book = parser.parse(at: document.url!),
@@ -153,6 +185,41 @@ class ReaderWebView: WKWebView {
             return super.canPerformAction(action, withSender: sender)
         }
         
+        return false
+    }
+}
+
+class ReaderPDFView: PDFView {
+    
+    private var isSwizzled = false
+    
+    override var document: PDFDocument? {
+        didSet {
+            if !isSwizzled {
+                swizzleDocumentView()
+                isSwizzled = true
+            }
+        }
+    }
+    
+    func swizzleDocumentView() {
+        guard
+            let documentView = documentView,
+            let documentViewClass = object_getClass(documentView) else {
+            return
+        }
+        
+        let selector = #selector(swizzled_canPerformAction(_:withSender:))
+        let method = class_getInstanceMethod(object_getClass(self), selector)!
+        let implementation = method_getImplementation(method)
+        
+        let selectorOriginal = #selector(canPerformAction(_:withSender:))
+        let methodOriginal = class_getInstanceMethod(documentViewClass, selectorOriginal)!
+        
+        method_setImplementation(methodOriginal, implementation)
+    }
+    
+    @objc func swizzled_canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         return false
     }
 }

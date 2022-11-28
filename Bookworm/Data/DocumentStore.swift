@@ -54,32 +54,57 @@ class DocumentStore {
     }
 
     func addDocument(url: URL) {
-        if let book = EPUBParser().parse(at: url) {
-            fetchDocuments { (result) in
-                switch result {
-                case let .success(documents):
-                    for document in documents {
-                        if book.identifier == document.id! {
-                            print("Error adding document: duplicate file exists")
-                            return
+        let fileType = url.pathExtension
+        
+        switch fileType {
+        case "pdf":
+            do {
+                let data = try Data(contentsOf: url)
+                
+                let context = self.persistentContainer.viewContext
+                let newDocument = NSEntityDescription.insertNewObject(forEntityName: "Document", into: context)
+                newDocument.setValue(UUID().uuidString, forKey: "id")
+                newDocument.setValue(url.lastPathComponent, forKey: "title")
+                newDocument.setValue(false, forKey: "isSelected")
+                newDocument.setValue(Date(), forKey: "lastAccessed")
+                newDocument.setValue(url, forKey: "url")
+                newDocument.setValue(data, forKey: "data")
+                self.saveContext()
+            }
+            catch {
+                print("Error adding pdf document: \(error)")
+            }
+        case "epub":
+            if let book = EPUBParser().parse(at: url) {
+                fetchDocuments { (result) in
+                    switch result {
+                    case let .success(documents):
+                        for document in documents {
+                            if book.identifier == document.id! {
+                                print("Error adding document: duplicate file exists")
+                                return
+                            }
                         }
+                        
+                        let context = self.persistentContainer.viewContext
+                        let newDocument = NSEntityDescription.insertNewObject(forEntityName: "Document", into: context)
+                        newDocument.setValue(book.identifier, forKey: "id")
+                        newDocument.setValue(url.lastPathComponent, forKey: "title")
+                        newDocument.setValue(false, forKey: "isSelected")
+                        newDocument.setValue(Date(), forKey: "lastAccessed")
+                        newDocument.setValue(url, forKey: "url")
+                        self.saveContext()
+                    case let .failure(error):
+                        print("Warning adding document: \(error)")
                     }
-                    
-                    let context = self.persistentContainer.viewContext
-                    let newDeck = NSEntityDescription.insertNewObject(forEntityName: "Document", into: context)
-                    newDeck.setValue(book.identifier, forKey: "id")
-                    newDeck.setValue(url.lastPathComponent, forKey: "title")
-                    newDeck.setValue(false, forKey: "isSelected")
-                    newDeck.setValue(Date(), forKey: "lastAccessed")
-                    newDeck.setValue(url, forKey: "url")
-                    self.saveContext()
-                case let .failure(error):
-                    print("Warning adding document: \(error)")
                 }
             }
-        }
-        else {
-            print("Error adding document")
+            else {
+                print("Error adding epub document")
+            }
+        default:
+            print("Unexpected document type")
+            return
         }
     }
     

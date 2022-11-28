@@ -124,7 +124,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
     }
     
     @IBAction func documentMenu(_ sender: UIBarButtonItem) {
-        let pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.epub])
+        let pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.pdf, UTType.epub])
     
         pickerViewController.delegate = self
         pickerViewController.allowsMultipleSelection = true
