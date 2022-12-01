@@ -27,6 +27,10 @@ class DecksViewController: UITableViewController, UISearchBarDelegate {
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 48
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +52,10 @@ class DecksViewController: UITableViewController, UISearchBarDelegate {
         default:
             preconditionFailure("Unexpected segue identifier")
         }
+    }
+    
+    @objc private func dismissKeyboard() {
+        searchBar.endEditing(true)
     }
     
     private func updateDataSource() {

@@ -57,6 +57,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         
         navigationItem.title = ""
         navigationItem.titleView = searchBar
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        tableView.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,6 +117,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "sectionHeader") as! SearchTableViewHeader
         view.titleLabel.text = sections[section]
         return view
+    }
+
+    @objc private func dismissKeyboard() {
+        searchBar.endEditing(true)
     }
     
     private func updateDocumentDataSource() {

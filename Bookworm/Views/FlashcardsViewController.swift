@@ -3,6 +3,7 @@ import UIKit
 
 class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
     
+    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var addButtonItem: UIBarButtonItem!
     
     var deckStore: DeckStore!
@@ -30,6 +31,10 @@ class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
         updateFlashcards()
 
         tableView.rowHeight = 384
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +58,10 @@ class FlashcardsViewController: UITableViewController, UISearchBarDelegate {
         default:
             preconditionFailure("Unexpected segue identifier")
         }
+    }
+    
+    @objc private func dismissKeyboard() {
+        searchBar.endEditing(true)
     }
     
     private func updateNavigationItem() {

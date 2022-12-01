@@ -50,6 +50,18 @@ class FlashcardAddViewController: UIViewController, UIImagePickerControllerDeleg
         audioTextField.autocapitalizationType = .none
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true    )
+    }
+    
     @IBAction func choosePhotoSource(_ sender: UIButton) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.modalPresentationStyle = .popover

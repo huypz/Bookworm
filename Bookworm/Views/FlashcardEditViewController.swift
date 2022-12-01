@@ -55,6 +55,14 @@ class FlashcardEditViewController: UIViewController, UIImagePickerControllerDele
         partOfSpeechTextField.text = flashcard.partOfSpeech
         audioTextField.text = flashcard.audio
         imageView.image = delegate.deckStore.imageStore.image(forKey: flashcard.id!)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @IBAction func choosePhotoSource(_ sender: UIButton) {

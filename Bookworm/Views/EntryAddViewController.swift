@@ -68,6 +68,10 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         definitionTextView.text = definition
         partOfSpeechTextField.text = partOfSpeech
         audioTextField.text = audio
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
     
     @IBAction func addFlashcard(_ sender: UIBarButtonItem) {
@@ -101,6 +105,10 @@ class EntryAddViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         deckStore.addFlashcard(flashcard: newFlashcard as! Flashcard, to: deck)
         
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @IBAction func choosePhotoSource(_ sender: UIButton) {
