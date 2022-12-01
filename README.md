@@ -2,6 +2,17 @@
 
 At its core, Bookworm is a digital book reader. This app enables users to quickly lookup word definitions and create flashcards with them without having to navigate far from the reading. There are two main features. The first feature is presenting a dictionary lookup of words that the user selects. The other feature is allowing the user to create flashcards quickly by auto-filling definitions (synonyms, sentences, etc.), but the user can edit them if they so desire.
 
+## Prototype
+https://marvelapp.com/prototype/b6e7b4b
+
+## Gallery
+<img src="https://imgur.com/osjXHby.png" width="16%"></img>
+<img src="https://imgur.com/r7T5Rgi.png" width="16%"></img>
+<img src="https://imgur.com/7qcsytZ.png" width="16%"></img>
+<img src="https://imgur.com/ExDYEKV.png" width="16%"></img>
+<img src="https://imgur.com/hM7OhaL.png" width="16%"></img>
+<img src="https://imgur.com/TSuAoxM.png" width="16%"></img>
+
 ## Features
 
 ### Library
@@ -24,14 +35,3 @@ In the search tab, the user can look for a specific book, deck, or card (word). 
 
 ### Options
 Configurations for the app’s user interface, dictionaries, etc. are found here.
-
-## Prototype
-https://marvelapp.com/prototype/b6e7b4b
-
-## Gallery
-<img src="https://imgur.com/osjXHby.png" width="45%"></img>
-<img src="https://imgur.com/r7T5Rgi.png" width="45%"></img>
-<img src="https://imgur.com/7qcsytZ.png" width="45%"></img>
-<img src="https://imgur.com/ExDYEKV.png" width="45%"></img>
-<img src="https://imgur.com/hM7OhaL.png" width="45%"></img>
-<img src="https://imgur.com/TSuAoxM.png" width="45%"></img>
