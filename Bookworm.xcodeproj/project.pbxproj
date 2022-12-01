@@ -36,6 +36,8 @@
 		3FC00C1928FF1B9E00B32BAC /* DocumentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1828FF1B9E00B32BAC /* DocumentDataSource.swift */; };
 		3FC00C1B28FF1C5400B32BAC /* DocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1A28FF1C5400B32BAC /* DocumentCell.swift */; };
 		3FC00C1D28FF1D7200B32BAC /* DocumentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC00C1C28FF1D7200B32BAC /* DocumentStore.swift */; };
+		3FCEB76E29394F80001ED934 /* Sample PDF.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3FCEB76C29394F80001ED934 /* Sample PDF.pdf */; };
+		3FCEB76F29394F80001ED934 /* Sample EPUB.epub in Resources */ = {isa = PBXBuildFile; fileRef = 3FCEB76D29394F80001ED934 /* Sample EPUB.epub */; };
 		3FD082CD2931EFD10086797F /* reader.js in Resources */ = {isa = PBXBuildFile; fileRef = 3FD082CC2931EFD10086797F /* reader.js */; };
 		3FE33E6429340D29006AD51E /* FlashcardEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE33E6329340D29006AD51E /* FlashcardEditViewController.swift */; };
 		3FEA57C1292E8F2900945A2C /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 3FEA57C0292E8F2900945A2C /* stylesheet.css */; };
@@ -108,6 +110,8 @@
 		3FC00C1828FF1B9E00B32BAC /* DocumentDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDataSource.swift; sourceTree = "<group>"; };
 		3FC00C1A28FF1C5400B32BAC /* DocumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCell.swift; sourceTree = "<group>"; };
 		3FC00C1C28FF1D7200B32BAC /* DocumentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStore.swift; sourceTree = "<group>"; };
+		3FCEB76C29394F80001ED934 /* Sample PDF.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Sample PDF.pdf"; sourceTree = "<group>"; };
+		3FCEB76D29394F80001ED934 /* Sample EPUB.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sample EPUB.epub"; sourceTree = "<group>"; };
 		3FD082CC2931EFD10086797F /* reader.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = reader.js; sourceTree = "<group>"; };
 		3FE33E6329340D29006AD51E /* FlashcardEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardEditViewController.swift; sourceTree = "<group>"; };
 		3FEA57C0292E8F2900945A2C /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = stylesheet.css; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 		3F862D6928F3A4B800B6D634 /* Bookworm */ = {
 			isa = PBXGroup;
 			children = (
+				3FCEB76D29394F80001ED934 /* Sample EPUB.epub */,
+				3FCEB76C29394F80001ED934 /* Sample PDF.pdf */,
 				3FE71EAE291C397B00D2AF74 /* Resources */,
 				3F43F634290B711D0072514F /* Libraries */,
 				3F4216052904C28C00F7E6A1 /* Data */,
@@ -427,9 +433,11 @@
 			files = (
 				3FEA57C1292E8F2900945A2C /* stylesheet.css in Resources */,
 				3F4138E9290484CA00B229B0 /* Main.storyboard in Resources */,
+				3FCEB76E29394F80001ED934 /* Sample PDF.pdf in Resources */,
 				3F862D7728F3A4BA00B6D634 /* LaunchScreen.storyboard in Resources */,
 				3FD082CD2931EFD10086797F /* reader.js in Resources */,
 				3F862D7428F3A4BA00B6D634 /* Assets.xcassets in Resources */,
+				3FCEB76F29394F80001ED934 /* Sample EPUB.epub in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

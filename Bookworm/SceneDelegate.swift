@@ -16,14 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let deckStore = DeckStore()
         deckStore.imageStore = imageStore
         
-        /*
         if let epubURL = Bundle.main.url(forResource: "Sample EPUB", withExtension: "epub") {
             documentStore.addDocument(url: epubURL)
         }
         if let pdfURL = Bundle.main.url(forResource: "Sample PDF", withExtension: "pdf") {
             documentStore.addDocument(url: pdfURL)
         }
-         */
         
         let rootViewController = window!.rootViewController as! UITabBarController
 
