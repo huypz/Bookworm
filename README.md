@@ -30,10 +30,8 @@ https://marvelapp.com/prototype/b6e7b4b
 
 ## Gallery
 <img src="https://imgur.com/osjXHby.png" width="45%"></img>
-<img src="https://imgur.com/ZZn5Cmt.png" width="45%"></img>
 <img src="https://imgur.com/r7T5Rgi.png" width="45%"></img>
 <img src="https://imgur.com/7qcsytZ.png" width="45%"></img>
-<img src="https://imgur.com/ExDYEKV.png" width="45%"></img>
 <img src="https://imgur.com/ExDYEKV.png" width="45%"></img>
 <img src="https://imgur.com/hM7OhaL.png" width="45%"></img>
 <img src="https://imgur.com/TSuAoxM.png" width="45%"></img>
