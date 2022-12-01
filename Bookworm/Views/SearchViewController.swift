@@ -1,6 +1,14 @@
 import UIKit
 
-class SearchViewController: UITableViewController {
+class SearchViewController: UITableViewController, UISearchBarDelegate {
+    
+    var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Books, Decks"
+        searchBar.autocorrectionType = .no
+        searchBar.autocapitalizationType = .none
+        return searchBar
+    }()
 
     var documentStore: DocumentStore!
     var deckStore: DeckStore!
@@ -14,16 +22,20 @@ class SearchViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchBar.delegate = self
+        
         tableView.register(SearchTableViewHeader.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
 
         tableView.delegate = self
         tableView.dataSource = self
+        
+        navigationItem.title = "Search"
+        navigationItem.titleView = searchBar
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationItem.title = "Search"
         items[0].removeAll()
         items[1].removeAll()
         updateDocumentDataSource()
@@ -82,11 +94,13 @@ class SearchViewController: UITableViewController {
             switch result {
             case let .success(documents):
                 self.documentDataSource.documents = documents
+                self.documentDataSource.filteredDocuments = documents
             case let .failure(error):
                 print("Error fetching documents: \(error)")
                 self.documentDataSource.documents.removeAll()
+                self.documentDataSource.filteredDocuments.removeAll()
             }
-            self.items[0] = self.documentDataSource.documents
+            self.items[0] = self.documentDataSource.filteredDocuments
             self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         }
     }
@@ -102,9 +116,33 @@ class SearchViewController: UITableViewController {
                 self.deckDataSource.decks.removeAll()
                 self.deckDataSource.filteredDecks.removeAll()
             }
-            self.items[1] = self.deckDataSource.decks
+            self.items[1] = self.deckDataSource.filteredDecks
             self.tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
         }
+    }
+    
+    private func reloadData() {
+        items[0] = documentDataSource.filteredDocuments
+        items[1] = deckDataSource.filteredDecks
+        tableView.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            documentDataSource.filteredDocuments = documentDataSource.documents
+            deckDataSource.filteredDecks = deckDataSource.decks
+        }
+        else {
+            let filteredDocuments = documentDataSource.documents.filter({ (document) in
+                document.title!.lowercased().contains(searchText.lowercased())
+            })
+            documentDataSource.filteredDocuments = filteredDocuments
+            let filteredDecks = deckDataSource.decks.filter({ (deck) in
+                deck.title!.lowercased().contains(searchText.lowercased())
+            })
+            deckDataSource.filteredDecks = filteredDecks
+        }
+        reloadData()
     }
 }
 

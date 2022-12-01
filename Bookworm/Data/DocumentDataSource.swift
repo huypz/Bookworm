@@ -3,9 +3,10 @@ import UIKit
 class DocumentDataSource: NSObject, UICollectionViewDataSource {
     
     var documents = [Document]()
+    var filteredDocuments = [Document]()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return documents.count
+        return filteredDocuments.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

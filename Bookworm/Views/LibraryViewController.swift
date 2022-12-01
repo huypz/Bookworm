@@ -77,9 +77,11 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate {
             switch result {
             case let .success(documents):
                 self.dataSource.documents = documents
+                self.dataSource.filteredDocuments = documents
             case let .failure(error):
                 print("Error fetching documents: \(error)")
                 self.dataSource.documents.removeAll()
+                self.dataSource.filteredDocuments.removeAll()
             }
             self.collectionView.reloadSections(IndexSet(integer: 0))
         }
