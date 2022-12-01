@@ -110,6 +110,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="z5y-be-kk5">
                         <rightBarButtonItems>
+                            <barButtonItem title="Help" image="questionmark.circle" catalog="system" id="T9j-Gt-Ai0">
+                                <connections>
+                                    <action selector="showHelp:" destination="2Ib-oJ-rJr" id="SwZ-ct-ANM"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="Bookmark" image="bookmark" catalog="system" id="pg7-qF-Ih9"/>
                             <barButtonItem tag="1" title="A +" id="JgU-RT-kLY" userLabel="Font Plus Button">
                                 <imageReference key="image" image="character" catalog="system" symbolScale="large"/>
@@ -123,14 +128,13 @@
                                     <action selector="showFontView:" destination="2Ib-oJ-rJr" id="DaX-Cw-dUL"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="search" id="MFg-Yl-JLU" userLabel="Search Button"/>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="bookmarkButton" destination="pg7-qF-Ih9" id="ftR-aE-6y0"/>
                         <outlet property="fontMinusButton" destination="XzW-xm-J5y" id="twj-Gs-NdL"/>
                         <outlet property="fontPlusButton" destination="JgU-RT-kLY" id="Flc-2z-VUi"/>
-                        <outlet property="searchButton" destination="MFg-Yl-JLU" id="bMq-Fc-lE1"/>
+                        <outlet property="helpButtom" destination="T9j-Gt-Ai0" id="SXm-f0-z3t"/>
                         <segue destination="beA-zQ-jO2" kind="presentation" identifier="lookUp" id="IMg-7p-e2c"/>
                     </connections>
                 </viewController>
@@ -1194,6 +1198,7 @@
         <image name="doc.fill.badge.plus" catalog="system" width="120" height="128"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="photo" catalog="system" width="128" height="93"/>
+        <image name="questionmark.circle" catalog="system" width="128" height="123"/>
         <image name="rectangle.stack" catalog="system" width="128" height="122"/>
         <image name="rectangle.stack.fill" catalog="system" width="128" height="122"/>
         <image name="speaker.wave.3.fill" catalog="system" width="128" height="84"/>

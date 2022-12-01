@@ -23,6 +23,8 @@
 		3F43F637290B806E0072514F /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F636290B806E0072514F /* EntriesViewController.swift */; };
 		3F43F639290B80860072514F /* EntryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F638290B80860072514F /* EntryStore.swift */; };
 		3F43F63B290B820C0072514F /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F63A290B820C0072514F /* EntryCell.swift */; };
+		3F7092802938A6F100D15686 /* Sample PDF.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3F70927E2938A6F100D15686 /* Sample PDF.pdf */; };
+		3F7092812938A6F100D15686 /* Sample EPUB.epub in Resources */ = {isa = PBXBuildFile; fileRef = 3F70927F2938A6F100D15686 /* Sample EPUB.epub */; };
 		3F76970F2909EAC800799399 /* FlashcardAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F76970E2909EAC800799399 /* FlashcardAddViewController.swift */; };
 		3F862D6B28F3A4B800B6D634 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D6A28F3A4B800B6D634 /* AppDelegate.swift */; };
 		3F862D6D28F3A4B800B6D634 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F862D6C28F3A4B800B6D634 /* SceneDelegate.swift */; };
@@ -90,6 +92,8 @@
 		3F43F636290B806E0072514F /* EntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
 		3F43F638290B80860072514F /* EntryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryStore.swift; sourceTree = "<group>"; };
 		3F43F63A290B820C0072514F /* EntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
+		3F70927E2938A6F100D15686 /* Sample PDF.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Sample PDF.pdf"; sourceTree = "<group>"; };
+		3F70927F2938A6F100D15686 /* Sample EPUB.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sample EPUB.epub"; sourceTree = "<group>"; };
 		3F76970E2909EAC800799399 /* FlashcardAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardAddViewController.swift; sourceTree = "<group>"; };
 		3F862D6728F3A4B800B6D634 /* Bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F862D6A28F3A4B800B6D634 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -210,6 +214,8 @@
 		3F862D5E28F3A4B800B6D634 = {
 			isa = PBXGroup;
 			children = (
+				3F70927F2938A6F100D15686 /* Sample EPUB.epub */,
+				3F70927E2938A6F100D15686 /* Sample PDF.pdf */,
 				3F862D6928F3A4B800B6D634 /* Bookworm */,
 				3F862D8028F3A4BA00B6D634 /* BookwormTests */,
 				3F862D8A28F3A4BA00B6D634 /* BookwormUITests */,
@@ -427,9 +433,11 @@
 			files = (
 				3FEA57C1292E8F2900945A2C /* stylesheet.css in Resources */,
 				3F4138E9290484CA00B229B0 /* Main.storyboard in Resources */,
+				3F7092802938A6F100D15686 /* Sample PDF.pdf in Resources */,
 				3F862D7728F3A4BA00B6D634 /* LaunchScreen.storyboard in Resources */,
 				3FD082CD2931EFD10086797F /* reader.js in Resources */,
 				3F862D7428F3A4BA00B6D634 /* Assets.xcassets in Resources */,
+				3F7092812938A6F100D15686 /* Sample EPUB.epub in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

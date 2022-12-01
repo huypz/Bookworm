@@ -58,21 +58,34 @@ class DocumentStore {
         
         switch fileType {
         case "pdf":
-            do {
-                let data = try Data(contentsOf: url)
-                
-                let context = self.persistentContainer.viewContext
-                let newDocument = NSEntityDescription.insertNewObject(forEntityName: "Document", into: context)
-                newDocument.setValue(UUID().uuidString, forKey: "id")
-                newDocument.setValue(url.deletingPathExtension().lastPathComponent, forKey: "title")
-                newDocument.setValue(false, forKey: "isSelected")
-                newDocument.setValue(Date(), forKey: "lastAccessed")
-                newDocument.setValue(url, forKey: "url")
-                newDocument.setValue(data, forKey: "data")
-                self.saveContext()
-            }
-            catch {
-                print("Error adding pdf document: \(error)")
+            fetchDocuments { (result) in
+                switch result {
+                case let .success(documents):
+                    for document in documents {
+                        if url.deletingPathExtension().lastPathComponent == document.title! {
+                            print("Error adding pdf document: duplicate file exists")
+                            return
+                        }
+                    }
+                    do {
+                        let data = try Data(contentsOf: url)
+                        
+                        let context = self.persistentContainer.viewContext
+                        let newDocument = NSEntityDescription.insertNewObject(forEntityName: "Document", into: context)
+                        newDocument.setValue(UUID().uuidString, forKey: "id")
+                        newDocument.setValue(url.deletingPathExtension().lastPathComponent, forKey: "title")
+                        newDocument.setValue(false, forKey: "isSelected")
+                        newDocument.setValue(Date(), forKey: "lastAccessed")
+                        newDocument.setValue(url, forKey: "url")
+                        newDocument.setValue(data, forKey: "data")
+                        self.saveContext()
+                    }
+                    catch {
+                        print("Error adding pdf document: \(error)")
+                    }
+                case let .failure(error):
+                    print("Warning adding document: \(error)")
+                }
             }
         case "epub":
             if let book = EPUBParser().parse(at: url) {
@@ -81,7 +94,7 @@ class DocumentStore {
                     case let .success(documents):
                         for document in documents {
                             if book.identifier == document.id! {
-                                print("Error adding document: duplicate file exists")
+                                print("Error adding epub document: duplicate file exists")
                                 return
                             }
                         }
