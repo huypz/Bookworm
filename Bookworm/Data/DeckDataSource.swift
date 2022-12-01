@@ -30,6 +30,10 @@ class DeckDataSource: NSObject, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         moveDeck(from: sourceIndexPath.row, to: destinationIndexPath.row)
     }

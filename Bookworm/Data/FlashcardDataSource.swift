@@ -42,6 +42,10 @@ class FlashcardDataSource: NSObject, UITableViewDataSource {
         moveFlashcard(from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
     
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
     func moveFlashcard(from fromIndex: Int, to toIndex: Int) {
         if fromIndex == toIndex {
             return

@@ -59,7 +59,7 @@ class FlashcardAddViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     @objc private func dismissKeyboard() {
-        view.endEditing(true    )
+        view.endEditing(true)
     }
     
     @IBAction func choosePhotoSource(_ sender: UIButton) {
