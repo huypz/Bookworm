@@ -19,6 +19,32 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     let sections: [String] = ["Books", "Decks"]
     var items: [[Any]] = [[Document](), [Deck]()]
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showDocument":
+            if let row = tableView.indexPathForSelectedRow?.row {
+                if let document = items[0][row] as? Document {
+                    document.lastAccessed = Date()
+                    let readerViewController = segue.destination as! ReaderViewController
+                    readerViewController.deckStore = deckStore
+                    readerViewController.document = document
+                    readerViewController.hidesBottomBarWhenPushed = true
+                    readerViewController.navigationController?.hidesBarsOnTap = true
+                }
+            }
+        case "showDeck":
+            if let row = tableView.indexPathForSelectedRow?.row {
+                if let deck = items[1][row] as? Deck {
+                    let flashcardsViewController = segue.destination as! FlashcardsViewController
+                    flashcardsViewController.deck = deck
+                    flashcardsViewController.deckStore = deckStore
+                }
+            }
+        default:
+            preconditionFailure("Unexpected segue identifier")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,7 +55,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         
-        navigationItem.title = "Search"
+        navigationItem.title = ""
         navigationItem.titleView = searchBar
     }
     

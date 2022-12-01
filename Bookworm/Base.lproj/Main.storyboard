@@ -424,6 +424,7 @@
                                     <outlet property="coverImageView" destination="yML-lE-O0D" id="eiK-51-gq1"/>
                                     <outlet property="descLabel" destination="u3Z-j7-ZiR" id="Rtg-pg-LDE"/>
                                     <outlet property="titleLabel" destination="SnU-HP-liR" id="bbm-g7-jSo"/>
+                                    <segue destination="2Ib-oJ-rJr" kind="show" identifier="showDocument" id="P4t-eY-8Q7"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchDeckCell" rowHeight="64" id="O4z-ef-ymm" customClass="SearchDeckCell" customModule="Bookworm" customModuleProvider="target">
@@ -458,6 +459,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="titleLabel" destination="hC8-dn-L74" id="8nx-Hs-fdi"/>
+                                    <segue destination="YVy-Cq-DRp" kind="show" identifier="showDeck" id="T03-bg-6cj"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1190,6 +1192,10 @@
             <point key="canvasLocation" x="1795.6521739130437" y="1591.7410714285713"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="T03-bg-6cj"/>
+        <segue reference="P4t-eY-8Q7"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="book.circle.fill" catalog="system" width="128" height="123"/>
         <image name="bookmark" catalog="system" width="110" height="128"/>

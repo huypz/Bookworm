@@ -59,9 +59,9 @@ class ReaderViewController: UIViewController {
     @IBAction func showFontView(_ sender: UIBarButtonItem) {
         switch sender.tag {
         case 0: // A -
-            fontSize = fontSize > 100 ? fontSize - 10 : fontSize
+            fontSize = fontSize > 100 ? fontSize - 20 : fontSize
         case 1: // A +
-            fontSize = fontSize < 300 ? fontSize + 10 : fontSize
+            fontSize = fontSize < 300 ? fontSize + 20 : fontSize
         default:
             print("Unexpected font button tag")
             return
