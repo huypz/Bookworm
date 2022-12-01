@@ -17,6 +17,7 @@
 		3F2535A0290906C60094B23A /* DeckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25359F290906C60094B23A /* DeckCell.swift */; };
 		3F2535A229090AF70094B23A /* DeckDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2535A129090AF70094B23A /* DeckDataSource.swift */; };
 		3F376D6C29061B4100DAA761 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F376D6B29061B4100DAA761 /* ImageStore.swift */; };
+		3F3C6FA12938184000A745F6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3C6FA02938184000A745F6 /* SearchViewController.swift */; };
 		3F4138E9290484CA00B229B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F862D7028F3A4B800B6D634 /* Main.storyboard */; };
 		3F4215FE2904C01400F7E6A1 /* Bookworm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F4215FC2904C01400F7E6A1 /* Bookworm.xcdatamodeld */; };
 		3F43F637290B806E0072514F /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43F636290B806E0072514F /* EntriesViewController.swift */; };
@@ -84,6 +85,7 @@
 		3F25359F290906C60094B23A /* DeckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCell.swift; sourceTree = "<group>"; };
 		3F2535A129090AF70094B23A /* DeckDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckDataSource.swift; sourceTree = "<group>"; };
 		3F376D6B29061B4100DAA761 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
+		3F3C6FA02938184000A745F6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		3F4215FD2904C01400F7E6A1 /* Bookworm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bookworm.xcdatamodel; sourceTree = "<group>"; };
 		3F43F636290B806E0072514F /* EntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
 		3F43F638290B80860072514F /* EntryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryStore.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				3F43F636290B806E0072514F /* EntriesViewController.swift */,
 				3FEA57C8292F156400945A2C /* EntryAddViewController.swift */,
 				3FE33E6329340D29006AD51E /* FlashcardEditViewController.swift */,
+				3F3C6FA02938184000A745F6 /* SearchViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				3F4215FE2904C01400F7E6A1 /* Bookworm.xcdatamodeld in Sources */,
 				3F76970F2909EAC800799399 /* FlashcardAddViewController.swift in Sources */,
 				3F25357E2908EEA80094B23A /* DeckStore.swift in Sources */,
+				3F3C6FA12938184000A745F6 /* SearchViewController.swift in Sources */,
 				3F862D6F28F3A4B800B6D634 /* LibraryViewController.swift in Sources */,
 				3FF1BC072916F290001D5FB0 /* EPUBParser.swift in Sources */,
 				3F43F639290B80860072514F /* EntryStore.swift in Sources */,

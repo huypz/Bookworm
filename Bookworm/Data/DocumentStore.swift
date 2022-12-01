@@ -64,7 +64,7 @@ class DocumentStore {
                 let context = self.persistentContainer.viewContext
                 let newDocument = NSEntityDescription.insertNewObject(forEntityName: "Document", into: context)
                 newDocument.setValue(UUID().uuidString, forKey: "id")
-                newDocument.setValue(url.lastPathComponent, forKey: "title")
+                newDocument.setValue(url.deletingPathExtension().lastPathComponent, forKey: "title")
                 newDocument.setValue(false, forKey: "isSelected")
                 newDocument.setValue(Date(), forKey: "lastAccessed")
                 newDocument.setValue(url, forKey: "url")
@@ -89,7 +89,7 @@ class DocumentStore {
                         let context = self.persistentContainer.viewContext
                         let newDocument = NSEntityDescription.insertNewObject(forEntityName: "Document", into: context)
                         newDocument.setValue(book.identifier, forKey: "id")
-                        newDocument.setValue(url.lastPathComponent, forKey: "title")
+                        newDocument.setValue(url.deletingPathExtension().lastPathComponent, forKey: "title")
                         newDocument.setValue(false, forKey: "isSelected")
                         newDocument.setValue(Date(), forKey: "lastAccessed")
                         newDocument.setValue(url, forKey: "url")

@@ -25,6 +25,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let decksViewController = (rootViewController.viewControllers![1] as! UINavigationController).topViewController as! DecksViewController
         decksViewController.store = deckStore
+        
+        let searchViewController = (rootViewController.viewControllers![2] as! UINavigationController).topViewController as! SearchViewController
+        searchViewController.documentStore = documentStore
+        searchViewController.deckStore = deckStore
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
