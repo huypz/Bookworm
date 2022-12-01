@@ -88,7 +88,7 @@ class ReaderViewController: UIViewController {
     }
     
     @IBAction func showHelp(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Text selection", message: "EPUB: tap and hold\nPDF: double tap", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Text selection", message: "EPUB: tap and hold\nPDF: tap", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel) { _ in
             alert.dismiss(animated: true, completion: nil)
         })
@@ -185,10 +185,10 @@ extension ReaderViewController: PDFViewDelegate, UIEditMenuInteractionDelegate {
         editMenuInteraction = UIEditMenuInteraction(delegate: self)
         pdfView!.addInteraction(editMenuInteraction!)
         
-        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(didDoubleTap(_:)))
-        doubleTap.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
-        doubleTap.numberOfTapsRequired = 2
-        pdfView!.addGestureRecognizer(doubleTap)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTap(_:)))
+        tap.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
+        tap.numberOfTapsRequired = 1
+        pdfView!.addGestureRecognizer(tap)
         
         view.addSubview(pdfView!)
         
@@ -204,7 +204,7 @@ extension ReaderViewController: PDFViewDelegate, UIEditMenuInteractionDelegate {
         fontMinusButton.isHidden = true
     }
     
-    @objc private func didDoubleTap(_ recognizer: UIGestureRecognizer) {
+    @objc private func didTap(_ recognizer: UIGestureRecognizer) {
         let location = recognizer.location(in: pdfView!)
         
         page = pdfView!.page(for: location, nearest: false)
